@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap');
+
+:root {
+  --color-primary: #FEB563;       /* основной яркий цвет */
+  --color-primary-dark: #e6a04d;  /* более тёмный оттенок для hover, border, тени */
+  --color-secondary: #838383;     /* нейтральный серый цвет */
+  --color-background: #f7f9fb;    /* фон страницы */
+  --font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-family);
+  background-color: var(--color-background);
+  color: var(--color-secondary);
+}
+
+button, input {
+  font-family: inherit;
+}
+

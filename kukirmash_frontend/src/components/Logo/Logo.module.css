@@ -1,0 +1,13 @@
+.logo {
+  display: flex;
+  align-items: center; /* вертикальное выравнивание */
+  gap: 12px; /* расстояние между иконкой и текстом */
+}
+
+.logoText {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 48px;
+  color: var(--color-primary); /* теперь основной цвет */
+}
+

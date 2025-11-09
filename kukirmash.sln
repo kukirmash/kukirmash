@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kukirmash_backend", "kukirmash_backend", "{7CAEB88D-3F78-4207-AD9A-64A3B5CD32F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kukirmash.API", "kukirmash_backend\Kukirmash.API\Kukirmash.API.csproj", "{7797C20E-C4FC-49FB-88C6-813AFE127B77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kukirmash.Core", "kukirmash_backend\Kukirmash.Core\Kukirmash.Core.csproj", "{F3DE4803-C8D1-4145-A57C-AEDBCDA6D16F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kukirmash.Persistence", "kukirmash_backend\Kukirmash.Persistence\Kukirmash.Persistence.csproj", "{8FFC205F-CC82-4976-83BD-A548829106E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kukirmash.Application", "kukirmash_backend\Kukirmash.Application\Kukirmash.Application.csproj", "{EF567FE7-C01A-41E4-A821-AD528914EECC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7797C20E-C4FC-49FB-88C6-813AFE127B77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7797C20E-C4FC-49FB-88C6-813AFE127B77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7797C20E-C4FC-49FB-88C6-813AFE127B77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7797C20E-C4FC-49FB-88C6-813AFE127B77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3DE4803-C8D1-4145-A57C-AEDBCDA6D16F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3DE4803-C8D1-4145-A57C-AEDBCDA6D16F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3DE4803-C8D1-4145-A57C-AEDBCDA6D16F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3DE4803-C8D1-4145-A57C-AEDBCDA6D16F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FFC205F-CC82-4976-83BD-A548829106E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FFC205F-CC82-4976-83BD-A548829106E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FFC205F-CC82-4976-83BD-A548829106E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FFC205F-CC82-4976-83BD-A548829106E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF567FE7-C01A-41E4-A821-AD528914EECC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF567FE7-C01A-41E4-A821-AD528914EECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF567FE7-C01A-41E4-A821-AD528914EECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF567FE7-C01A-41E4-A821-AD528914EECC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7797C20E-C4FC-49FB-88C6-813AFE127B77} = {7CAEB88D-3F78-4207-AD9A-64A3B5CD32F4}
+		{F3DE4803-C8D1-4145-A57C-AEDBCDA6D16F} = {7CAEB88D-3F78-4207-AD9A-64A3B5CD32F4}
+		{8FFC205F-CC82-4976-83BD-A548829106E7} = {7CAEB88D-3F78-4207-AD9A-64A3B5CD32F4}
+		{EF567FE7-C01A-41E4-A821-AD528914EECC} = {7CAEB88D-3F78-4207-AD9A-64A3B5CD32F4}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,19 @@
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-primary); /* современный способ задать цвет галочки */
+}
+
+.label {
+  color: var(--color-secondary);
+}
