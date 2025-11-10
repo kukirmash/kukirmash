@@ -53,7 +53,7 @@ export const RegisterForm = () => {
       <Button type="submit">Зарегистрироваться</Button>
 
       <div className={styles.login} >
-        Уже есть аккаут?
+        Уже есть аккаунт?
         <Link to="/login">Войти</Link>
       </div>
 

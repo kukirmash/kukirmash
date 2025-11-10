@@ -1,7 +1,37 @@
-var builder = WebApplication.CreateBuilder(args);
+using Kukirmash.Persistence;
+using Microsoft.EntityFrameworkCore;
+using Serilog;
 
-var app = builder.Build();
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("log.txt")
+    .CreateLogger();
 
-app.MapGet("/", () => "Hello World!");
+try
+{
+    Log.Information("Starting kukirmash web application");
 
-app.Run();
+    var builder = WebApplication.CreateBuilder(args);
+
+    var config = builder.Configuration;
+
+    builder.Services.AddDbContext<KukirmashDbContext>(
+        options =>
+        {
+            options.UseNpgsql(config.GetConnectionString(nameof(KukirmashDbContext)));
+        });
+
+    var app = builder.Build();
+
+    app.MapGet("/", () => "Hello World!");
+
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Error(ex, "Unexpected error");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
