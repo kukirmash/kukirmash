@@ -1,0 +1,23 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 48px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  font-family: var(--font-family);
+}
+
+.navButtons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* убираем подчеркивание у ссылок */
+.navButtons a {
+  text-decoration: none;
+}
