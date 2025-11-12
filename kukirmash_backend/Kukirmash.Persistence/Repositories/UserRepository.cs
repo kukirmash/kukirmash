@@ -1,10 +1,11 @@
+using Kukirmash.Application.Interfaces.Repositories;
 using Kukirmash.Core.Models;
 using Kukirmash.Persistence.Entites;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kukirmash.Persistence.Repositories;
 
-public class UserRepository
+public class UserRepository : IUserRepository
 {
     private readonly KukirmashDbContext _context;
 
@@ -35,6 +36,21 @@ public class UserRepository
         var userEntity = await _context.Users
             .AsNoTracking()
             .FirstOrDefaultAsync(user => user.Email == email) ?? throw new Exception();
+
+        var user = User.Create(userEntity.Id,
+                                userEntity.Login,
+                                userEntity.Email,
+                                userEntity.PasswordHash);
+
+        return user;
+    }
+
+    //---------------------------------------------------------------------------
+    public async Task<User> GetByLogin(string login)
+    {
+        var userEntity = await _context.Users
+            .AsNoTracking()
+            .FirstOrDefaultAsync(user => user.Login == login) ?? throw new Exception();
 
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,

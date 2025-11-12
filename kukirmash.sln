@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kukirmash.Persistence", "ku
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kukirmash.Application", "kukirmash_backend\Kukirmash.Application\Kukirmash.Application.csproj", "{EF567FE7-C01A-41E4-A821-AD528914EECC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kukirmash.Infrastructure", "kukirmash_backend\Kukirmash.Infrastructure\Kukirmash.Infrastructure.csproj", "{BFB320A8-858F-4403-9C71-18AE000D7DFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{EF567FE7-C01A-41E4-A821-AD528914EECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF567FE7-C01A-41E4-A821-AD528914EECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF567FE7-C01A-41E4-A821-AD528914EECC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFB320A8-858F-4403-9C71-18AE000D7DFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFB320A8-858F-4403-9C71-18AE000D7DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFB320A8-858F-4403-9C71-18AE000D7DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFB320A8-858F-4403-9C71-18AE000D7DFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +50,6 @@ Global
 		{F3DE4803-C8D1-4145-A57C-AEDBCDA6D16F} = {7CAEB88D-3F78-4207-AD9A-64A3B5CD32F4}
 		{8FFC205F-CC82-4976-83BD-A548829106E7} = {7CAEB88D-3F78-4207-AD9A-64A3B5CD32F4}
 		{EF567FE7-C01A-41E4-A821-AD528914EECC} = {7CAEB88D-3F78-4207-AD9A-64A3B5CD32F4}
+		{BFB320A8-858F-4403-9C71-18AE000D7DFE} = {7CAEB88D-3F78-4207-AD9A-64A3B5CD32F4}
 	EndGlobalSection
 EndGlobal

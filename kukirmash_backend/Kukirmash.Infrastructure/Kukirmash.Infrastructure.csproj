@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Kukirmash.Core/Kukirmash.Core.csproj" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Kukirmash.Application/Kukirmash.Application.csproj" />
   </ItemGroup>
 
 </Project>

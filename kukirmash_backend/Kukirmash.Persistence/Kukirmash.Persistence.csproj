@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../Kukirmash.Application/Kukirmash.Application.csproj" />
     <ProjectReference Include="..\Kukirmash.Core\Kukirmash.Core.csproj" />
   </ItemGroup>
 
