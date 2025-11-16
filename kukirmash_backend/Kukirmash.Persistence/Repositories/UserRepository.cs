@@ -61,4 +61,19 @@ public class UserRepository : IUserRepository
     }
 
     //---------------------------------------------------------------------------
+    public async Task<User> GetById(Guid id)
+    {
+        var userEntity = await _context.Users
+            .AsNoTracking()
+            .FirstOrDefaultAsync(user => user.Id == id) ?? throw new Exception();
+
+        var user = User.Create(userEntity.Id,
+                                userEntity.Login,
+                                userEntity.Email,
+                                userEntity.PasswordHash);
+
+        return user;
+    }
+
+    //---------------------------------------------------------------------------
 }

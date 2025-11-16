@@ -8,12 +8,14 @@ public class UserService
 {
     private readonly IPasswordHasher _passwordHasher;
     private readonly IUserRepository _userRepository;
+    private readonly IJwtProvider _jwtProvider;
 
     //---------------------------------------------------------------------------
-    public UserService(IUserRepository userRepository, IPasswordHasher passwordHasher)
+    public UserService(IUserRepository userRepository, IPasswordHasher passwordHasher, IJwtProvider jwtProvider)
     {
         _passwordHasher = passwordHasher;
         _userRepository = userRepository;
+        _jwtProvider = jwtProvider;
     }
 
     //---------------------------------------------------------------------------
@@ -29,7 +31,18 @@ public class UserService
     //---------------------------------------------------------------------------
     public async Task<string> LoginByLogin(string login, string password)
     {
-        return "";
+        var user = await _userRepository.GetByLogin(login);
+
+        var result = _passwordHasher.Verify(password, user.PasswordHash);
+
+        if (result == false)
+        {
+            throw new Exception("Failed to login");
+        }
+
+        var token = _jwtProvider.GenerateToken(user);
+
+        return token;
     }
 
     //---------------------------------------------------------------------------
