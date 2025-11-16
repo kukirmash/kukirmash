@@ -4,5 +4,5 @@ namespace Kukirmash.Application.Interfaces.Auth;
 
 public interface IJwtProvider
 {
-    public string GenerateToken(User user);
+    string GenerateToken(User user);
 }

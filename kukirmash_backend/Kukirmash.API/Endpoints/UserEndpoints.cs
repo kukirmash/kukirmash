@@ -1,6 +1,5 @@
 using Kukirmash.API.Contracts.User;
-using Kukirmash.Application.Services;
-using Kukirmash.Core.Models;
+using Kukirmash.Application.Interfaces.Services;
 
 namespace Kukirmash.API.Endpoints;
 
@@ -14,7 +13,7 @@ public static class UserEndpoints
         return app;
     }
 
-    private static async Task<IResult> Register(RegisterUserRequest registerUserRequest, UserService userService)
+    private static async Task<IResult> Register(RegisterUserRequest registerUserRequest, IUserService userService)
     {
         await userService.Register(
             registerUserRequest.Login,
@@ -25,7 +24,7 @@ public static class UserEndpoints
         return Results.Ok();
     }
 
-    private static async Task<IResult> Login(LoginUserRequest loginUserRequest, UserService userService)
+    private static async Task<IResult> Login(LoginUserRequest loginUserRequest, IUserService userService)
     {
         var token = "";
 

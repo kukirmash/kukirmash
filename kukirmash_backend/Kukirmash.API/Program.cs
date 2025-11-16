@@ -1,6 +1,14 @@
+using Kukirmash.Application.Interfaces.Repositories;
+using Kukirmash.Application.Interfaces.Services;
+using Kukirmash.Application.Interfaces.Auth;
+using Kukirmash.Persistence.Repositories;
+using Kukirmash.Application.Services;
 using Kukirmash.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Kukirmash.Infrastructure;
+using Kukirmash.API.Endpoints;
+using Kukirmash.Infrastructure.JWT;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -15,23 +23,26 @@ try
     var config = builder.Configuration;
     var services = builder.Services;
 
-    builder.Services.AddDbContext<KukirmashDbContext>(
+    services.Configure<JwtOptions>(config.GetSection(nameof(JwtOptions)));
+    services.AddDbContext<KukirmashDbContext>(
         options =>
         {
             options.UseNpgsql(config.GetConnectionString(nameof(KukirmashDbContext)));
         });
 
-    services.AddControllers();
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
+
+    services.AddScoped<IUserRepository, UserRepository>();
+    services.AddScoped<IUserService, UserService>();
+    services.AddScoped<IJwtProvider, JwtProvider>();
+    services.AddScoped<IPasswordHasher, PasswordHasher>();
 
     var app = builder.Build();
 
     app.UseSwagger();
     app.UseSwaggerUI();
-
-    app.MapGet("/", () => "Hello World!");
-
+    app.MapUserEndpoints();
     app.Run();
 }
 catch (Exception ex)

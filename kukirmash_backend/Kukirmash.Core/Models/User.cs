@@ -15,7 +15,7 @@ public class User
     public string Email { get; private set; }
     public string PasswordHash { get; private set; }
 
-    public static User Create(Guid id, string login, string passwordHash, string email)
+    public static User Create(Guid id, string login, string email,string passwordHash)
     {
         return new User(id, login, passwordHash, email);
     }

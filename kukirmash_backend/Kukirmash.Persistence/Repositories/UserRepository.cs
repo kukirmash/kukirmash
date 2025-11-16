@@ -2,6 +2,7 @@ using Kukirmash.Application.Interfaces.Repositories;
 using Kukirmash.Core.Models;
 using Kukirmash.Persistence.Entites;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace Kukirmash.Persistence.Repositories;
 
@@ -24,6 +25,8 @@ public class UserRepository : IUserRepository
             Email = user.Email,
             PasswordHash = user.PasswordHash
         };
+
+        Log.Information( $"Добавлен новый пользователь Id = {user.Id}, Login = {user.Login}, Email = {user.Email}, PasswordHash = {user.PasswordHash}" );    
 
         // Добавление 
         await _context.Users.AddAsync(userEntity);

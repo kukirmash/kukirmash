@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Kukirmash.Application.Interfaces.Auth;
 using Kukirmash.Core.Models;
 using Kukirmash.Infrastructure.JWT;
 using Microsoft.Extensions.Options;
@@ -9,7 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Kukirmash.Infrastructure;
 
-public class JwtProvider
+public class JwtProvider : IJwtProvider
 {
     private readonly JwtOptions _options;
 

@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../Kukirmash.Infrastructure/Kukirmash.Infrastructure.csproj" />
     <ProjectReference Include="../Kukirmash.Persistence/Kukirmash.Persistence.csproj" />
   </ItemGroup>
 

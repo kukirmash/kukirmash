@@ -1,10 +1,11 @@
 using Kukirmash.Application.Interfaces.Auth;
 using Kukirmash.Application.Interfaces.Repositories;
+using Kukirmash.Application.Interfaces.Services;
 using Kukirmash.Core.Models;
 
 namespace Kukirmash.Application.Services;
 
-public class UserService
+public class UserService : IUserService
 {
     private readonly IPasswordHasher _passwordHasher;
     private readonly IUserRepository _userRepository;
