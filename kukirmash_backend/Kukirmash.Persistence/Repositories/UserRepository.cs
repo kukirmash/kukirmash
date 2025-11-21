@@ -26,7 +26,7 @@ public class UserRepository : IUserRepository
             PasswordHash = user.PasswordHash
         };
 
-        Log.Information( $"Добавлен новый пользователь Id = {user.Id}, Login = {user.Login}, Email = {user.Email}, PasswordHash = {user.PasswordHash}" );    
+        Log.Information($"Добавлен новый пользователь Id = {user.Id}, Login = {user.Login}, Email = {user.Email}, PasswordHash = {user.PasswordHash}");
 
         // Добавление 
         await _context.Users.AddAsync(userEntity);
@@ -38,7 +38,10 @@ public class UserRepository : IUserRepository
     {
         var userEntity = await _context.Users
             .AsNoTracking()
-            .FirstOrDefaultAsync(user => user.Email == email) ?? throw new Exception();
+            .FirstOrDefaultAsync(user => user.Email == email);
+
+        if (userEntity is null)
+            return null;
 
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,
@@ -53,7 +56,10 @@ public class UserRepository : IUserRepository
     {
         var userEntity = await _context.Users
             .AsNoTracking()
-            .FirstOrDefaultAsync(user => user.Login == login) ?? throw new Exception();
+            .FirstOrDefaultAsync(user => user.Login == login);
+
+        if (userEntity is null)
+            return null;
 
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,
@@ -68,7 +74,10 @@ public class UserRepository : IUserRepository
     {
         var userEntity = await _context.Users
             .AsNoTracking()
-            .FirstOrDefaultAsync(user => user.Id == id) ?? throw new Exception();
+            .FirstOrDefaultAsync(user => user.Id == id);
+
+        if (userEntity is null)
+            return null;
 
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,

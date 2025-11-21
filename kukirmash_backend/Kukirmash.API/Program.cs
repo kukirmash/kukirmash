@@ -25,10 +25,7 @@ try
 
     services.Configure<JwtOptions>(config.GetSection(nameof(JwtOptions)));
     services.AddDbContext<KukirmashDbContext>(
-        options =>
-        {
-            options.UseNpgsql(config.GetConnectionString(nameof(KukirmashDbContext)));
-        });
+        options => { options.UseNpgsql(config.GetConnectionString(nameof(KukirmashDbContext))); });
 
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();

@@ -1,3 +1,4 @@
+using Kukirmash.Application.Exceptions;
 using Kukirmash.Application.Interfaces.Auth;
 using Kukirmash.Application.Interfaces.Repositories;
 using Kukirmash.Application.Interfaces.Services;
@@ -22,10 +23,23 @@ public class UserService : IUserService
     //---------------------------------------------------------------------------
     public async Task Register(string login, string email, string password)
     {
+        // Проверяем существует ли пользователь с таким же email
+        var existingByEmail = await _userRepository.GetByEmail(email);
+        if (existingByEmail != null)
+            throw new UserAlreadyExistsException("Email already registered");
+
+        // Проверяем существует ли пользователь с таким же логином
+        var existingByLogin = await _userRepository.GetByLogin(login);
+        if (existingByLogin != null)
+            throw new UserAlreadyExistsException("Login already registered");
+
+        // Хешируем пароль
         string hashedPassword = _passwordHasher.Generate(password);
 
+        // Создаем пользователя
         var user = User.Create(Guid.NewGuid(), login, email, hashedPassword);
 
+        // Добавляем его в БД
         await _userRepository.Add(user);
     }
 
