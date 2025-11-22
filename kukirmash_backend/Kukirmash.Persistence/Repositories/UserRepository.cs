@@ -15,7 +15,7 @@ public class UserRepository : IUserRepository
         _context = context;
     }
 
-    //---------------------------------------------------------------------------
+    //*----------------------------------------------------------------------------------------------------------------------------
     public async Task Add(User user)
     {
         var userEntity = new UserEntity()
@@ -33,7 +33,7 @@ public class UserRepository : IUserRepository
         await _context.SaveChangesAsync();
     }
 
-    //---------------------------------------------------------------------------
+    //*----------------------------------------------------------------------------------------------------------------------------
     public async Task<User> GetByEmail(string email)
     {
         var userEntity = await _context.Users
@@ -51,7 +51,7 @@ public class UserRepository : IUserRepository
         return user;
     }
 
-    //---------------------------------------------------------------------------
+    //*----------------------------------------------------------------------------------------------------------------------------
     public async Task<User> GetByLogin(string login)
     {
         var userEntity = await _context.Users
@@ -69,7 +69,7 @@ public class UserRepository : IUserRepository
         return user;
     }
 
-    //---------------------------------------------------------------------------
+    //*----------------------------------------------------------------------------------------------------------------------------
     public async Task<User> GetById(Guid id)
     {
         var userEntity = await _context.Users
@@ -87,5 +87,5 @@ public class UserRepository : IUserRepository
         return user;
     }
 
-    //---------------------------------------------------------------------------
+    //*----------------------------------------------------------------------------------------------------------------------------
 }

@@ -1,6 +1,5 @@
 using System.Text.RegularExpressions;
 using Kukirmash.API.Contracts.User;
-using Kukirmash.Application.Exceptions;
 using Kukirmash.Application.Interfaces.Services;
 
 namespace Kukirmash.API.Endpoints;
@@ -15,11 +14,15 @@ public static class UserEndpoints
         return app;
     }
 
+    //*----------------------------------------------------------------------------------------------------------------------------
     private static async Task<IResult> Register(RegisterUserRequest registerUserRequest, IUserService userService)
     {
+        // Проверяем логин
+        // TODO: добавить запрещенные символы в логин (например @)
         if (string.IsNullOrWhiteSpace(registerUserRequest.Login))
             return Results.BadRequest("Login is required");
 
+        // Проверяем почту
         if (string.IsNullOrWhiteSpace(registerUserRequest.Email))
             return Results.BadRequest("Email is required");
 
@@ -29,20 +32,14 @@ public static class UserEndpoints
         if (!Regex.IsMatch(registerUserRequest.Email, pattern, RegexOptions.IgnoreCase))
             return Results.BadRequest("Invalid email format");
 
+        // Проверяем пароль: длина >= 8 символов
         if (string.IsNullOrWhiteSpace(registerUserRequest.Password) || registerUserRequest.Password.Length < 8)
             return Results.BadRequest("Password must be at least 8 characters");
 
+        // Регистрируем нового пользователя
         try
         {
-            await userService.Register(
-                registerUserRequest.Login,
-                registerUserRequest.Email,
-                registerUserRequest.Password
-            );
-        }
-        catch (UserAlreadyExistsException)
-        {
-            return Results.Conflict("User with this login or email already exists");
+            await userService.Register(registerUserRequest.Login,registerUserRequest.Email,registerUserRequest.Password);
         }
         catch (Exception ex)
         {
@@ -53,26 +50,37 @@ public static class UserEndpoints
 
     }
 
-    private static async Task<IResult> Login(LoginUserRequest loginUserRequest, IUserService userService)
+    //*----------------------------------------------------------------------------------------------------------------------------
+    private static async Task<IResult> Login(LoginUserRequest loginUserRequest, IUserService userService, HttpContext httpContext)
     {
+        // Проверяем логин
+        if (string.IsNullOrWhiteSpace(loginUserRequest.Login))
+            return Results.BadRequest("Login is required");
+
+        // Проверяем пароль: длина >= 8 символов
+        if (string.IsNullOrWhiteSpace(loginUserRequest.Password) || loginUserRequest.Password.Length < 8)
+            return Results.BadRequest("Password must be at least 8 characters");
+
+        // Находим пользователя -> генерируем для него jwt токен (время жизни токена 12 часов)
         var token = "";
 
-        if (loginUserRequest.Login.Contains("@"))
+        try
         {
-            token = await userService.LoginByEmail(
-            loginUserRequest.Login,
-            loginUserRequest.Password
-            );
+            if (loginUserRequest.Login.Contains("@"))
+                token = await userService.LoginByEmail(loginUserRequest.Login, loginUserRequest.Password);
+            else
+                token = await userService.LoginByLogin(loginUserRequest.Login, loginUserRequest.Password);
         }
-        else
+        catch (Exception ex)
         {
-            token = await userService.LoginByLogin(
-            loginUserRequest.Login,
-            loginUserRequest.Password
-            );
+            return Results.Problem(ex.Message);
         }
 
+        // Заносим сгенерированный токен в cookies
+        httpContext.Response.Cookies.Append("big-balls", token);
 
         return Results.Ok(token);
     }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
 }

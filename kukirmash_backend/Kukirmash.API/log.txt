@@ -2,3 +2,11 @@
 2025-11-21 19:33:07.177 +03:00 [INF] Starting kukirmash web application
 2025-11-21 19:35:35.972 +03:00 [INF] Добавлен новый пользователь Id = ff068aab-a30c-4e26-bb8d-70ccbafd55da, Login = kukirmash, Email = ivanya-2000@mail.ru, PasswordHash = $2a$11$5ZGVnCpLosqMFu6n8gz4NegJWGOA8KpohHeRBKaSTu8tOJ7.cWfKS
 2025-11-21 20:09:01.901 +03:00 [INF] Starting kukirmash web application
+2025-11-22 09:50:46.578 +03:00 [INF] Starting kukirmash web application
+2025-11-22 09:52:03.714 +03:00 [INF] Starting kukirmash web application
+2025-11-22 09:54:47.936 +03:00 [INF] Starting kukirmash web application
+2025-11-22 09:59:57.350 +03:00 [INF] Starting kukirmash web application
+2025-11-22 14:57:30.372 +03:00 [INF] Starting kukirmash web application
+2025-11-22 14:58:54.070 +03:00 [INF] Starting kukirmash web application
+2025-11-22 15:31:27.956 +03:00 [INF] Starting kukirmash web application
+2025-11-22 15:32:55.760 +03:00 [INF] Добавлен новый пользователь Id = d580eac9-2275-44a3-b875-0b66cc94b750, Login = kukirmash, Email = ivanya-2000@mail.ru, PasswordHash = $2a$11$RUi4FL73MbZOtKD9AVg4M.ObweFb8IJlZYMt8J5V.whKAa4FE9dD2
