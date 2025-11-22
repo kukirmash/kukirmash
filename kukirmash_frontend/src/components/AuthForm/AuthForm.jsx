@@ -24,6 +24,7 @@ export const AuthForm = ({ onSubmit }) => {
         value={login} 
         onChange={setLogin} 
         placeholder="Введите логин/почту"
+        onBlur={()=>{}}
       />
       <Input 
         label="Пароль" 
@@ -31,6 +32,7 @@ export const AuthForm = ({ onSubmit }) => {
         value={password} 
         onChange={setPassword} 
         placeholder="Введите пароль"
+        onBlur={()=>{}}
       />
 
       <div className={styles.underPassword} >

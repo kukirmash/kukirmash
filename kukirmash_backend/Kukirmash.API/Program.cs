@@ -24,9 +24,19 @@ try
     var services = builder.Services;
 
     services.Configure<JwtOptions>(config.GetSection(nameof(JwtOptions)));
-    services.AddDbContext<KukirmashDbContext>(
-        options => { options.UseNpgsql(config.GetConnectionString(nameof(KukirmashDbContext))); });
+    services.AddDbContext<KukirmashDbContext>( options => 
+    { 
+        options.UseNpgsql(config.GetConnectionString(nameof(KukirmashDbContext))); 
+    });
 
+    services.AddCors(options => {
+        options.AddDefaultPolicy(policy =>
+        {
+            policy.WithOrigins("http://localhost:3000");
+            policy.AllowAnyHeader();
+            policy.AllowAnyMethod();
+        });
+    });
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
 
@@ -37,6 +47,7 @@ try
 
     var app = builder.Build();
 
+    app.UseCors();
     app.UseSwagger();
     app.UseSwaggerUI();
     app.MapUserEndpoints();

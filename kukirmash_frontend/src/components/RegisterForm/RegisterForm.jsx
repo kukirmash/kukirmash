@@ -2,53 +2,138 @@ import React, { useState } from "react";
 import styles from "./RegisterForm.module.css";
 import { Input } from "../../ui/Input/Input";
 import { Button } from "../../ui/Button/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserService } from "../../services/UserService";
 
 export const RegisterForm = () => {
+  //*----------------------------------------------------------------------------------------------------------------------------
+  const navigate = useNavigate(); 
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState("");
 
-  const handleSubmit = (e) => {
+  //*----------------------------------------------------------------------------------------------------------------------------
+  const validate = () => {
+    const newErrors = {};
 
+    if (!login.trim()) newErrors.login = "Логин обязателен";
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) newErrors.email = "Некорректная почта";
+
+    if (password.length < 8)
+      newErrors.password = "Пароль должен быть минимум 8 символов";
+
+    if (password !== confirmPassword)
+      newErrors.confirmPassword = "Пароли не совпадают";
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
   };
 
+  //*----------------------------------------------------------------------------------------------------------------------------
+  const validateField = (name, value) => {
+    const fieldErrors = {};
+
+    if (name === "login" && !value.trim()) {
+      fieldErrors.login = "Логин обязателен";
+    }
+
+    if (name === "email") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        fieldErrors.email = "Некорректная почта";
+      }
+    }
+
+    if (name === "password" && value.length < 8) {
+      fieldErrors.password = "Пароль должен быть минимум 8 символов";
+    }
+
+    if (name === "confirmPassword" && value !== password) {
+      fieldErrors.confirmPassword = "Пароли не совпадают";
+    }
+
+    setErrors(prev => ({ ...prev, [name]: fieldErrors[name] }));
+  };
+
+  //*----------------------------------------------------------------------------------------------------------------------------
+  // TODO: обрабатывать когда сервер выключен - msgbox
+  // TODO: обрабатывать когда сервер вернул ошибку(пользователь уже существует) - ошибка
+  // TODO: показывать msgbox что пользователь успешно зарегестрирован и потом переводить на логин
+  // TODO: делать кнопку регистрации неактивной, пока все параметры не станут валидными 
+  // TODO: ??? - запрашивать логин и email у всех пользователей заранее, чтобы проверять на уникальность - ???
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setServerError("");
+
+    if (!validate())
+      return;
+
+    try
+    {
+      const response = await UserService.register({ login, email, password });
+      console.log(response);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        setServerError(errorText || "Ошибка регистрации");
+        return;
+      }
+
+      navigate("/login");
+    }
+    catch (err)
+    {
+      setServerError("Ошибка соединения с сервером");
+    }
+  };
+
+  //*----------------------------------------------------------------------------------------------------------------------------
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h2>Регистрация</h2>
 
       <Input
-        label="Логин"
+        label="Логин*"
         value={login}
         onChange={setLogin}
         placeholder="Введите логин"
+        onBlur={() => validateField("login", login)}
       />
+      {errors.login && <p className={styles.error}>{errors.login}</p>}
       <Input
-        label="Почта"
-        type="email"
+        label="Почта*"
+        type="text"
         value={email}
         onChange={setEmail}
         placeholder="Введите почту"
+        onBlur={() => validateField("email", email)}
       />
+      {errors.email && <p className={styles.error}>{errors.email}</p>}
       <Input
-        label="Пароль"
+        label="Пароль*"
         type="password"
         value={password}
         onChange={setPassword}
         placeholder="Введите пароль"
+        onBlur={() => validateField("password", password)}
       />
+      {errors.password && <p className={styles.error}>{errors.password}</p>}
       <Input
-        label="Повторите пароль"
+        label="Повторите пароль*"
         type="password"
         value={confirmPassword}
         onChange={setConfirmPassword}
         placeholder="Повторите пароль"
+        onBlur={() => validateField("confirmPassword", confirmPassword)}
       />
-
-      {error && <p className={styles.error}>{error}</p>}
+      {errors.confirmPassword && (<p className={styles.error}>{errors.confirmPassword}</p>)}
 
       <Button type="submit">Зарегистрироваться</Button>
 
@@ -59,4 +144,6 @@ export const RegisterForm = () => {
 
     </form>
   );
+
+  //*----------------------------------------------------------------------------------------------------------------------------
 };
