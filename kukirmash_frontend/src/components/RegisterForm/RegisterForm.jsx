@@ -67,7 +67,7 @@ export const RegisterForm = () => {
   // TODO: обрабатывать когда сервер вернул ошибку(пользователь уже существует) - ошибка
   // TODO: показывать msgbox что пользователь успешно зарегестрирован и потом переводить на логин
   // TODO: делать кнопку регистрации неактивной, пока все параметры не станут валидными 
-  // TODO: ??? - запрашивать логин и email у всех пользователей заранее, чтобы проверять на уникальность - ???
+  // TODO: ??? - запрашивать логин и email у всех пользователей заранее, чтобы проверять на уникальность - ??? - не срочно
   const handleSubmit = async (e) => {
     e.preventDefault();
     setServerError("");
@@ -75,14 +75,30 @@ export const RegisterForm = () => {
     if (!validate())
       return;
 
+    let message = "Регистрация заверешна успешно";
+
     try
     {
-      const response = await UserService.register({ login, email, password });
-      console.log(response);
+      const response = await UserService.register({ login, email, password });  
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        setServerError(errorText || "Ошибка регистрации");
+      if (!response.ok)
+      {
+        message = "Ошибка регистрации";
+
+        console.log("ОШИБКА РЕГИСТРАЦИИ");
+        const errorJson = await response.json();   // <— читаем JSON
+        console.log("ERROR JSON:", errorJson);
+
+        if (errorJson.detail)
+        {
+          message = message + ": " + errorJson.detail;  
+        }
+        
+        setServerError("ОШИБКА РЕГИСТРАЦИИ" || message);
+         
+        // Диалоговое окно об ошибке
+        alert(message);
+
         return;
       }
 
@@ -90,8 +106,14 @@ export const RegisterForm = () => {
     }
     catch (err)
     {
+      message = "Ошибка соединения с сервером";
+
+      console.log("ОШИБКА СОЕДИНЕНИЯ С СЕРВЕРОМ")
       setServerError("Ошибка соединения с сервером");
     }
+    
+    // Диалоговое окно
+    alert(message);
   };
 
   //*----------------------------------------------------------------------------------------------------------------------------

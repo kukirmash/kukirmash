@@ -13,6 +13,7 @@ export const UserService = {
             body: JSON.stringify({ login, email, password }),
         });
         
+        //console.log(response);
         return response;
     },
 
@@ -26,6 +27,7 @@ export const UserService = {
             body: JSON.stringify({ login, password }),
         });
 
+        //console.log(response);
         return response;
     },
 

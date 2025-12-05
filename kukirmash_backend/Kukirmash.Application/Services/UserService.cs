@@ -24,11 +24,16 @@ public class UserService : IUserService
     {
         // Проверяем существует ли пользователь с таким же email
         var existingByEmail = await _userRepository.GetByEmail(email);
+        // Проверяем существует ли пользователь с таким же логином
+        var existingByLogin = await _userRepository.GetByLogin(login);
+
+        // Генерируем ошибки в зависимости от занятости 
+        if (existingByEmail != null && existingByLogin != null)
+            throw new Exception("Email and login already registered");
+
         if (existingByEmail != null)
             throw new Exception("Email already registered");
 
-        // Проверяем существует ли пользователь с таким же логином
-        var existingByLogin = await _userRepository.GetByLogin(login);
         if (existingByLogin != null)
             throw new Exception("Login already registered");
 
