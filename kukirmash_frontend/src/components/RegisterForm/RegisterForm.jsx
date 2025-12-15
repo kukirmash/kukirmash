@@ -4,26 +4,35 @@ import { Input } from "../../ui/Input/Input";
 import { Button } from "../../ui/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { UserService } from "../../services/UserService";
+import { Dialog } from "../Dialog/Dialog";
 
 export const RegisterForm = () => {
   //*----------------------------------------------------------------------------------------------------------------------------
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [errors, setErrors] = useState({});
-  const [serverError, setServerError] = useState("");
+  const [serverMessage, setServerMessage] = useState("");
+
+  const [isDialog, setIsDialog] = useState(false);
+  const [typeDialog, setTypeDialog] = useState("");
+
+  const [isRegistered, setIsRegistered] = useState(false);
 
   //*----------------------------------------------------------------------------------------------------------------------------
+  // Проверка перед отправкой запроса (onSubmit у формы)
   const validate = () => {
     const newErrors = {};
 
-    if (!login.trim()) newErrors.login = "Логин обязателен";
+    if (!login.trim())
+      newErrors.login = "Логин обязателен";
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) newErrors.email = "Некорректная почта";
+    if (!emailRegex.test(email))
+      newErrors.email = "Некорректная почта";
 
     if (password.length < 8)
       newErrors.password = "Пароль должен быть минимум 8 символов";
@@ -38,7 +47,12 @@ export const RegisterForm = () => {
 
   //*----------------------------------------------------------------------------------------------------------------------------
   const validateField = (name, value) => {
-    const fieldErrors = {};
+    const fieldErrors = {
+      login: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
+    };
 
     if (name === "login" && !value.trim()) {
       fieldErrors.login = "Логин обязателен";
@@ -46,9 +60,8 @@ export const RegisterForm = () => {
 
     if (name === "email") {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(value)) {
+      if (!emailRegex.test(value))
         fieldErrors.email = "Некорректная почта";
-      }
     }
 
     if (name === "password" && value.length < 8) {
@@ -63,108 +76,109 @@ export const RegisterForm = () => {
   };
 
   //*----------------------------------------------------------------------------------------------------------------------------
-  // TODO: обрабатывать когда сервер выключен - msgbox
-  // TODO: обрабатывать когда сервер вернул ошибку(пользователь уже существует) - ошибка
-  // TODO: показывать msgbox что пользователь успешно зарегестрирован и потом переводить на логин
   // TODO: делать кнопку регистрации неактивной, пока все параметры не станут валидными 
   // TODO: ??? - запрашивать логин и email у всех пользователей заранее, чтобы проверять на уникальность - ??? - не срочно
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setServerError("");
+    e.preventDefault(); // отключаем перезагрузку страницы
+    setServerMessage("");
 
     if (!validate())
       return;
 
-    let message = "Регистрация заверешна успешно";
+    try {
+      const response = await UserService.register({ login, email, password });
 
-    try
-    {
-      const response = await UserService.register({ login, email, password });  
-
-      if (!response.ok)
-      {
-        message = "Ошибка регистрации";
-
+      if (!response.ok) {
+        const errorJson = await response.json();
         console.log("ОШИБКА РЕГИСТРАЦИИ");
-        const errorJson = await response.json();   // <— читаем JSON
         console.log("ERROR JSON:", errorJson);
 
+        let message = "Ошибка регистрации";
         if (errorJson.detail)
-        {
-          message = message + ": " + errorJson.detail;  
-        }
-        
-        setServerError("ОШИБКА РЕГИСТРАЦИИ" || message);
-         
-        // Диалоговое окно об ошибке
-        alert(message);
+          message = errorJson.detail;
 
-        return;
+        // Диалоговое окно об предупреждение
+        setTypeDialog("warning");
+        setServerMessage(message);
+        setIsDialog(true);
+
+        return;//ошибка регистрации
       }
+      
+      // Диалоговое окно успешно
+      setTypeDialog("ok");
+      setServerMessage("Регистрация завершена успешно");
+      setIsDialog(true);
 
-      navigate("/login");
+      // Регистрация прошла успешно
+      setIsRegistered(true);
     }
-    catch (err)
-    {
-      message = "Ошибка соединения с сервером";
-
+    catch (err) {
       console.log("ОШИБКА СОЕДИНЕНИЯ С СЕРВЕРОМ")
-      setServerError("Ошибка соединения с сервером");
+
+      // Диалоговое окно об ошибке
+      setTypeDialog("error");
+      setServerMessage("Ошибка соединения с сервером");
+      setIsDialog(true);
+
+      return;//ошибка регистрации
     }
-    
-    // Диалоговое окно
-    alert(message);
   };
 
   //*----------------------------------------------------------------------------------------------------------------------------
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>Регистрация</h2>
+    <>
+      {isDialog && <Dialog type = {typeDialog} content={serverMessage} onClose={() => { setIsDialog(false); isRegistered && navigate("/login"); }} />}
 
-      <Input
-        label="Логин*"
-        value={login}
-        onChange={setLogin}
-        placeholder="Введите логин"
-        onBlur={() => validateField("login", login)}
-      />
-      {errors.login && <p className={styles.error}>{errors.login}</p>}
-      <Input
-        label="Почта*"
-        type="text"
-        value={email}
-        onChange={setEmail}
-        placeholder="Введите почту"
-        onBlur={() => validateField("email", email)}
-      />
-      {errors.email && <p className={styles.error}>{errors.email}</p>}
-      <Input
-        label="Пароль*"
-        type="password"
-        value={password}
-        onChange={setPassword}
-        placeholder="Введите пароль"
-        onBlur={() => validateField("password", password)}
-      />
-      {errors.password && <p className={styles.error}>{errors.password}</p>}
-      <Input
-        label="Повторите пароль*"
-        type="password"
-        value={confirmPassword}
-        onChange={setConfirmPassword}
-        placeholder="Повторите пароль"
-        onBlur={() => validateField("confirmPassword", confirmPassword)}
-      />
-      {errors.confirmPassword && (<p className={styles.error}>{errors.confirmPassword}</p>)}
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <h2>Регистрация</h2>
 
-      <Button type="submit">Зарегистрироваться</Button>
+        <Input
+          label="Логин*"
+          value={login}
+          onChange={setLogin}
+          placeholder="Введите логин"
+          onBlur={() => validateField("login", login)}
+        />
+        {errors.login && <p className={styles.error}>{errors.login}</p>}
+        <Input
+          label="Почта*"
+          type="text"
+          value={email}
+          onChange={setEmail}
+          placeholder="Введите почту"
+          onBlur={() => validateField("email", email)}
+        />
+        {errors.email && <p className={styles.error}>{errors.email}</p>}
+        <Input
+          label="Пароль*"
+          type="password"
+          value={password}
+          onChange={setPassword}
+          placeholder="Введите пароль"
+          onBlur={() => validateField("password", password)}
+        />
+        {errors.password && <p className={styles.error}>{errors.password}</p>}
+        <Input
+          label="Повторите пароль*"
+          type="password"
+          value={confirmPassword}
+          onChange={setConfirmPassword}
+          placeholder="Повторите пароль"
+          onBlur={() => validateField("confirmPassword", confirmPassword)}
+        />
+        {errors.confirmPassword && (<p className={styles.error}>{errors.confirmPassword}</p>)}
 
-      <div className={styles.login} >
-        Уже есть аккаунт?
-        <Link to="/login">Войти</Link>
-      </div>
+        <Button type="submit">Зарегистрироваться</Button>
 
-    </form>
+        <div className={styles.login} >
+          Уже есть аккаунт?
+          <Link to="/login">Войти</Link>
+        </div>
+
+      </form>
+    </>
+
   );
 
   //*----------------------------------------------------------------------------------------------------------------------------

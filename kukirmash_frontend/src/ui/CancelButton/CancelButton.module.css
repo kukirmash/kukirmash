@@ -1,0 +1,21 @@
+.cancelButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 0;
+    border-radius: 100%;
+    width: 1.75rem;
+    height: 1.75rem;
+
+    background-color: #dedede;
+    transition: 0.25s ease-out;
+}
+
+.cancelButton:hover{
+    background-color: #adadad;
+}
+
+.cancelSvg{
+    width: 0.75rem;
+}
