@@ -88,4 +88,24 @@ public class UserRepository : IUserRepository
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
+    public async Task<List<User>> GetAllUsers()
+    {
+        var userEntities = await _context.Users
+            .AsNoTracking()
+            .ToListAsync();
+
+        List<User> userList = new List<User>();
+
+        foreach (var userEntity in userEntities)
+        {
+            userList.Add(User.Create(userEntity.Id,
+                                userEntity.Login,
+                                userEntity.Email,
+                                userEntity.PasswordHash));
+        }
+
+        return userList;
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
 }

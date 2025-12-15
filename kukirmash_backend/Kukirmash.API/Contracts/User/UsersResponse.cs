@@ -1,8 +1,7 @@
 namespace Kukirmash.API.Contracts;
 
-public record UserResponse(
+public record UsersResponse(
     Guid Id,
     string Login,
-    string Email,
-    string PasswordHash
+    string Email
 );

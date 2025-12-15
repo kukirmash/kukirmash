@@ -9,4 +9,6 @@ public interface IUserRepository
     Task<User> GetByEmail(string email);
 
     Task<User> GetByLogin(string login);
+
+    Task<List<User>> GetAllUsers();
 }
