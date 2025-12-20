@@ -46,7 +46,13 @@ public class UserRepository : IUserRepository
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,
                                 userEntity.Email,
-                                userEntity.PasswordHash);
+                                userEntity.PasswordHash,
+
+                                userEntity.Servers.Select(s => Server.Create(
+                                    s.Id, s.Name, s.Description, null!, [])).ToList(),
+
+                                userEntity.CreatedServers.Select(s => Server.Create(
+                                    s.Id, s.Name, s.Description, null!, [])).ToList());
 
         return user;
     }
@@ -64,7 +70,13 @@ public class UserRepository : IUserRepository
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,
                                 userEntity.Email,
-                                userEntity.PasswordHash);
+                                userEntity.PasswordHash,
+
+                                userEntity.Servers.Select(s => Server.Create(
+                                    s.Id, s.Name, s.Description, null!, [])).ToList(),
+
+                                userEntity.CreatedServers.Select(s => Server.Create(
+                                    s.Id, s.Name, s.Description, null!, [])).ToList());
 
         return user;
     }
@@ -82,7 +94,13 @@ public class UserRepository : IUserRepository
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,
                                 userEntity.Email,
-                                userEntity.PasswordHash);
+                                userEntity.PasswordHash,
+                                
+                                userEntity.Servers.Select(s => Server.Create(
+                                    s.Id, s.Name, s.Description, null!, [])).ToList(),
+
+                                userEntity.CreatedServers.Select(s => Server.Create(
+                                    s.Id, s.Name, s.Description, null!, [])).ToList());
 
         return user;
     }
@@ -101,7 +119,13 @@ public class UserRepository : IUserRepository
             userList.Add(User.Create(userEntity.Id,
                                 userEntity.Login,
                                 userEntity.Email,
-                                userEntity.PasswordHash));
+                                userEntity.PasswordHash,
+                                
+                                userEntity.Servers.Select(s => Server.Create(
+                                    s.Id, s.Name, s.Description, null!, [])).ToList(),
+
+                                userEntity.CreatedServers.Select(s => Server.Create(
+                                    s.Id, s.Name, s.Description, null!, [])).ToList()));
         }
 
         return userList;

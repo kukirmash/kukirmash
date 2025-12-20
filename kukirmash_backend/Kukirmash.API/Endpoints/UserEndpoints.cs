@@ -11,6 +11,7 @@ public static class UserEndpoints
 {
     public static IEndpointRouteBuilder MapUserEndpoints(this IEndpointRouteBuilder app)
     {
+        // TODO: разграничить endpointы для залогининых
         app.MapPost("register", Register);
         app.MapPost("login", Login);
         app.MapGet("users", Users);
