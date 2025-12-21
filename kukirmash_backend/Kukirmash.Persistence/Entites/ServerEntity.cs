@@ -9,4 +9,7 @@ public class ServerEntity
     public Guid CreatorId { get; set; }
     public UserEntity Creator { get; set; } = null!;
     public List<UserEntity> Users { get; set; } = [];
+
+    //TODO: TextChats, VoiceChats
+
 }

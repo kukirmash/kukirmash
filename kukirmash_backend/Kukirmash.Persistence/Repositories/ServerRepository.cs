@@ -1,9 +1,9 @@
-using System;
+using Kukirmash.Application.Interfaces.Repositories;
 using Kukirmash.Core.Models;
 
 namespace Kukirmash.Persistence.Repositories;
 
-public class ServerRepository
+public class ServerRepository : IServerRepository
 {
     private readonly KukirmashDbContext _context;
 
@@ -12,24 +12,38 @@ public class ServerRepository
         _context = context;
     }
 
-
-    public async Task Add( Server server )
+    public Task Add(Server server)
     {
-
+        throw new NotImplementedException();
     }
 
-    public async Task AddUser( Server server, User user )
+    public Task AddUser(Server server, User user)
     {
-        
+        throw new NotImplementedException();
     }
 
-    public async Task<Server> GetById(Guid Id)
+    public Task<List<Server>> GetAllServers()
     {
-        return null;
+        throw new NotImplementedException();
     }
 
-    public async Task<List<Server>> GetAllServers()
+    public Task<Server> GetById(Guid Id)
     {
-        return null;
+        throw new NotImplementedException();
+    }
+
+    public Task<User> GetServerCreator(Server server)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<List<User>> GetServerMembers(Server server)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> IsMemberOfServer(Server server, User user)
+    {
+        throw new NotImplementedException();
     }
 }

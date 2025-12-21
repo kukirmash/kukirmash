@@ -7,21 +7,15 @@ public class User
     public string Email { get; private set; }
     public string PasswordHash { get; private set; }
 
-    public List<Server> Servers{ get; private set; }
-    public List<Server> CreatedServers { get; private set; }
-
-
-    private User(Guid id, string login, string passwordHash, string email, List<Server> servers, List<Server> createdServers)
+    private User(Guid id, string login, string passwordHash, string email)
     {
         Id = id;
         Login = login;
         PasswordHash = passwordHash;
         Email = email;
-        Servers = servers;
-        CreatedServers = createdServers;
     }
-    public static User Create(Guid id, string login, string email,string passwordHash, List<Server> servers, List<Server> createdServers)
+    public static User Create(Guid id, string login, string email, string passwordHash)
     {
-        return new User(id, login, passwordHash, email, servers, createdServers);
+        return new User(id, login, passwordHash, email);
     }
 }

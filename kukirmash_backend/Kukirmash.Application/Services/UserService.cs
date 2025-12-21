@@ -41,7 +41,7 @@ public class UserService : IUserService
         string hashedPassword = _passwordHasher.Generate(password);
 
         // Создаем пользователя
-        var user = User.Create(Guid.NewGuid(), login, email, hashedPassword, [], []);
+        var user = User.Create(Guid.NewGuid(), login, email, hashedPassword );
 
         // Добавляем его в БД
         await _userRepository.Add(user);

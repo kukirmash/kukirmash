@@ -41,18 +41,12 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(user => user.Email == email);
 
         if (userEntity is null)
-            return null;
+            return null!;
 
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,
                                 userEntity.Email,
-                                userEntity.PasswordHash,
-
-                                userEntity.Servers.Select(s => Server.Create(
-                                    s.Id, s.Name, s.Description, null!, [])).ToList(),
-
-                                userEntity.CreatedServers.Select(s => Server.Create(
-                                    s.Id, s.Name, s.Description, null!, [])).ToList());
+                                userEntity.PasswordHash);
 
         return user;
     }
@@ -65,18 +59,12 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(user => user.Login == login);
 
         if (userEntity is null)
-            return null;
+            return null!;
 
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,
                                 userEntity.Email,
-                                userEntity.PasswordHash,
-
-                                userEntity.Servers.Select(s => Server.Create(
-                                    s.Id, s.Name, s.Description, null!, [])).ToList(),
-
-                                userEntity.CreatedServers.Select(s => Server.Create(
-                                    s.Id, s.Name, s.Description, null!, [])).ToList());
+                                userEntity.PasswordHash);
 
         return user;
     }
@@ -89,18 +77,12 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(user => user.Id == id);
 
         if (userEntity is null)
-            return null;
+            return null!;
 
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,
                                 userEntity.Email,
-                                userEntity.PasswordHash,
-                                
-                                userEntity.Servers.Select(s => Server.Create(
-                                    s.Id, s.Name, s.Description, null!, [])).ToList(),
-
-                                userEntity.CreatedServers.Select(s => Server.Create(
-                                    s.Id, s.Name, s.Description, null!, [])).ToList());
+                                userEntity.PasswordHash);
 
         return user;
     }
@@ -116,19 +98,46 @@ public class UserRepository : IUserRepository
 
         foreach (var userEntity in userEntities)
         {
-            userList.Add(User.Create(userEntity.Id,
+            var user = User.Create(userEntity.Id,
                                 userEntity.Login,
                                 userEntity.Email,
-                                userEntity.PasswordHash,
-                                
-                                userEntity.Servers.Select(s => Server.Create(
-                                    s.Id, s.Name, s.Description, null!, [])).ToList(),
+                                userEntity.PasswordHash);
 
-                                userEntity.CreatedServers.Select(s => Server.Create(
-                                    s.Id, s.Name, s.Description, null!, [])).ToList()));
+            userList.Add(user);
         }
 
         return userList;
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+    public async Task<List<Server>> GetUserServers(User user)
+    {
+        // Получаем сущности серверов, где пользователь числится в списке участников
+        var serverEntities = await _context.Servers
+            .AsNoTracking()
+            .Where(s => s.Users.Any(u => u.Id == user.Id))
+            .ToListAsync();
+
+        List<Server> servers = serverEntities
+            .Select(s => Server.Create(s.Id, s.Name, s.Description))
+            .ToList();
+
+        return servers;
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+    public async Task<List<Server>> GetUserCreatedServers(User user)
+    {
+        var serverEntities = await _context.Servers
+            .AsNoTracking()
+            .Where(s => s.CreatorId == user.Id)
+            .ToListAsync();
+
+        List<Server> servers = serverEntities
+            .Select(s => Server.Create(s.Id, s.Name, s.Description))
+            .ToList();
+
+        return servers;
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
