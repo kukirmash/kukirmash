@@ -26,11 +26,11 @@ public class UserRepository : IUserRepository
             PasswordHash = user.PasswordHash
         };
 
-        Log.Information($"Добавлен новый пользователь Id = {user.Id}, Login = {user.Login}, Email = {user.Email}, PasswordHash = {user.PasswordHash}");
-
         // Добавление 
         await _context.Users.AddAsync(userEntity);
         await _context.SaveChangesAsync();
+
+        Log.Information($"Добавлен новый пользователь Id = {user.Id}, Login = {user.Login}, Email = {user.Email}");
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(user => user.Email == email);
 
         if (userEntity is null)
-            return null!;
+            throw new Exception("User not found");
 
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,
@@ -59,7 +59,7 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(user => user.Login == login);
 
         if (userEntity is null)
-            return null!;
+            throw new Exception("User not found");
 
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,
@@ -77,7 +77,7 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(user => user.Id == id);
 
         if (userEntity is null)
-            return null!;
+            throw new Exception("User not found");
 
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,
@@ -93,6 +93,9 @@ public class UserRepository : IUserRepository
         var userEntities = await _context.Users
             .AsNoTracking()
             .ToListAsync();
+
+        if (userEntities is null)
+            throw new Exception("Users not found");
 
         List<User> userList = new List<User>();
 
@@ -118,6 +121,9 @@ public class UserRepository : IUserRepository
             .Where(s => s.Users.Any(u => u.Id == user.Id))
             .ToListAsync();
 
+        if (serverEntities is null)
+            throw new Exception("User`s servers not found");
+
         List<Server> servers = serverEntities
             .Select(s => Server.Create(s.Id, s.Name, s.Description))
             .ToList();
@@ -132,6 +138,9 @@ public class UserRepository : IUserRepository
             .AsNoTracking()
             .Where(s => s.CreatorId == user.Id)
             .ToListAsync();
+
+        if (serverEntities is null)
+            throw new Exception("User`s servers not found");
 
         List<Server> servers = serverEntities
             .Select(s => Server.Create(s.Id, s.Name, s.Description))

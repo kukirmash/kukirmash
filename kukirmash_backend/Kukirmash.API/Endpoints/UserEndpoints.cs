@@ -9,12 +9,13 @@ namespace Kukirmash.API.Endpoints;
 
 public static class UserEndpoints
 {
+    //*----------------------------------------------------------------------------------------------------------------------------
     public static IEndpointRouteBuilder MapUserEndpoints(this IEndpointRouteBuilder app)
     {
         // TODO: разграничить endpointы для залогининых
         app.MapPost("register", Register);
         app.MapPost("login", Login);
-        app.MapGet("users", Users);
+        app.MapGet("user", GetAllUsers);
 
         return app;
     }
@@ -29,7 +30,6 @@ public static class UserEndpoints
             Log.Information("Bad request: Login is required");
             return Results.BadRequest("Login is required");
         }
-
 
         // Проверяем почту
         if (string.IsNullOrWhiteSpace(registerUserRequest.Email))
@@ -54,19 +54,17 @@ public static class UserEndpoints
             return Results.BadRequest("Password must be at least 8 characters");
         }
 
-        // Регистрируем нового пользователя
         try
         {
+            // Регистрируем нового пользователя
             await userService.Register(registerUserRequest.Login, registerUserRequest.Email, registerUserRequest.Password);
+            return Results.Ok("User successfully registered");
         }
         catch (Exception ex)
         {
             Log.Information($"Problem: {ex.Message}");
             return Results.Problem(ex.Message);
         }
-
-        return Results.Ok("User successfully registered");
-
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
@@ -80,38 +78,38 @@ public static class UserEndpoints
         if (string.IsNullOrWhiteSpace(loginUserRequest.Password) || loginUserRequest.Password.Length < 8)
             return Results.BadRequest("Password must be at least 8 characters");
 
-        // Находим пользователя -> генерируем для него jwt токен (время жизни токена 12 часов)
-        var token = "";
-
         try
         {
+            // Находим пользователя -> генерируем для него jwt токен (время жизни токена 12 часов)
+            var token = "";
+            
             if (loginUserRequest.Login.Contains("@"))
                 token = await userService.LoginByEmail(loginUserRequest.Login, loginUserRequest.Password);
             else
                 token = await userService.LoginByLogin(loginUserRequest.Login, loginUserRequest.Password);
+
+            // Заносим сгенерированный токен в cookies
+            httpContext.Response.Cookies.Append("big-balls", token);
+
+            return Results.Ok();
         }
         catch (Exception ex)
         {
             return Results.Problem(ex.Message);
         }
-
-        // Заносим сгенерированный токен в cookies
-        httpContext.Response.Cookies.Append("big-balls", token);
-
-        return Results.Ok(token);
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    private static async Task<IResult> Users(IUserService userService)
+    private static async Task<IResult> GetAllUsers(IUserService userService)
     {
         try
         {
             List<User> users = await userService.GetAllUsers();
 
-            // Убираем пароль из списка
-            var response = users.Select(u => new UsersResponse( u.Id, u.Login,u.Email));
+            // Убираем пароль и id из списка
+            var usersResponse = users.Select(u => new UsersResponse(u.Login, u.Email));
 
-            return Results.Ok(response);
+            return Results.Ok(usersResponse);
         }
         catch (Exception ex)
         {
