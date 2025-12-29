@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { AuthForm } from "../../components/AuthForm/AuthForm";
-import { Logo } from "../../components/Logo/Logo";
+import { Logo } from "../../ui/Logo/Logo";
 import styles from "./LoginPage.module.css";
 
 export const LoginPage = () => {
-  const [error, setError] = useState(null);
 
   const handleLogin = async (data) => {
 
@@ -15,7 +14,6 @@ export const LoginPage = () => {
       <div className={styles.container}>
         <Logo />
         <AuthForm onSubmit={handleLogin} />
-        {error && <p className={styles.error}>{error}</p>}
       </div>
     </div>
   );

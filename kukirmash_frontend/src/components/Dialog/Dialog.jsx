@@ -38,7 +38,7 @@ function GetIconByType(type)
   }
 }
 
-export const Dialog = ({ type = "ok", content = "Произошла неизвестная ошибка", onClose }) => {  
+export const Dialog = ({ type = "error", content = "Произошла неизвестная ошибка", onClose }) => {  
   return (
     <div className={styles.dialogBackground}>
       <div className={styles.dialog}>
@@ -49,7 +49,7 @@ export const Dialog = ({ type = "ok", content = "Произошла неизве
         </div>
 
         <div className={styles.dialogContent}>
-          <img className={styles.errorSvg} src={GetIconByType(type)} />
+          <img className={styles.svg} alt= {type} src={GetIconByType(type)} />
           <p>{content}</p>
         </div>
 

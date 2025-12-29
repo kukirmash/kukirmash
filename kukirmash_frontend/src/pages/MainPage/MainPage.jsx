@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styles from "./MainPage.module.css";
-import { Logo } from "../../components/Logo/Logo";
-import { NavBar } from "../../modules/NavBar/NavBar";
+import { Sidebar } from "../../modules/SideBar/SideBar";
 
 export const MainPage = () => {
-
   return (
     <div className={styles.page}>
       <div className={styles.container}>
-        <NavBar />
+          <Sidebar>
+
+          </Sidebar>
       </div>
     </div>
   );

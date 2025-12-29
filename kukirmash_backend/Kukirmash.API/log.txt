@@ -1,2 +1,6 @@
 2025-12-26 16:06:00.414 +03:00 [INF] Starting kukirmash web application
 2025-12-26 16:07:48.121 +03:00 [INF] Добавлен новый сервер Id = f3863de6-635b-4ade-9453-2cdb65011bc2, Name = Nigga server
+2025-12-26 16:53:37.776 +03:00 [INF] Starting kukirmash web application
+2025-12-27 10:20:41.537 +03:00 [INF] Starting kukirmash web application
+2025-12-27 10:35:11.414 +03:00 [INF] Добавлен новый сервер Id = 790fe25a-d095-4d2b-85e5-bbce480a0b75, Name = Andrew server
+2025-12-27 10:50:13.662 +03:00 [INF] Starting kukirmash web application

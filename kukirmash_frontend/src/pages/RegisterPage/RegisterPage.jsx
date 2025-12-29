@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./RegisterPage.module.css";
 import { RegisterForm } from "../../components/RegisterForm/RegisterForm";
-import { Logo } from "../../components/Logo/Logo";
+import { Logo } from "../../ui/Logo/Logo";
 
 export const RegisterPage = () => {
   return (

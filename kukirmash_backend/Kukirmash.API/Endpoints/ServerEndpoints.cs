@@ -18,16 +18,16 @@ public static class ServerEndpoints
         return app;
     }
 
-    private static async Task<IResult> AddServer(AddServerRequest addServerRequest, IServerService serverService, ClaimsPrincipal user)
+    private static async Task<IResult> AddServer(AddServerRequest addServerRequest, IServerService serverService, ClaimsPrincipal userClaims)
     {
         // TODO: проверки
         try
         {
-            Guid userId = user.GetUserId();
+            Guid userId = userClaims.GetUserId();
 
             await serverService.Add(userId, addServerRequest.Name, addServerRequest.Description);
 
-            return Results.Ok("Server successfully added");
+            return Results.Ok();
         }
         catch (AuthenticationException)
         {

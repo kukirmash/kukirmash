@@ -1,10 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap');
 
 :root {
-  --color-primary: #FEB563;       /* основной яркий цвет */
-  --color-primary-dark: #e6a04d;  /* более тёмный оттенок для hover, border, тени */
-  --color-secondary: #838383;     /* нейтральный серый цвет */
-  --color-background: #f7f9fb;    /* фон страницы */
+  /* PRIMARY - Оранжевый (#FEB563) */
+  --color-primary: #FEB563;
+  --color-primary-dark-1: #e5a359;
+  --color-primary-dark-2: #cc914f;
+  --color-primary-dark-3: #996d3b;
+
+  /* SECONDARY - Серый (#838383) */
+  --color-secondary: #838383;
+  --color-secondary-dark-1: #6a6a6a;
+  --color-secondary-dark-2: #525252;
+  --color-secondary-dark-3: #3b3b3b;
+  --color-secondary-light-1: #989898;
+  --color-secondary-light-2: #b0b0b0;
+  --color-secondary-light-3: #dddddd;
+  --color-secondary-light-4: #ebebeb;
+
+  /* WHITE - Белый (#FFFFFF) */
+  --color-white: #ffffff;
+  --color-white-dark-1: #dcddde;
+  --color-white-dark-2: #b9bbbe;
+  --color-white-dark-3: #8e9297;
+
+  --color-red: #FF5B45;
+
   --font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
@@ -14,14 +34,15 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   font-family: var(--font-family);
-  background-color: var(--color-background);
+  background-color: var(--color-white-dark-1);
   color: var(--color-secondary);
 }
 
-button, input {
+button,
+input {
   font-family: inherit;
 }
-

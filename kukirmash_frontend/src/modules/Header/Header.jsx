@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "./NavBar.module.css";
+import styles from "./Header.module.css";
 import { Logo } from "../../components/Logo/Logo";
 import { Button } from "../../ui/Button/Button";
 
 
-export const NavBar = () => {
+export const Header = () => {
     return (
         <nav className={styles.navbar}>
             <Logo imgSize={48} fontSize={32} />

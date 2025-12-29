@@ -1,0 +1,39 @@
+.sidebar {
+    height: 100%; /* На всю высоту экрана */
+    width: 4.5rem; /* Узкая полоска только для иконок */
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем кнопки по горизонтали */
+    padding-top: 1rem;
+    
+    background-color: var(--color-white);
+
+    border-radius:0.75rem;
+
+    /* Скроллбар, если серверов много */
+    overflow-y: auto;
+    /* Скрываем скроллбар */
+    scrollbar-width: none; 
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Контейнер для списка серверов, чтобы добавить отступы между ними */
+.serverList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Расстояние между иконками */
+    margin-bottom: 0.5rem;
+}
+
+/* Маленькая полосочка-разделитель */
+.separator {
+    width: 2.5rem;
+    height: 2px;
+    background-color: var(--color-secondary);
+    margin: 0.5rem 0;
+    border-radius: 1px;
+}

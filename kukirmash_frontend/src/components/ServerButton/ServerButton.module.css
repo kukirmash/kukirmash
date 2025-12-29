@@ -1,0 +1,13 @@
+.serverButton{
+    background-color: var(--color-secondary-light-3);
+    
+    /* отступы */
+    padding: 0.6rem;
+}
+
+.serverButton img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Чтобы картинка заполняла круг */
+    border-radius: inherit; /* Картинка скругляется вместе с кнопкой */
+}

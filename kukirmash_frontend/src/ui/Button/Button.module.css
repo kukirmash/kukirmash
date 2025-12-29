@@ -2,9 +2,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-size: 18px;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.125rem;
   font-weight: 500;
   cursor: pointer;
   border: none;
@@ -14,11 +14,11 @@
 /* Основные варианты */
 .primary {
   background-color: var(--color-primary);
-  color: #fff;
+  color: var(--color-white);
 }
 
 .primary:hover {
-  background-color: var(--color-primary-dark); /* тёмный оттенок при hover */
+  background-color: var(--color-primary-dark-1); /* тёмный оттенок при hover */
 }
 
 .secondary {
@@ -28,7 +28,7 @@
 
 .secondary:hover {
   background-color: rgba(0, 0, 0, 0.05);
-  color: var(--color-primary-dark);
+  color: var(--color-primary-dark-1);
 }
 
 .disabled {

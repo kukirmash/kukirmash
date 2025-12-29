@@ -8,6 +8,8 @@
     width: 1.75rem;
     height: 1.75rem;
 
+    cursor: pointer;
+
     background-color: #dedede;
     transition: 0.25s ease-out;
 }

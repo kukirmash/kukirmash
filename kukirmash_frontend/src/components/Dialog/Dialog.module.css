@@ -27,13 +27,13 @@
 
     width: 100%;
     background-color: white;
-    border-radius: 24px 24px 0px 0px;    
-    padding: 12px;
+    border-radius: 1.5rem 1.5rem 0px 0px;    
+    padding: 0.75rem;
 }
 
 /* Шапка */
 .dialogHeader h2{
-    font-size: 28px;
+    font-size: 1.75rem;
 }
 
 /* Основное содержимое */
@@ -41,18 +41,18 @@
     background-color: white;
     
     width: 100%;
-    border-radius: 0px 0px 24px 24px;
-    padding: 24px;
+    border-radius: 0px 0px 1.5rem 1.5rem;
+    padding: 1.5rem;
 
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.errorSvg{
+.svg{
     width: 33%;
 }
 
 .dialogContent p{
-    font-size: 24px;
+    font-size: 1.5rem;
 }
