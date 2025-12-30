@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import styles from "./MainPage.module.css";
-import { Sidebar } from "../../modules/SideBar/SideBar";
+import { ServerSideBar } from "../../modules/ServerSideBar/ServerSideBar";
+import { AddServerFormDialog } from "../../components/AddServerForm/AddServerFormDialog";
 
 export const MainPage = () => {
   return (
     <div className={styles.page}>
       <div className={styles.container}>
-          <Sidebar>
+          <ServerSideBar/>
 
-          </Sidebar>
+          <AddServerFormDialog/>
       </div>
     </div>
   );

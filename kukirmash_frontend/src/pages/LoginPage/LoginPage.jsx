@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthForm } from "../../components/AuthForm/AuthForm";
+import { LoginForm } from "../../components/LoginForm/LoginForm";
 import { Logo } from "../../ui/Logo/Logo";
 import styles from "./LoginPage.module.css";
 
@@ -13,7 +13,7 @@ export const LoginPage = () => {
     <div className={styles.page}>
       <div className={styles.container}>
         <Logo />
-        <AuthForm onSubmit={handleLogin} />
+        <LoginForm onSubmit={handleLogin} />
       </div>
     </div>
   );

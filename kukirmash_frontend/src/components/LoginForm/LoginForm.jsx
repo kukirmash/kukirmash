@@ -3,11 +3,11 @@ import { Input } from "../../ui/Input/Input";
 import { Button } from "../../ui/Button/Button";
 import { Checkbox } from "../../ui/Checkbox/Checkbox";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./AuthForm.module.css";
+import styles from "./LoginForm.module.css";
 import { UserService } from "../../services/UserService";
 import { Dialog } from "../Dialog/Dialog";
 
-export const AuthForm = ({ onSubmit }) => {
+export const LoginForm = ({ onSubmit }) => {
   const navigate = useNavigate();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");

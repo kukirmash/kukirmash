@@ -1,9 +1,8 @@
-.serverButton{
-    /* TODO: отступы только для заглушек - остальные на весь круг */
-    padding: 0.6rem;
+.addServerButton{
+    padding: 0.9rem;
 }
 
-.serverButton img {
+.addServerButton img{
     width: 100%;
     height: 100%;
     object-fit: cover; /* Чтобы картинка заполняла круг */
