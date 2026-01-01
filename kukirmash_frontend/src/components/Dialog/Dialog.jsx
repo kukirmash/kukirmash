@@ -50,7 +50,7 @@ export const Dialog = ({ type = "error", content = "Произошла неиз�
 
         <div className={styles.dialogContent}>
           <img className={styles.svg} alt= {type} src={GetIconByType(type)} />
-          <p>{content}</p>
+          <p className = {styles.dialogText}>{content}</p>
         </div>
 
       </div>

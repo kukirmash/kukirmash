@@ -82,7 +82,7 @@ public static class UserEndpoints
         {
             // Находим пользователя -> генерируем для него jwt токен (время жизни токена 12 часов)
             var token = "";
-            
+
             if (loginUserRequest.Login.Contains("@"))
                 token = await userService.LoginByEmail(loginUserRequest.Login, loginUserRequest.Password);
             else

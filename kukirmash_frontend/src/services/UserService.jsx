@@ -10,6 +10,7 @@ export const UserService = {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ login, email, password }),
+            credentials: "include"
         });
         
         //console.log(response);
@@ -24,6 +25,7 @@ export const UserService = {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ login, password }),
+            credentials: "include"
         });
 
         //console.log(response);

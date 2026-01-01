@@ -9,6 +9,8 @@ import { Dialog } from "../Dialog/Dialog";
 export const RegisterForm = () => {
   //*----------------------------------------------------------------------------------------------------------------------------
   const navigate = useNavigate();
+
+  //*----------------------------------------------------------------------------------------------------------------------------
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +26,7 @@ export const RegisterForm = () => {
 
   //*----------------------------------------------------------------------------------------------------------------------------
   // Проверка перед отправкой запроса (onSubmit у формы)
-  const validate = () => {
+  const validateAllFields = () => {
     const newErrors = {};
 
     if (!login.trim())
@@ -83,7 +85,7 @@ export const RegisterForm = () => {
     e.preventDefault(); // отключаем перезагрузку страницы
     setServerMessage("");
 
-    if (!validate())
+    if (!validateAllFields())
       return;
 
     try {
@@ -98,8 +100,8 @@ export const RegisterForm = () => {
         if (errorJson.detail)
           message = errorJson.detail;
 
-        // Диалоговое окно об предупреждение
-        setTypeDialog("warning");
+        // Диалоговое окно Ошибка
+        setTypeDialog("error");
         setServerMessage(message);
         setIsDialog(true);
 
