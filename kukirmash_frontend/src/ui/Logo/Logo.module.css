@@ -1,13 +1,20 @@
 .logo {
-  display: flex;
-  align-items: center; /* вертикальное выравнивание */
-  gap: 0.75rem; /* расстояние между иконкой и текстом */
+  display: inline-flex; /* Чтобы логотип не растягивался на всю строку */
+  align-items: center;
+  gap: 0.75rem;
+  white-space: nowrap;  /* Запрещаем логотипу разваливаться при переносе строки */
+}
+
+.logoSvg {
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .logoText {
   font-family: var(--font-family);
   font-weight: 700;
-  font-size: 3rem;
-  color: var(--color-primary); /* теперь основной цвет */
-}
+  color: var(--color-primary);
 
+  line-height: 1; /* помогает тексту стоять ровно по центру иконки */ 
+  margin: 0; /* Убираем лишние отступы, которые могут быть у шрифта по умолчанию */
+}

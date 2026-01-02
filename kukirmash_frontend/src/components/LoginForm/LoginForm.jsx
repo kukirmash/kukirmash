@@ -1,111 +1,152 @@
-import React, { useState } from "react";
-import { Input } from "../../ui/Input/Input";
-import { Button } from "../../ui/Button/Button";
-import { Checkbox } from "../../ui/Checkbox/Checkbox";
-import { Link, useNavigate } from "react-router-dom";
-import styles from "./LoginForm.module.css";
-import { UserService } from "../../services/UserService";
-import { Dialog } from "../Dialog/Dialog";
+import React, { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 
-export const LoginForm = ({ onSubmit }) => {
-  const navigate = useNavigate();
-  const [login, setLogin] = useState("");
-  const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(false);
+import { Input } from "../../ui/Input/Input"
+import { Button } from "../../ui/Button/Button"
+import { Checkbox } from "../../ui/Checkbox/Checkbox"
+import { Dialog } from "../../ui/Dialog/Dialog"
+import { AuthCard } from "../../ui/AuthCard/AuthCard"
 
-  const [dialogContent, setDialogContent] = useState("");
+import styles from "./LoginForm.module.css"
+import { UserService } from "../../services/UserService"
+import { useAuthValidation } from "../../hooks/useAuthValidation"
 
-  const [isDialog, setIsDialog] = useState(false);
-  const [typeDialog, setTypeDialog] = useState("");
+export const LoginForm = () => {
+	//*----------------------------------------------------------------------------------------------------------------------------
+	const navigate = useNavigate()
 
-  const [isLogined, setIsLogined] = useState(false);
+	//*----------------------------------------------------------------------------------------------------------------------------
+	const {
+		values: loginData,
+		errors,
+		isValid,
+		handleChange,
+		validateField,
+		validateAllFields,
+	} = useAuthValidation({
+		login: "",
+		password: "",
+	})
 
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // отключаем перезагрузку страницы
+	const [dialog, setDialog] = useState({
+		isOpen: false,
+		type: "ok",
+		content: "",
+	})
+	const [isSuccess, setIsSuccess] = useState(false)
 
-    try {
-      const response = await UserService.login({ login, password });
+	//*----------------------------------------------------------------------------------------------------------------------------
+	const handleSubmit = async (e) => {
+		e.preventDefault()
 
-      if (!response.ok) {
-        const errorJson = await response.json();
-        console.log("ОШИБКА АВТОРИЗАЦИИ");
-        console.log("ERROR JSON:", errorJson);
+		// Финальная проверка перед отправкой
+		if (!validateAllFields()) return
 
-        let message = "Ошибка авторизации";
-        if (errorJson.detail)
-          message = errorJson.detail;
+		try {
+			const response = await UserService.login({
+				login: loginData.login,
+				password: loginData.password,
+			})
 
-        // Диалоговое окно об предупреждение
-        setTypeDialog("warning");
-        setDialogContent(message);
-        setIsDialog(true);
+			if (!response.ok) {
+				const errorJson = await response.json()
+				setDialog({
+					isOpen: true,
+					type: "warning",
+					content: errorJson.detail || "Ошибка авторизации",
+				})
 
-        return;//ошибка авторизации
-      }
-      
-      // Диалоговое окно успешно
-      setTypeDialog("ok");
-      setDialogContent("Авторизация завершена успешно");
-      setIsDialog(true);
+				return
+			}
 
-      // Регистрация прошла успешно
-      setIsLogined(true);
+			// TODO: Логика "Запомнить меня"
 
-    }
-    catch (err) {
-      console.log("ОШИБКА СОЕДИНЕНИЯ С СЕРВЕРОМ")
+			setIsSuccess(true)
+			setDialog({
+				isOpen: false, // true - убрал
+				type: "ok",
+				content: "Вход выполнен успешно",
+			})
+		} catch (err) {
+			setDialog({
+				isOpen: true,
+				type: "error",
+				content: "Ошибка соединения",
+			})
+		}
+	}
 
-      // Диалоговое окно об ошибке
-      setTypeDialog("error");
-      setDialogContent("Ошибка соединения с сервером");
-      setIsDialog(true);
+	//*----------------------------------------------------------------------------------------------------------------------------
+	const closeDialog = () => {
+		setDialog({ ...dialog, isOpen: false })
 
-      return;//ошибка регистрации
-    }
-  };
+		if (isSuccess) navigate("/main")
+	}
 
-  return (
-    <>
-      {isDialog && <Dialog type={typeDialog} content={dialogContent} onClose={() => { setIsDialog(false); isLogined && navigate("/main"); }} />}
+	//*----------------------------------------------------------------------------------------------------------------------------
+	return (
+		<>
+			{dialog.isOpen && (
+				<Dialog
+					type={dialog.type}
+					content={dialog.content}
+					onClose={closeDialog}
+				/>
+			)}
 
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <h2>Авторизация</h2>
+			<AuthCard
+				title="Авторизация"
+				footer={
+					<div>
+						Нет учётной записи?{" "}
+						<Link to="/register">Зарегистрироваться</Link>
+					</div>
+				}
+			>
+				<form onSubmit={handleSubmit} className={styles.form}>
+					<Input
+						label="Логин/Почта"
+						value={loginData.login}
+						onChange={(val) => handleChange("login", val)}
+						onBlur={() => validateField("login")}
+						placeholder="Введите логин/почту"
+						errorText={errors.login}
+						name="username"
+						autoComplete="username"
+					/>
 
-        <Input
-          label="Логин/Почта"
-          type="login"
-          value={login}
-          onChange={setLogin}
-          placeholder="Введите логин/почту"
-          onBlur={() => { }}
-        />
-        <Input
-          label="Пароль"
-          type="password"
-          value={password}
-          onChange={setPassword}
-          placeholder="Введите пароль"
-          onBlur={() => { }}
-        />
+					<Input
+						label="Пароль"
+						type="password"
+						value={loginData.password}
+						onChange={(val) => handleChange("password", val)}
+						onBlur={() => validateField("password")}
+						placeholder="Введите пароль"
+						errorText={errors.password}
+						name="password"
+						autoComplete="current-password"
+					/>
 
-        <div className={styles.underPassword} >
-          <Checkbox
-            label="Запомнить меня"
-            checked={remember}
-            onChange={setRemember}
-          />
+					<div className={styles.rowBetween}>
+						<Checkbox
+							label="Запомнить меня"
+							checked={loginData.remember}
+							onChange={(val) => handleChange("remember", val)}
+						/>
+						<a href="#" className={styles.forgotLink}>
+							Забыли пароль?
+						</a>
+					</div>
 
-          <a href="#">Забыли пароль?</a>
-        </div>
-
-        <Button type="submit">Войти</Button>
-
-        <div className={styles.register} >
-          Нет учётной записи?
-          <Link to="/register" >Зарегистрироваться</Link>
-        </div>
-
-      </form>
-    </>
-  );
-};
+					<Button
+						type="submit"
+						disabled={!isValid}
+						className={styles.submitButton}
+					>
+						Войти
+					</Button>
+				</form>
+			</AuthCard>
+		</>
+	)
+}

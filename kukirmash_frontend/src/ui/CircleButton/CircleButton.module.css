@@ -10,9 +10,7 @@
     border-radius: 50%;
 
     /* Добавляем внешнюю границу */
-    outline-style: solid;
-    outline-width: 0;
-    outline-color: var(--color-primary);
+    outline: 0 solid var(--color-primary);
 
     cursor: pointer;
     
@@ -21,11 +19,42 @@
     align-items: center;
     justify-content: center;
     
+    /* Запрещаем кнопке сплющиваться, если места мало */
+    flex-shrink: 0;
+
+    /* Если картинка внутри квадратная, overflow: hidden обрежет углы по кругу */
+    overflow: hidden;
+
     /* Плавная анимация скругления и цвета */
-    transition: outline-width 0.1s ease-out;
+    transition: outline-width 0.1s ease-out, transform 0.1s;
 }
 
 /* Эффект при наведении */
 .circleButton:hover {
     outline-width: 0.2rem;
 }
+
+/* Эффект нажатия (тактильность) */
+.circleButton:active {
+    transform: scale(0.95);
+}
+
+/* Глобальное правило для любого контента внутри этой кнопки.
+   Это гарантирует, что svg иконка встанет ровно по центру
+   и займет 50% от размера круга (визуально приятно).
+*/
+/* .circleButton > svg
+{
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+    display: block;
+}
+
+.circleButton > img
+{
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+    display: block;
+} */

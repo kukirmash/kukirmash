@@ -1,37 +1,51 @@
 .button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.625rem 1rem;
-  border-radius: 0.5rem;
-  font-size: 1.125rem;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s ease-in-out;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 0.625rem 1rem;
+
+	border: none;
+	border-radius: 0.5rem;
+
+	font-size: 1.1rem;
+	font-weight: 500;
+
+	cursor: pointer;
+	user-select: none; /* Чтобы текст кнопки не выделялся случайно при клике */
+
+	transition:
+		opacity 0.2s,
+		background-color 0.2s,
+		transform 0.08s ease-in-out;
 }
 
-/* Основные варианты */
+/* Эффект нажатия — кнопка слегка "вжимается" */
+.button:active:not(.disabled) {
+	transform: scale(0.95);
+}
+
 .primary {
-  background-color: var(--color-primary);
-  color: var(--color-white);
+	background-color: var(--color-primary);
+	color: var(--color-white);
 }
 
-.primary:hover {
-  background-color: var(--color-primary-dark-1); /* тёмный оттенок при hover */
+.primary:hover:not(.disabled) {
+	background-color: var(--color-primary-dark-1);
 }
 
 .secondary {
-  color: var(--color-secondary);
-  background: none;
+	color: var(--color-secondary);
+	background: rgba(0, 0, 0, 0.05);
 }
 
-.secondary:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  color: var(--color-primary-dark-1);
+.secondary:hover:not(.disabled) {
+	background-color: var(--color-white-dark-1);
+	color: var(--color-primary);
 }
 
-.disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	pointer-events: none; /* Отключаем возможность клика даже если JS пропустит событие */
 }
