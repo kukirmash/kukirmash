@@ -71,7 +71,7 @@ export const LoginForm = () => {
 			setDialog({
 				isOpen: true,
 				type: "error",
-				content: "Ошибка соединения",
+				content: "Неизвестная ошибка",
 			})
 		}
 	}

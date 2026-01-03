@@ -57,9 +57,7 @@ export const Dialog = ({
 							src={displayIcon}
 						/>
 					)}
-
 					{content && <p className={styles.dialogText}>{content}</p>}
-
 					{children}
 				</div>
 			</div>

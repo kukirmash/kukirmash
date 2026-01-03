@@ -68,13 +68,13 @@ export const RegisterForm = () => {
 			setDialog({
 				isOpen: true,
 				type: "ok",
-				content: "Регистрация успешна",
+				content: "Регистрация выполнена успешна",
 			})
 		} catch (err) {
 			setDialog({
 				isOpen: true,
 				type: "error",
-				content: "Ошибка соединения с сервером",
+				content: "Неизвестная ошибка",
 			})
 		}
 	}

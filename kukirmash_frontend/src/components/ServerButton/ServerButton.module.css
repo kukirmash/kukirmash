@@ -1,11 +1,6 @@
-.serverButton{
-    /* TODO: отступы только для заглушек - остальные на весь круг */
-    padding: 0.6rem;
-}
-
-.serverButton img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Чтобы картинка заполняла круг */
-    border-radius: inherit; /* Картинка скругляется вместе с кнопкой */
+.placeholder {
+	width: 65%;
+	height: 65%;
+	object-fit: cover; /* Чтобы картинка заполняла круг */
+	border-radius: inherit; /* Картинка скругляется вместе с кнопкой */
 }

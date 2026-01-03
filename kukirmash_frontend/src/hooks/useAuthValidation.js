@@ -45,6 +45,13 @@ export const useAuthValidation = (initialValues) => {
 			}
 		}
 
+		if (
+			"serverName" in dataToValidate &&
+			!dataToValidate.serverName.trim()
+		) {
+			newErrors.serverName = "Название сервера обязательно"
+		}
+
 		return newErrors
 	}
 
@@ -106,10 +113,20 @@ export const useAuthValidation = (initialValues) => {
 	useEffect(() => {
 		const currentErrors = validate(values)
 
-		const hasErrors = Object.keys(currentErrors).length > 0
-		const hasEmptyFields = Object.values(values).some((val) => val === "")
+		// Список необязательных полей
+		const optionalFields = ["serverDesc", "remember"]
 
-		setIsValid(!hasErrors && !hasEmptyFields)
+		const hasErrors = Object.keys(currentErrors).length > 0
+
+		// Проверяем на пустоту только ОБЯЗАТЕЛЬНЫЕ поля
+		const hasEmptyRequiredFields = Object.entries(values).some(
+			([key, val]) => {
+				if (optionalFields.includes(key)) return false // Пропускаем необязательные
+				return val === ""
+			},
+		)
+
+		setIsValid(!hasErrors && !hasEmptyRequiredFields)
 	}, [values])
 
 	//*----------------------------------------------------------------------------------------------------------------------------
