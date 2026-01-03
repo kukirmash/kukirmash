@@ -20,12 +20,18 @@ public static class ServerEndpoints
 
     private static async Task<IResult> AddServer(AddServerRequest addServerRequest, IServerService serverService, ClaimsPrincipal userClaims)
     {
-        // TODO: проверки
+        if (string.IsNullOrWhiteSpace(addServerRequest.Name))
+            return Results.BadRequest("Server name is required");
+
+        string descriptionString = addServerRequest.Description;
+        if ( descriptionString == null )
+            descriptionString = "";
+
         try
         {
             Guid userId = userClaims.GetUserId();
 
-            await serverService.Add(userId, addServerRequest.Name, addServerRequest.Description);
+            await serverService.Add(userId, addServerRequest.Name, descriptionString);
 
             return Results.Ok();
         }

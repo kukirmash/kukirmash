@@ -10,6 +10,8 @@ public class ServerRepository : IServerRepository
 {
     private readonly KukirmashDbContext _context;
 
+    private const string TAG = "ServerRepository";
+
     //*----------------------------------------------------------------------------------------------------------------------------
     public ServerRepository(KukirmashDbContext context)
     {
@@ -27,11 +29,13 @@ public class ServerRepository : IServerRepository
             CreatorId = creatorId
         };
 
+        Log.Information("{TAG} - добавление нового сервера... (ID:{ServerId})", TAG, server.Id);
+
         // Добавление 
         await _context.Servers.AddAsync(serverEntity);
         await _context.SaveChangesAsync();
 
-        Log.Information($"Добавлен новый сервер Id = {server.Id}, Name = {server.Name}");
+        Log.Information("{TAG} - сервер добавлен успешно. (ID:{ServerId})", TAG, server.Id);
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
@@ -56,11 +60,13 @@ public class ServerRepository : IServerRepository
         if (serverEntity.Users.Any(u => u.Id == user.Id))
             throw new Exception($"Пользователь {user.Id} уже является участником сервера {server.Id}");
 
+        Log.Information("{TAG} - добавление нового пользователя на сервер... (UserID:{UserId}  ServerID:{ServerId})", TAG, user.Id, server.Id);
+
         // 4. Добавляем пользователя в коллекцию сервера
         serverEntity.Users.Add(userEntity);
         await _context.SaveChangesAsync();
 
-        Log.Information($"Пользователь {user.Login} успешно добавлен на сервер {server.Name}");
+        Log.Information("{TAG} - новый пользователь успешно добавлен на сервер... (UserID:{UserId}  ServerID:{ServerId})", TAG, user.Id, server.Id);
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------

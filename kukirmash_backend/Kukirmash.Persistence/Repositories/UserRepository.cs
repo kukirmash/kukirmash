@@ -41,7 +41,7 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(user => user.Email == email);
 
         if (userEntity is null)
-            throw new Exception("User not found");
+            return null;
 
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,
@@ -59,7 +59,7 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(user => user.Login == login);
 
         if (userEntity is null)
-            throw new Exception("User not found");
+            return null;
 
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,
@@ -77,7 +77,7 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(user => user.Id == id);
 
         if (userEntity is null)
-            throw new Exception("User not found");
+            return null;
 
         var user = User.Create(userEntity.Id,
                                 userEntity.Login,
@@ -95,7 +95,7 @@ public class UserRepository : IUserRepository
             .ToListAsync();
 
         if (userEntities is null)
-            throw new Exception("Users not found");
+            return null;
 
         List<User> userList = new List<User>();
 
@@ -122,7 +122,7 @@ public class UserRepository : IUserRepository
             .ToListAsync();
 
         if (serverEntities is null)
-            throw new Exception("User`s servers not found");
+            return null;
 
         List<Server> servers = serverEntities
             .Select(s => Server.Create(s.Id, s.Name, s.Description))
@@ -140,7 +140,7 @@ public class UserRepository : IUserRepository
             .ToListAsync();
 
         if (serverEntities is null)
-            throw new Exception("User`s servers not found");
+            return null;
 
         List<Server> servers = serverEntities
             .Select(s => Server.Create(s.Id, s.Name, s.Description))

@@ -79,7 +79,7 @@ public static class UserEndpoints
             return Results.BadRequest("Password must be at least 8 characters");
 
         try
-        {
+        { 
             // Находим пользователя -> генерируем для него jwt токен (время жизни токена 12 часов)
             var token = "";
 

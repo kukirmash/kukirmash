@@ -63,7 +63,7 @@ export const LoginForm = () => {
 
 			setIsSuccess(true)
 			setDialog({
-				isOpen: false, // true - убрал
+				isOpen: true, // true - убрал
 				type: "ok",
 				content: "Вход выполнен успешно",
 			})

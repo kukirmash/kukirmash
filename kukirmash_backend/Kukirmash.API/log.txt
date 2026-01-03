@@ -1,15 +1,9 @@
-2025-12-26 16:06:00.414 +03:00 [INF] Starting kukirmash web application
-2025-12-26 16:07:48.121 +03:00 [INF] Добавлен новый сервер Id = f3863de6-635b-4ade-9453-2cdb65011bc2, Name = Nigga server
-2025-12-26 16:53:37.776 +03:00 [INF] Starting kukirmash web application
-2025-12-27 10:20:41.537 +03:00 [INF] Starting kukirmash web application
-2025-12-27 10:35:11.414 +03:00 [INF] Добавлен новый сервер Id = 790fe25a-d095-4d2b-85e5-bbce480a0b75, Name = Andrew server
-2025-12-27 10:50:13.662 +03:00 [INF] Starting kukirmash web application
-2025-12-31 14:49:18.862 +03:00 [INF] Starting kukirmash web application
-2026-01-01 15:14:45.820 +03:00 [INF] Starting kukirmash web application
-2026-01-01 15:18:35.593 +03:00 [INF] Starting kukirmash web application
-2026-01-01 15:28:15.101 +03:00 [INF] Starting kukirmash web application
-2026-01-01 15:36:38.124 +03:00 [INF] Добавлен новый сервер Id = 04747179-ca6a-42eb-9a03-b9b65a9107cb, Name = string
-2026-01-01 15:39:28.615 +03:00 [INF] Starting kukirmash web application
-2026-01-01 15:51:53.146 +03:00 [INF] Starting kukirmash web application
-2026-01-01 15:56:22.094 +03:00 [INF] Starting kukirmash web application
-2026-01-01 16:02:26.377 +03:00 [INF] Starting kukirmash web application
+2026-01-03 22:20:05.811 +03:00 [INF] Starting kukirmash web application
+2026-01-03 22:20:12.498 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"0afbc638-dc24-4a2b-9b39-0707405b2adc")
+2026-01-03 22:20:13.265 +03:00 [INF] ServerRepository - сервер добавлен успешно (ID:"0afbc638-dc24-4a2b-9b39-0707405b2adc")
+2026-01-03 22:23:55.825 +03:00 [INF] Starting kukirmash web application
+2026-01-03 22:24:14.391 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"3dff7b8e-fbcc-473d-a2da-8dadae2c8895")
+2026-01-03 22:24:19.733 +03:00 [INF] Problem: An error occurred while saving the entity changes. See the inner exception for details.
+2026-01-03 22:28:28.589 +03:00 [INF] Starting kukirmash web application
+2026-01-03 22:28:45.421 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"6f1d0561-893c-4f37-a7ac-eee1eacd87e3")
+2026-01-03 22:28:49.006 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"6f1d0561-893c-4f37-a7ac-eee1eacd87e3")
