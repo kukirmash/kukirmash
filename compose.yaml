@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=db
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      - postgres-data:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+
+  backend:
+    container_name: backend
+    build:
+      context: ./kukirmash_backend
+    depends_on:
+      - postgres
+    environment:
+      - ConnectionStrings__KukirmashDbContext=Host=postgres;Port=5432;Database=db;Username=admin;Password=admin
+      - ASPNETCORE_HTTP_PORTS=80
+    ports:
+      - "5000:80"
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./kukirmash_frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+volumes:
+  postgres-data:
+    external: true
+    name: kukirmashapi_postgres-data

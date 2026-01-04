@@ -7,3 +7,7 @@
 2026-01-03 22:28:28.589 +03:00 [INF] Starting kukirmash web application
 2026-01-03 22:28:45.421 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"6f1d0561-893c-4f37-a7ac-eee1eacd87e3")
 2026-01-03 22:28:49.006 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"6f1d0561-893c-4f37-a7ac-eee1eacd87e3")
+2026-01-04 18:57:39.735 +03:00 [INF] Starting kukirmash web application
+2026-01-04 19:02:04.675 +03:00 [INF] Starting kukirmash web application
+2026-01-04 19:02:26.705 +03:00 [INF] Starting kukirmash web application
+2026-01-04 19:02:57.259 +03:00 [INF] Starting kukirmash web application
