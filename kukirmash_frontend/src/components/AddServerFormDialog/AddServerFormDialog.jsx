@@ -38,7 +38,7 @@ export const AddServerFormDialog = ({ onClose }) => {
 		try {
 			const response = await ServerService.addServer({
 				name: serverData.serverName,
-				description: serverData.serverDesc,
+				desc: serverData.serverDesc,
 			})
 
 			if (response.ok) {

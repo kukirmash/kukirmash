@@ -4,7 +4,7 @@ namespace Kukirmash.Application.Interfaces.Repositories;
 
 public interface IServerRepository
 {
-    Task Add(Server server, Guid creatorId);
+    Task Add(Server server, Guid creatorId, string iconPath);
 
     Task AddUser(Server server, User user);
 

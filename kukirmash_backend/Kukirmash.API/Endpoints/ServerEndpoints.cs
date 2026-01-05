@@ -2,36 +2,46 @@ using System.Security.Authentication;
 using System.Security.Claims;
 using Kukirmash.API.Contracts.Server;
 using Kukirmash.API.Extensions;
+using Kukirmash.Application.Interfaces;
 using Kukirmash.Application.Interfaces.Services;
 using Kukirmash.Core.Models;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 namespace Kukirmash.API.Endpoints;
 
 public static class ServerEndpoints
 {
+    //*----------------------------------------------------------------------------------------------------------------------------
     public static IEndpointRouteBuilder MapServerEndpoints(this IEndpointRouteBuilder app)
     {
         app.MapGet("server", GetAllServers);
-        app.MapPost("server", AddServer).RequireAuthorization();
+        app.MapPost("server", AddServer)
+            .RequireAuthorization()
+            .DisableAntiforgery();
 
         return app;
     }
 
-    private static async Task<IResult> AddServer(AddServerRequest addServerRequest, IServerService serverService, ClaimsPrincipal userClaims)
+    //*----------------------------------------------------------------------------------------------------------------------------
+    private static async Task<IResult> AddServer(
+        [FromForm] AddServerRequest addServerRequest,
+        IServerService serverService,
+        IStaticFileService fileService,
+        ClaimsPrincipal userClaims)
     {
         if (string.IsNullOrWhiteSpace(addServerRequest.Name))
             return Results.BadRequest("Server name is required");
-
-        string descriptionString = addServerRequest.Description;
-        if ( descriptionString == null )
-            descriptionString = "";
 
         try
         {
             Guid userId = userClaims.GetUserId();
 
-            await serverService.Add(userId, addServerRequest.Name, descriptionString);
+            string iconPath = null;
+            if (addServerRequest.Icon != null)
+                iconPath = await fileService.AddUniq(addServerRequest.Icon, "media/server-icons/");
+
+            await serverService.Add(userId, addServerRequest.Name, addServerRequest.Description, iconPath);
 
             return Results.Ok();
         }
@@ -46,6 +56,7 @@ public static class ServerEndpoints
         }
     }
 
+    //*----------------------------------------------------------------------------------------------------------------------------
     private static async Task<IResult> GetAllServers(IServerService serverService)
     {
         try
@@ -62,4 +73,6 @@ public static class ServerEndpoints
             return Results.Problem(ex.Message);
         }
     }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
 }

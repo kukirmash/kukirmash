@@ -23,4 +23,10 @@
     <ProjectReference Include="../Kukirmash.Persistence/Kukirmash.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot/" />
+    <Folder Include="wwwroot/media/" />
+    <Folder Include="wwwroot/media/server-icons/" />
+  </ItemGroup>
+
 </Project>

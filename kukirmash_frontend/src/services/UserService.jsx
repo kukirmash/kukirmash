@@ -3,14 +3,16 @@ const API_URL = "http://localhost:5000"
 export const UserService = {
 	//*----------------------------------------------------------------------------------------------------------------------------
 	async register({ login, email, password }) {
-		const response = await fetch(`${API_URL}/register`, {
+		const request = {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({ login, email, password }),
 			credentials: "include",
-		})
+		}
+
+		const response = await fetch(`${API_URL}/register`, request)
 
 		//console.log(response);
 		return response
@@ -18,14 +20,16 @@ export const UserService = {
 
 	//*----------------------------------------------------------------------------------------------------------------------------
 	async login({ login, password }) {
-		const response = await fetch(`${API_URL}/login`, {
+		const request = {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({ login, password }),
 			credentials: "include",
-		})
+		}
+
+		const response = await fetch(`${API_URL}/login`, request)
 
 		//console.log(response);
 		return response

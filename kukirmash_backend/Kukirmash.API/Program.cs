@@ -1,6 +1,8 @@
 using Kukirmash.Application.Interfaces.Repositories;
 using Kukirmash.Application.Interfaces.Services;
 using Kukirmash.Application.Interfaces.Auth;
+using Kukirmash.Application.Interfaces;
+
 using Kukirmash.Persistence.Repositories;
 using Kukirmash.Application.Services;
 using Kukirmash.Persistence;
@@ -26,12 +28,13 @@ try
     var services = builder.Services;
 
     services.Configure<JwtOptions>(config.GetSection(nameof(JwtOptions)));
-    services.AddDbContext<KukirmashDbContext>( options => 
-    { 
-        options.UseNpgsql(config.GetConnectionString(nameof(KukirmashDbContext))); 
+    services.AddDbContext<KukirmashDbContext>(options =>
+    {
+        options.UseNpgsql(config.GetConnectionString(nameof(KukirmashDbContext)));
     });
 
-    services.AddCors(options => {
+    services.AddCors(options =>
+    {
         options.AddDefaultPolicy(policy =>
         {
             policy.WithOrigins("http://localhost:3000");
@@ -43,6 +46,7 @@ try
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
     services.AddApiAuthentication(config);
+    // services.AddAntiforgery();
 
     services.AddScoped<IUserRepository, UserRepository>();
     services.AddScoped<IServerRepository, ServerRepository>();
@@ -50,22 +54,26 @@ try
     services.AddScoped<IServerService, ServerService>();
     services.AddScoped<IJwtProvider, JwtProvider>();
     services.AddScoped<IPasswordHasher, PasswordHasher>();
+    services.AddScoped<IStaticFileService, StaticFileService>();
 
     var app = builder.Build();
 
+    app.UseStaticFiles();
     app.UseCors();
     app.UseSwagger();
     app.UseSwaggerUI();
 
-    app.UseCookiePolicy( new CookiePolicyOptions
+    app.UseCookiePolicy(new CookiePolicyOptions
     {
-        MinimumSameSitePolicy = SameSiteMode.Strict,    
-        HttpOnly = HttpOnlyPolicy.Always,               
-        Secure = CookieSecurePolicy.Always              
+        MinimumSameSitePolicy = SameSiteMode.Strict,
+        HttpOnly = HttpOnlyPolicy.Always,
+        Secure = CookieSecurePolicy.Always
     });
 
     app.UseAuthentication();
     app.UseAuthorization();
+
+    // app.UseAntiforgery();
 
     app.AddMappedEndpoints();
 

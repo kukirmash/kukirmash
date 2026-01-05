@@ -14,7 +14,7 @@ public class ServerService : IServerService
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task Add(Guid creatorId, string name, string desc)
+    public async Task Add(Guid creatorId, string name, string desc, string iconPath)
     {
         // Пока нет проверок. Возможные проверки:
         // 1)
@@ -23,7 +23,7 @@ public class ServerService : IServerService
         var server = Server.Create(Guid.NewGuid(), name, desc);
 
         // добавляем в БД
-        await _serverRepository.Add(server, creatorId);
+        await _serverRepository.Add(server, creatorId, iconPath);
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------

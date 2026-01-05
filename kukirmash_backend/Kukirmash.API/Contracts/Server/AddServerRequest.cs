@@ -5,5 +5,6 @@ namespace Kukirmash.API.Contracts.Server;
 public record AddServerRequest
 (
     [Required] string Name,
-    [Required] string Description
+    [Required] string Description,
+    IFormFile? Icon
 );

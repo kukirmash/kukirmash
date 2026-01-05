@@ -19,14 +19,15 @@ public class ServerRepository : IServerRepository
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task Add(Server server, Guid creatorId)
+    public async Task Add(Server server, Guid creatorId, string iconPath)
     {
         var serverEntity = new ServerEntity()
         {
             Id = server.Id,
             Name = server.Name,
             Description = server.Description,
-            CreatorId = creatorId
+            CreatorId = creatorId,
+            IconPath = iconPath,
         };
 
         Log.Information("{TAG} - добавление нового сервера... (ID:{ServerId})", TAG, server.Id);
