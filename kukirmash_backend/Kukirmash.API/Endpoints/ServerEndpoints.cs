@@ -62,8 +62,7 @@ public static class ServerEndpoints
         {
             List<Server> servers = await serverService.GetAllServers();
 
-            // Убираем из списка id
-            var serversResponse = servers.Select(s => new ServerResponse(s.Name, s.Description));
+            var serversResponse = servers.Select(s => new ServerResponse(s.Id, s.Name, s.Description, s.IconPath));
 
             return Results.Ok(serversResponse);
         }

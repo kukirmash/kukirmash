@@ -19,7 +19,7 @@ public class ServerRepository : IServerRepository
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task Add(Server server, Guid creatorId, string iconPath)
+    public async Task Add(Server server, Guid creatorId)
     {
         var serverEntity = new ServerEntity()
         {
@@ -27,7 +27,7 @@ public class ServerRepository : IServerRepository
             Name = server.Name,
             Description = server.Description,
             CreatorId = creatorId,
-            IconPath = iconPath,
+            IconPath = server.IconPath
         };
 
         Log.Information("{TAG} - добавление нового сервера... (ID:{ServerId})", TAG, server.Id);
@@ -43,7 +43,7 @@ public class ServerRepository : IServerRepository
     public async Task AddUser(Server server, User user)
     {
         // 1. Загружаем сервер из базы. 
-        var serverEntity = await  _context.Servers
+        var serverEntity = await _context.Servers
             .Include(s => s.Users)
             .FirstOrDefaultAsync(s => s.Id == server.Id);
 
@@ -86,7 +86,8 @@ public class ServerRepository : IServerRepository
         {
             var server = Server.Create(serverEntity.Id,
                                 serverEntity.Name,
-                                serverEntity.Description);
+                                serverEntity.Description,
+                                serverEntity.IconPath);
 
             serverList.Add(server);
         }

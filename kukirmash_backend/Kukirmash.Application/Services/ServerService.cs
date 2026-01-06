@@ -29,10 +29,10 @@ public class ServerService : IServerService
         }
 
         // создаем модель сервера
-        var server = Server.Create(Guid.NewGuid(), name, desc);
+        var server = Server.Create(Guid.NewGuid(), name, desc, iconPath);
 
         // добавляем в БД
-        await _serverRepository.Add(server, creatorId, iconPath);
+        await _serverRepository.Add(server, creatorId);
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
