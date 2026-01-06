@@ -27,7 +27,6 @@ public static class ServerEndpoints
     private static async Task<IResult> AddServer(
         [FromForm] AddServerRequest addServerRequest,
         IServerService serverService,
-        IStaticFileService fileService,
         ClaimsPrincipal userClaims)
     {
         if (string.IsNullOrWhiteSpace(addServerRequest.Name))
@@ -37,11 +36,11 @@ public static class ServerEndpoints
         {
             Guid userId = userClaims.GetUserId();
 
-            string iconPath = null;
-            if (addServerRequest.Icon != null)
-                iconPath = await fileService.AddUniq(addServerRequest.Icon, "media/server-icons/");
+            // Превращаем IFormFile в поток, чтобы Application слой не знал про HTTP
+            Stream iconStream = addServerRequest.Icon.OpenReadStream();
+            string fileName = addServerRequest.Icon.FileName;
 
-            await serverService.Add(userId, addServerRequest.Name, addServerRequest.Description, iconPath);
+            await serverService.Add(userId, addServerRequest.Name, addServerRequest.Description, iconStream, fileName);
 
             return Results.Ok();
         }

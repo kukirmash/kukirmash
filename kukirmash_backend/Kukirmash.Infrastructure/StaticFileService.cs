@@ -8,6 +8,7 @@ public class StaticFileService : IStaticFileService
 {
     //*----------------------------------------------------------------------------------------------------------------------------
     private readonly IWebHostEnvironment _env;
+    private readonly string[] _allowedExtensions = { ".jpg", ".jpeg", ".png", ".webp" };
 
     public StaticFileService(IWebHostEnvironment env)
     {
@@ -15,39 +16,48 @@ public class StaticFileService : IStaticFileService
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task<string> AddUniq(IFormFile file, string folderPath)
+    public async Task<string> UploadFile(Stream fileStream, string fileName, string folderPath)
     {
-        if (file == null || file.Length == 0)
-            return null;
+        // 1.Проверки входных данных
+        if (fileStream == null || fileStream.Length == 0)
+            throw new ArgumentException("Файл пуст", nameof(fileStream));
 
+        // 2. Проверка расширения
+        var extension = Path.GetExtension(fileName).ToLowerInvariant();
+        if (string.IsNullOrEmpty(extension) || !_allowedExtensions.Contains(extension))
+            throw new ArgumentException($"Расширение {extension} не поддерживается.");
+
+        // 3. Формируем физический путь
+        // _env.WebRootPath указывает на папку wwwroot
+        var physicalUploadPath = Path.Combine(_env.WebRootPath, folderPath);
+
+        if (!Directory.Exists(physicalUploadPath))
+            Directory.CreateDirectory(physicalUploadPath);
+
+        // 4. Генерируем уникальное имя
+        var uniqueFileName = $"{Guid.NewGuid()}{extension}";
+        var fullPhysicalPath = Path.Combine(physicalUploadPath, uniqueFileName);
+
+        // 5. Сохраняем (используем переданный Stream)
         try
         {
-            // 1. Формируем путь к папке: wwwroot/...
-            // Path.Combine сам подставит нужные слэши
-            var uploadsFolder = Path.Combine(_env.WebRootPath, folderPath);
+            // Важно: если поток пришел не с начала, сбрасываем позицию
+            if (fileStream.CanSeek)
+                fileStream.Position = 0;
 
-            // 2. Создаем директорию, если её нет
-            if (!Directory.Exists(uploadsFolder))
-                Directory.CreateDirectory(uploadsFolder);
-
-            // 3. Генерируем уникальное имя файла
-            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
-            var fullPath = Path.Combine(uploadsFolder, fileName);
-
-            // 4. Сохраняем файл на диск
-            using (var stream = new FileStream(fullPath, FileMode.Create))
+            using (var fileStreamOutput = new FileStream(fullPhysicalPath, FileMode.Create))
             {
-                await file.CopyToAsync(stream);
+                await fileStream.CopyToAsync(fileStreamOutput);
             }
-
-            // 5. Возвращаем относительный путь для хранения в БД (веб-путь)
-            // Результат: /media/server-icons/название_файла.jpg
-            return $"/{folderPath}/{fileName}";
         }
         catch (Exception ex)
         {
-            throw new Exception($"Ошибка при сохранении файла {file.FileName}: {ex.Message}");
+            // Логируем ошибку здесь или пробрасываем выше
+            throw new Exception($"Не удалось сохранить файл на диск: {ex.Message}", ex);
         }
+
+        // 6. Возвращаем веб-путь (URL-friendly)
+        return $"/{folderPath}/{uniqueFileName}".Replace("\\", "/");
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------

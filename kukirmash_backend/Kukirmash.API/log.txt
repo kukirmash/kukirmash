@@ -66,3 +66,11 @@ System.InvalidOperationException: Unable to find the required services. Please a
 2026-01-05 23:07:37.764 +03:00 [INF] Starting kukirmash web application
 2026-01-05 23:08:55.608 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"a902c0ee-3081-4471-a567-411155bace27")
 2026-01-05 23:08:57.226 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"a902c0ee-3081-4471-a567-411155bace27")
+2026-01-06 16:14:00.224 +03:00 [INF] Starting kukirmash web application
+2026-01-06 16:14:32.141 +03:00 [INF] Starting kukirmash web application
+2026-01-06 16:19:34.086 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"4a1a9741-fdf0-42fa-a812-9efc57de8916")
+2026-01-06 16:19:34.308 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"4a1a9741-fdf0-42fa-a812-9efc57de8916")
+2026-01-06 16:22:06.477 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"ebccdd6b-ae56-4b4b-b379-29862aa0c827")
+2026-01-06 16:22:06.520 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"ebccdd6b-ae56-4b4b-b379-29862aa0c827")
+2026-01-06 16:22:10.129 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"94a6ead3-e19d-4287-822f-4019e3da7fad")
+2026-01-06 16:22:10.135 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"94a6ead3-e19d-4287-822f-4019e3da7fad")
