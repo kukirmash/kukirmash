@@ -10,7 +10,8 @@ public class ServerConfiguration : IEntityTypeConfiguration<ServerEntity>
     {
         builder.HasKey(server => server.Id);
         builder.Property(server => server.Name).IsRequired();
-        builder.Property(server => server.Description).IsRequired();
+        builder.Property(server => server.Description);
+        builder.Property(server => server.IconPath);
 
         builder.HasOne(server => server.Creator)
             .WithMany(user => user.CreatedServers)

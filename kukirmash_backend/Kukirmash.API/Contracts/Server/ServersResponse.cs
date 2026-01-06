@@ -4,7 +4,7 @@ public record ServerResponse
 (
     Guid id,
     string Name,
-    string Description,
+    string? Description,
     string? iconPath
 );
 

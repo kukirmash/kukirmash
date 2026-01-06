@@ -12,6 +12,7 @@ services:
       - postgres-data:/var/lib/postgresql
     ports:
       - "5432:5432"
+    restart: always
 
   backend:
     container_name: backend
@@ -24,6 +25,9 @@ services:
       - ASPNETCORE_HTTP_PORTS=80
     ports:
       - "5000:80"
+    volumes:
+      - ./backend_data/wwwroot:/app/wwwroot
+    restart: always
 
   frontend:
     container_name: frontend
@@ -33,6 +37,7 @@ services:
       - backend
     ports:
       - "3000:80"
+    restart: always
 
 volumes:
   postgres-data:

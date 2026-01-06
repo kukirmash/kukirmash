@@ -1,0 +1,58 @@
+.container {
+	width: 10rem;
+	height: 10rem;
+	position: relative;
+
+	border-radius: 50%;
+	border: 2px dashed var(--color-secondary);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	cursor: pointer;
+
+	overflow: hidden;
+
+	background-color: var(--color-secondary-light-4);
+
+	transition:
+		border-color 0.2s ease-out,
+		border-width 0.2s ease-out,
+		background-color 0.2s ease-out;
+
+	/* Центрируем компонент в родительском блоке */
+	margin: auto;
+}
+
+.container:hover {
+	border-color: var(--color-primary);
+	border-style: solid;
+	border-width: 3px;
+	background-color: var(--color-secondary-light-3);
+}
+
+.previewImage {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.placeholder {
+	color: var(--color-secondary);
+	text-align: center;
+	padding: 0.25rem;
+}
+
+/* Скрытый инпут */
+.hiddenInput {
+	display: none;
+}
+
+.label {
+	font-size: 0.85rem;
+	font-weight: 500;
+
+	color: var(--color-secondary);
+	cursor: pointer;
+}

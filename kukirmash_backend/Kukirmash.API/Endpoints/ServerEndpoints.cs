@@ -62,7 +62,11 @@ public static class ServerEndpoints
         {
             List<Server> servers = await serverService.GetAllServers();
 
-            var serversResponse = servers.Select(s => new ServerResponse(s.Id, s.Name, s.Description, s.IconPath));
+            var serversResponse = servers.Select(s => new ServerResponse(
+                s.Id,
+                s.Name,
+                s.Description,
+                s.IconPath));
 
             return Results.Ok(serversResponse);
         }

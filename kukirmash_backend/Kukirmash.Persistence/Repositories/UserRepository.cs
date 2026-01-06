@@ -125,7 +125,7 @@ public class UserRepository : IUserRepository
             return null;
 
         List<Server> servers = serverEntities
-            .Select(s => Server.Create(s.Id, s.Name, s.Description))
+            .Select(s => Server.Create(s.Id, s.Name, s.Description, s.IconPath))
             .ToList();
 
         return servers;
@@ -143,7 +143,7 @@ public class UserRepository : IUserRepository
             return null;
 
         List<Server> servers = serverEntities
-            .Select(s => Server.Create(s.Id, s.Name, s.Description))
+            .Select(s => Server.Create(s.Id, s.Name, s.Description, s.IconPath))
             .ToList();
 
         return servers;

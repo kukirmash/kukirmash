@@ -21,13 +21,19 @@ public class ServerRepository : IServerRepository
     //*----------------------------------------------------------------------------------------------------------------------------
     public async Task Add(Server server, Guid creatorId)
     {
+        var creatorEntity = await _context.Users.FindAsync(creatorId);
+
+        if (creatorEntity == null)
+            throw new Exception("Creator not found");
+
         var serverEntity = new ServerEntity()
         {
             Id = server.Id,
             Name = server.Name,
             Description = server.Description,
             CreatorId = creatorId,
-            IconPath = server.IconPath
+            IconPath = server.IconPath,
+            Users = new List<UserEntity> { creatorEntity }
         };
 
         Log.Information("{TAG} - добавление нового сервера... (ID:{ServerId})", TAG, server.Id);
@@ -73,9 +79,13 @@ public class ServerRepository : IServerRepository
     //*----------------------------------------------------------------------------------------------------------------------------
     public async Task<List<Server>> GetAllServers()
     {
+        Log.Information("{TAG} - получение всех существующих серверов...");
+
         var serverEntities = await _context.Servers
             .AsNoTracking()
             .ToListAsync();
+
+        Log.Information("{TAG} - успешно получено {cnt} серверов.", TAG, serverEntities.Count);
 
         if (serverEntities is null)
             throw new Exception("Servers not found");

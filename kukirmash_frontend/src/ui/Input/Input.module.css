@@ -14,13 +14,12 @@
 	font-weight: 500;
 
 	color: var(--color-secondary);
-	cursor: pointer; /* Так как мы связали его с input через id */
 }
 
 .input {
 	padding: 0.625rem 0.75rem;
 
-	border: 0.0625rem solid var(--color-white-dark-2);
+	border: 1px solid var(--color-white-dark-2);
 	border-radius: 0.375rem;
 
 	font-size: 1rem;
@@ -37,7 +36,7 @@
 
 .input:focus {
 	border-color: var(--color-primary);
-	box-shadow: 0 0 0 0.0625rem var(--color-primary); /* box-shadow лучше делать через rgba переменной, чтобы было мягче */
+	box-shadow: 0 0 0 1px var(--color-primary); /* box-shadow лучше делать через rgba переменной, чтобы было мягче */
 }
 
 /* Плейсхолдер */

@@ -1,7 +1,10 @@
 import React, { useState } from "react"
+
 import { Dialog } from "../../ui/Dialog/Dialog"
 import { Input } from "../../ui/Input/Input"
 import { Button } from "../../ui/Button/Button"
+import { ImageUpload } from "../../ui/ImageUpload/ImageUpload"
+
 import { ServerService } from "../../services/ServerService"
 import { useAuthValidation } from "../../hooks/useAuthValidation"
 import styles from "./AddServerFormDialog.module.css"
@@ -21,6 +24,8 @@ export const AddServerFormDialog = ({ onClose }) => {
 		serverDesc: "",
 	})
 
+	const [serverIconFile, setServerIconFile] = useState(null)
+
 	// Состояние для информационного диалога (успех/ошибка)
 	const [infoDialog, setInfoDialog] = useState({
 		isOpen: false,
@@ -39,6 +44,7 @@ export const AddServerFormDialog = ({ onClose }) => {
 			const response = await ServerService.addServer({
 				name: serverData.serverName,
 				desc: serverData.serverDesc,
+				icon: serverIconFile,
 			})
 
 			if (response.ok) {
@@ -79,6 +85,11 @@ export const AddServerFormDialog = ({ onClose }) => {
 		<>
 			<Dialog title="Добавить сервер" onClose={onClose} width="26rem">
 				<form className={styles.form} onSubmit={handleSubmit}>
+					<ImageUpload
+						label="Аватар"
+						onFileSelect={setServerIconFile}
+					/>
+
 					<Input
 						label="Название*"
 						value={serverData.serverName}
