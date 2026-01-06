@@ -15,7 +15,7 @@ public interface IUserRepository
     Task<List<User>> GetAllUsers();
 
 
-    Task<List<Server>> GetUserServers(User user);
+    Task<List<Server>> GetUserServers(Guid userId);
 
-    Task<List<Server>> GetUserCreatedServers(User user);
+    Task<List<Server>> GetUserCreatedServers(Guid userId);
 }

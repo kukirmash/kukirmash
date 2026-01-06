@@ -2,7 +2,6 @@ using System.Security.Authentication;
 using System.Security.Claims;
 using Kukirmash.API.Contracts.Server;
 using Kukirmash.API.Extensions;
-using Kukirmash.Application.Interfaces;
 using Kukirmash.Application.Interfaces.Services;
 using Kukirmash.Core.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +14,7 @@ public static class ServerEndpoints
     //*----------------------------------------------------------------------------------------------------------------------------
     public static IEndpointRouteBuilder MapServerEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet("server", GetAllServers);
+        app.MapGet("servers", GetAllServers);
         app.MapPost("server", AddServer)
             .RequireAuthorization()
             .DisableAntiforgery();

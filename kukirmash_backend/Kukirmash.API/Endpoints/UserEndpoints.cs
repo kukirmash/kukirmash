@@ -1,6 +1,9 @@
+using System.Security.Claims;
 using System.Text.RegularExpressions;
 using Kukirmash.API.Contracts;
+using Kukirmash.API.Contracts.Server;
 using Kukirmash.API.Contracts.User;
+using Kukirmash.API.Extensions;
 using Kukirmash.Application.Interfaces.Services;
 using Kukirmash.Core.Models;
 using Serilog;
@@ -12,10 +15,22 @@ public static class UserEndpoints
     //*----------------------------------------------------------------------------------------------------------------------------
     public static IEndpointRouteBuilder MapUserEndpoints(this IEndpointRouteBuilder app)
     {
-        // TODO: разграничить endpointы для залогининых
+        // Создаем группу "/users"
+        var usersGroup = app.MapGroup("users");
+
+        // GET /users
+        usersGroup.MapGet("/", GetAllUsers);
+
+        // GET /users/me/servers (Требует авторизацию)
+        usersGroup.MapGet("me/servers", GetCurrentUserServers)
+            .RequireAuthorization();
+
+        // GET /users/{id}/servers (Просмотр серверов конкретного юзера)
+        // {id:guid} - это констрейнт, маршрут сработает только если id это GUID
+        //usersGroup.MapGet("{id:guid}/servers", GetUserServersById);
+
         app.MapPost("register", Register);
         app.MapPost("login", Login);
-        app.MapGet("user", GetAllUsers);
 
         return app;
     }
@@ -79,7 +94,7 @@ public static class UserEndpoints
             return Results.BadRequest("Password must be at least 8 characters");
 
         try
-        { 
+        {
             // Находим пользователя -> генерируем для него jwt токен (время жизни токена 12 часов)
             var token = "";
 
@@ -107,7 +122,7 @@ public static class UserEndpoints
             List<User> users = await userService.GetAllUsers();
 
             // Убираем пароль и id из списка
-            var usersResponse = users.Select(u => new UsersResponse(u.Login, u.Email));
+            var usersResponse = users.Select(u => new UsersResponse(u.Id, u.Login, u.Email));
 
             return Results.Ok(usersResponse);
         }
@@ -115,6 +130,26 @@ public static class UserEndpoints
         {
             return Results.Problem(ex.Message);
         }
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+    private static async Task<IResult> GetCurrentUserServers(IUserService userService, ClaimsPrincipal userClaims)
+    {
+        try
+        {
+            Guid userId = userClaims.GetUserId();
+
+            List<Server> servers = await userService.GetUserServers(userId);
+
+            var response = servers.Select(s => new ServerResponse(s.Id, s.Name, s.Description, s.IconPath));
+
+            return Results.Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------

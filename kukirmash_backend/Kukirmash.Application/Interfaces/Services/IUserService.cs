@@ -8,4 +8,7 @@ public interface IUserService
     Task<string> LoginByLogin(string login, string password);
     Task Register(string login, string email, string password);
     Task<List<User>> GetAllUsers();
+
+    Task<List<Server>> GetUserServers(Guid userId);
+    Task<List<Server>> GetUserCreatedServers(Guid userId);
 }

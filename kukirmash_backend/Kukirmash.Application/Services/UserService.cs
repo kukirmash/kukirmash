@@ -41,7 +41,7 @@ public class UserService : IUserService
         string hashedPassword = _passwordHasher.Generate(password);
 
         // Создаем пользователя
-        var user = User.Create(Guid.NewGuid(), login, email, hashedPassword );
+        var user = User.Create(Guid.NewGuid(), login, email, hashedPassword);
 
         // Добавляем его в БД
         await _userRepository.Add(user);
@@ -49,7 +49,7 @@ public class UserService : IUserService
 
     //*----------------------------------------------------------------------------------------------------------------------------
     public async Task<string> LoginByLogin(string login, string password)
-    {   
+    {
         // Получаем пользовтеля из репозитория
         var user = await _userRepository.GetByLogin(login);
         if (user == null)
@@ -91,6 +91,22 @@ public class UserService : IUserService
         List<User> users = await _userRepository.GetAllUsers();
 
         return users;
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+    public async Task<List<Server>> GetUserServers(Guid userId)
+    {
+        List<Server> servers = await _userRepository.GetUserServers(userId);
+
+        return servers;
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+    public async Task<List<Server>> GetUserCreatedServers(Guid userId)
+    {
+        List<Server> serversCreated = await _userRepository.GetUserCreatedServers(userId);
+
+        return serversCreated;
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
