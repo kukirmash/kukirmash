@@ -24,9 +24,7 @@ public class ServerService : IServerService
 
         string iconPath = null;
         if (iconStream != null && fileName != null)
-        {
             iconPath = await _staticFileService.UploadFile(iconStream, fileName, "media/server-icons");
-        }
 
         // создаем модель сервера
         var server = Server.Create(Guid.NewGuid(), name, desc, iconPath);

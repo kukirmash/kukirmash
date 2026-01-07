@@ -1,5 +1,5 @@
 // Получаем URL из ENV. Если переменной нет - используем локалхост как фолбек.
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000"
+export const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000"
 
 export const ServerService = {
 	//*----------------------------------------------------------------------------------------------------------------------------

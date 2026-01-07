@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000"
+export const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000"
 
 export const UserService = {
 	//*----------------------------------------------------------------------------------------------------------------------------
@@ -33,6 +33,23 @@ export const UserService = {
 
 		//console.log(response);
 		return response
+	},
+
+	//*----------------------------------------------------------------------------------------------------------------------------
+	async getUserServers() {
+		const response = await fetch(`${API_URL}/users/me/servers`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			credentials: "include", // Важно для передачи кук с токеном
+		})
+
+		if (!response.ok) {
+			throw new Error("Не удалось загрузить список серверов")
+		}
+
+		return await response.json()
 	},
 
 	//*----------------------------------------------------------------------------------------------------------------------------

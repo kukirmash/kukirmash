@@ -79,7 +79,7 @@ public class ServerRepository : IServerRepository
     //*----------------------------------------------------------------------------------------------------------------------------
     public async Task<List<Server>> GetAllServers()
     {
-        Log.Information("{TAG} - получение всех существующих серверов...");
+        Log.Information("{TAG} - получение всех существующих серверов...", TAG);
 
         var serverEntities = await _context.Servers
             .AsNoTracking()
