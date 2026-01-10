@@ -3,7 +3,7 @@ export const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000"
 
 export const ServerService = {
 	//*----------------------------------------------------------------------------------------------------------------------------
-	async addServer({ name, desc, icon }) {
+	async addServer({ name, desc, icon, isPrivate }) {
 		// 1. Создаем объект FormData для отправки файлов
 		const formData = new FormData()
 
@@ -17,6 +17,8 @@ export const ServerService = {
 		if (icon) {
 			formData.append("Icon", icon)
 		}
+
+		formData.append("IsPrivate", isPrivate)
 
 		const request = {
 			method: "POST",

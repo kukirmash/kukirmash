@@ -4,6 +4,7 @@ import { Dialog } from "../../ui/Dialog/Dialog"
 import { Input } from "../../ui/Input/Input"
 import { Button } from "../../ui/Button/Button"
 import { ImageUpload } from "../../ui/ImageUpload/ImageUpload"
+import { Switch } from "../../ui/Switch/Switch"
 
 import { ServerService } from "../../services/ServerService"
 import { useAuthValidation } from "../../hooks/useAuthValidation"
@@ -24,7 +25,9 @@ export const AddServerFormDialog = ({ onClose }) => {
 		serverDesc: "",
 	})
 
+	// данные для сервера без валидации
 	const [serverIconFile, setServerIconFile] = useState(null)
+	const [isPrivate, setIsPrivate] = useState(false)
 
 	// Состояние для информационного диалога (успех/ошибка)
 	const [infoDialog, setInfoDialog] = useState({
@@ -45,6 +48,7 @@ export const AddServerFormDialog = ({ onClose }) => {
 				name: serverData.serverName,
 				desc: serverData.serverDesc,
 				icon: serverIconFile,
+				isPrivate: isPrivate,
 			})
 
 			if (response.ok) {
@@ -106,6 +110,12 @@ export const AddServerFormDialog = ({ onClose }) => {
 						placeholder="Краткое описание"
 						errorText={errors.serverDesc}
 					/>
+
+					<Switch
+						checked={isPrivate}
+						onChange={setIsPrivate}
+						label="Приватный сервер*"
+					></Switch>
 
 					<Button
 						type="submit"
