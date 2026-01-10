@@ -1,0 +1,14 @@
+.container {
+	width: 20rem; /* Фиксированная ширина, как в Discord */
+	height: 100%;
+
+	background-color: var(
+		--color-white
+	); /* Или чуть темнее белого, если нужно */
+	border-radius: 0.75rem;
+
+	padding: 1rem;
+
+	display: flex;
+	flex-direction: column;
+}

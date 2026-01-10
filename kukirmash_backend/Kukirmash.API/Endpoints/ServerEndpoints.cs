@@ -15,6 +15,9 @@ public static class ServerEndpoints
     public static IEndpointRouteBuilder MapServerEndpoints(this IEndpointRouteBuilder app)
     {
         app.MapGet("servers", GetAllServers);
+        app.MapGet("public-servers", GetPublicServers);
+        app.MapGet("private-servers", GetPrivateServers);
+
         app.MapPost("server", AddServer)
             .RequireAuthorization()
             .DisableAntiforgery();
@@ -38,7 +41,7 @@ public static class ServerEndpoints
             // Добавляем сервер без фото
             if (addServerRequest.Icon is null)
             {
-                await serverService.Add(userId, addServerRequest.Name, addServerRequest.Description);
+                await serverService.Add(userId, addServerRequest.Name, addServerRequest.Description, addServerRequest.IsPrivate);
                 return Results.Ok();
             }
 
@@ -47,7 +50,13 @@ public static class ServerEndpoints
             string fileName = addServerRequest.Icon.FileName; // нужен для расшерния фото
 
             // Добавляем сервер вместе с фото
-            await serverService.Add(userId, addServerRequest.Name, addServerRequest.Description, iconStream, fileName);
+            await serverService.Add(
+                userId,
+                addServerRequest.Name,
+                addServerRequest.Description,
+                iconStream,
+                fileName,
+                addServerRequest.IsPrivate);
 
             return Results.Ok();
         }
@@ -73,7 +82,8 @@ public static class ServerEndpoints
                 s.Id,
                 s.Name,
                 s.Description,
-                s.IconPath));
+                s.IconPath,
+                s.IsPrivate));
 
             return Results.Ok(serversResponse);
         }
@@ -83,5 +93,48 @@ public static class ServerEndpoints
         }
     }
 
+    //*----------------------------------------------------------------------------------------------------------------------------
+    private static async Task<IResult> GetPublicServers(IServerService serverService)
+    {
+        try
+        {
+            List<Server> servers = await serverService.GetPublicServers();
+
+            var serversResponse = servers.Select(s => new ServerResponse(
+                s.Id,
+                s.Name,
+                s.Description,
+                s.IconPath,
+                s.IsPrivate));
+
+            return Results.Ok(serversResponse);
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+    private static async Task<IResult> GetPrivateServers(IServerService serverService)
+    {
+        try
+        {
+            List<Server> servers = await serverService.GetPrivateServers();
+
+            var serversResponse = servers.Select(s => new ServerResponse(
+                s.Id,
+                s.Name,
+                s.Description,
+                s.IconPath,
+                s.IsPrivate));
+
+            return Results.Ok(serversResponse);
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
     //*----------------------------------------------------------------------------------------------------------------------------
 }

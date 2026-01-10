@@ -152,7 +152,7 @@ public class UserRepository : IUserRepository
         Log.Information("{TAG}: успешно получено {Count} серверов, где пользователь участник... (UserId:{userId})", TAG, serverEntities.Count, userId);
 
         List<Server> servers = serverEntities
-            .Select(s => Server.Create(s.Id, s.Name, s.Description, s.IconPath))
+            .Select(s => Server.Create(s.Id, s.Name, s.Description, s.IconPath, s.IsPrivate))
             .ToList();
 
         return servers;
@@ -170,7 +170,7 @@ public class UserRepository : IUserRepository
             Log.Information("{TAG}: пользователь не создавал сервера. (UserId:{userId})", TAG, userId);
 
         List<Server> servers = serverEntities
-            .Select(s => Server.Create(s.Id, s.Name, s.Description, s.IconPath))
+            .Select(s => Server.Create(s.Id, s.Name, s.Description, s.IconPath, s.IsPrivate))
             .ToList();
 
         return servers;

@@ -6,7 +6,7 @@ public class ServerEntity
     public string Name { get; set; } = string.Empty;
     public string? Description { get; set; }
     public string? IconPath { get; set; }
-    //public bool IsPrivate { get; set; } = false;
+    public bool IsPrivate { get; set; } = false;
 
 
     public Guid CreatorId { get; set; }

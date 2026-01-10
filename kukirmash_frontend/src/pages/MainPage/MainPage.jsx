@@ -1,14 +1,24 @@
-import React, { useState } from "react";
-import styles from "./MainPage.module.css";
-import { ServerSideBar } from "../../modules/ServerSideBar/ServerSideBar";
+import React, { useState } from "react"
+
+import { ServerSideBar } from "../../modules/ServerSideBar/ServerSideBar"
+import { ServerChannelsBar } from "../../modules/ServerChannelsBar/ServerChannelsBar"
+import { MainContent } from "../../modules/MainContent/MainContent"
+import { UsersBar } from "../../modules/UsersBar/UsersBar"
+
+import styles from "./MainPage.module.css"
 
 export const MainPage = () => {
-  return (
-    <div className={styles.page}>
-      <div className={styles.container}>
-          <ServerSideBar/>
+	const [showChannels, setShowChannels] = useState(true)
+	const [showUsers, setShowUsers] = useState(true)
 
-      </div>
-    </div>
-  );
-};
+	return (
+		<div className={styles.page}>
+			<div className={styles.container}>
+				<ServerSideBar />
+				{showChannels && <ServerChannelsBar />}
+				<MainContent />
+				{showUsers && <UsersBar />}
+			</div>
+		</div>
+	)
+}

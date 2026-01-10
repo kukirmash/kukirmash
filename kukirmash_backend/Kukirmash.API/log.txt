@@ -86,3 +86,47 @@ s.SocketException (98): Address already in use
 2026-01-10 16:57:14.409 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"1b863ffa-665f-437c-a8dc-6fc96ae9ebd2")
 2026-01-10 16:57:18.110 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
 2026-01-10 16:57:18.151 +03:00 [INF] UserRepository: успешно получено 7 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
+2026-01-10 18:45:35.151 +03:00 [INF] Starting kukirmash web application
+2026-01-10 18:45:35.272 +03:00 [ERR] Unexpected error: The host was aborted.
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 59
+2026-01-10 18:45:55.869 +03:00 [INF] Starting kukirmash web application
+2026-01-10 18:45:55.981 +03:00 [ERR] Unexpected error: The host was aborted.
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 59
+2026-01-10 19:14:59.048 +03:00 [INF] Starting kukirmash web application
+2026-01-10 19:21:08.689 +03:00 [INF] Starting kukirmash web application
+2026-01-10 19:29:34.767 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"9aa3f466-12f7-4607-9d71-4051a8a065be")
+2026-01-10 19:29:35.011 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"9aa3f466-12f7-4607-9d71-4051a8a065be")
+2026-01-10 19:49:34.005 +03:00 [INF] ServerRepository - получение всех существующих серверов...
+2026-01-10 19:49:34.084 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
+2026-01-10 19:51:09.774 +03:00 [INF] Starting kukirmash web application
+2026-01-10 19:51:22.169 +03:00 [INF] ServerRepository - получение всех существующих серверов...
+2026-01-10 19:51:23.982 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
+2026-01-10 21:08:11.221 +03:00 [INF] Starting kukirmash web application
+2026-01-10 21:08:22.892 +03:00 [INF] ServerRepository - получение всех существующих серверов...
+2026-01-10 21:08:24.681 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
+2026-01-10 21:09:00.006 +03:00 [INF] ServerRepository - получение всех существующих серверов...
+2026-01-10 21:09:00.086 +03:00 [INF] ServerRepository - успешно получено 0 серверов.
+2026-01-10 21:09:25.262 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"6f775cc4-2992-4c32-b5ed-84e5e15a8e16")
+2026-01-10 21:09:25.591 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"6f775cc4-2992-4c32-b5ed-84e5e15a8e16")
+2026-01-10 21:09:39.605 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"693a07bc-43c6-4535-8bb5-fcde8cf67e93")
+2026-01-10 21:09:39.620 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"693a07bc-43c6-4535-8bb5-fcde8cf67e93")
+2026-01-10 21:09:45.212 +03:00 [INF] ServerRepository - получение всех существующих серверов...
+2026-01-10 21:09:45.218 +03:00 [INF] ServerRepository - успешно получено 2 серверов.
+2026-01-10 21:09:55.243 +03:00 [INF] ServerRepository - получение всех публичных серверов...
+2026-01-10 21:09:55.275 +03:00 [INF] ServerRepository - успешно получено 1 публичных серверов.
+2026-01-10 21:10:01.318 +03:00 [INF] ServerRepository - получение всех приватных серверов...
+2026-01-10 21:10:01.332 +03:00 [INF] ServerRepository - успешно получено 1 приватных серверов.

@@ -5,6 +5,7 @@ public record ServerResponse
     Guid id,
     string Name,
     string? Description,
-    string? iconPath
+    string? iconPath,
+    bool IsPrivate
 );
 

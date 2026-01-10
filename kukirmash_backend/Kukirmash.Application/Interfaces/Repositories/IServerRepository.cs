@@ -11,6 +11,8 @@ public interface IServerRepository
     Task<Server> GetById(Guid Id);
 
     Task<List<Server>> GetAllServers();
+    Task<List<Server>> GetPublicServers();
+    Task<List<Server>> GetPrivateServers();
 
 
     Task<User> GetCreator(Server server);

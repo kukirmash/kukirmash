@@ -19,10 +19,10 @@ public class ServerService : IServerService
 
     //*----------------------------------------------------------------------------------------------------------------------------
     // Добавляет сервер без фото
-    public async Task Add(Guid creatorId, string name, string? desc)
+    public async Task Add(Guid creatorId, string name, string? desc, bool isPrivate)
     {
         // создаем модель сервера без фото
-        var server = Server.Create(Guid.NewGuid(), name, desc, null);
+        var server = Server.Create(Guid.NewGuid(), name, desc, null, isPrivate);
 
         // добавляем в БД
         await _serverRepository.Add(server, creatorId);
@@ -30,7 +30,7 @@ public class ServerService : IServerService
 
     //*----------------------------------------------------------------------------------------------------------------------------
     // Добавляет сервер с фото
-    public async Task Add(Guid creatorId, string name, string? desc, Stream iconStream, string fileName)
+    public async Task Add(Guid creatorId, string name, string? desc, Stream iconStream, string fileName, bool isPrivate)
     {
         // Пока нет проверок.
         // 1) Пользователь может создавать ограниченного колво серверов
@@ -39,7 +39,7 @@ public class ServerService : IServerService
         string iconPath = await _staticFileService.UploadFile(iconStream, fileName, "media/server-icons");
 
         // создаем модель сервера
-        var server = Server.Create(Guid.NewGuid(), name, desc, iconPath);
+        var server = Server.Create(Guid.NewGuid(), name, desc, iconPath, isPrivate);
 
         // добавляем в БД
         await _serverRepository.Add(server, creatorId);
@@ -50,6 +50,22 @@ public class ServerService : IServerService
     {
 
         List<Server> servers = await _serverRepository.GetAllServers();
+
+        return servers;
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+    public async Task<List<Server>> GetPrivateServers()
+    {
+        List<Server> servers = await _serverRepository.GetPrivateServers();
+
+        return servers;
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+    public async Task<List<Server>> GetPublicServers()
+    {
+        List<Server> servers = await _serverRepository.GetPublicServers();
 
         return servers;
     }

@@ -1,0 +1,12 @@
+.container {
+	width: 20rem; /* Фиксированная ширина */
+	height: 100%;
+
+	background-color: var(--color-white);
+	border-radius: 0.75rem;
+
+	padding: 1rem;
+
+	display: flex;
+	flex-direction: column;
+}

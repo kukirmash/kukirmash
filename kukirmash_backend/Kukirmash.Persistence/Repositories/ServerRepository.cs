@@ -33,6 +33,7 @@ public class ServerRepository : IServerRepository
             Description = server.Description,
             CreatorId = creatorId,
             IconPath = server.IconPath,
+            IsPrivate = server.IsPrivate,
             Users = new List<UserEntity> { creatorEntity }
         };
 
@@ -54,14 +55,14 @@ public class ServerRepository : IServerRepository
             .FirstOrDefaultAsync(s => s.Id == server.Id);
 
         if (serverEntity is null)
-            throw new Exception("Server not found");
+            throw new Exception("Сервер не найден");
 
         // 2. Загружаем пользователя из базы
         var userEntity = await _context.Users
             .FirstOrDefaultAsync(u => u.Id == user.Id);
 
         if (userEntity is null)
-            throw new Exception("User not found");
+            throw new Exception("Пользователь найден");
 
         // 3. Проверяем, не состоит ли пользователь уже на сервере, чтобы не было ошибки уникальности
         if (serverEntity.Users.Any(u => u.Id == user.Id))
@@ -97,7 +98,72 @@ public class ServerRepository : IServerRepository
             var server = Server.Create(serverEntity.Id,
                                 serverEntity.Name,
                                 serverEntity.Description,
-                                serverEntity.IconPath);
+                                serverEntity.IconPath,
+                                serverEntity.IsPrivate);
+
+            serverList.Add(server);
+        }
+
+        return serverList;
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+
+    public async Task<List<Server>> GetPublicServers()
+    {
+        Log.Information("{TAG} - получение всех публичных серверов...", TAG);
+
+        var serverEntities = await _context.Servers
+            .AsNoTracking()
+            .Where(s => s.IsPrivate == false)
+            .ToListAsync();
+
+        Log.Information("{TAG} - успешно получено {cnt} публичных серверов.", TAG, serverEntities.Count);
+
+        if (serverEntities is null)
+            throw new Exception("Публичные сереверы не были найдены");
+
+        List<Server> serverList = new List<Server>();
+
+        foreach (var serverEntity in serverEntities)
+        {
+            var server = Server.Create(serverEntity.Id,
+                                serverEntity.Name,
+                                serverEntity.Description,
+                                serverEntity.IconPath,
+                                serverEntity.IsPrivate);
+
+            serverList.Add(server);
+        }
+
+        return serverList;
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+
+    public async Task<List<Server>> GetPrivateServers()
+    {
+        Log.Information("{TAG} - получение всех приватных серверов...", TAG);
+
+        var serverEntities = await _context.Servers
+            .AsNoTracking()
+            .Where(s => s.IsPrivate == true)
+            .ToListAsync();
+
+        Log.Information("{TAG} - успешно получено {cnt} приватных серверов.", TAG, serverEntities.Count);
+
+        if (serverEntities is null)
+            throw new Exception("Приватные сереверы не были найдены");
+
+        List<Server> serverList = new List<Server>();
+
+        foreach (var serverEntity in serverEntities)
+        {
+            var server = Server.Create(serverEntity.Id,
+                                serverEntity.Name,
+                                serverEntity.Description,
+                                serverEntity.IconPath,
+                                serverEntity.IsPrivate);
 
             serverList.Add(server);
         }

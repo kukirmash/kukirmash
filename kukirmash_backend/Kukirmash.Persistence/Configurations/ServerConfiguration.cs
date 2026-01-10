@@ -9,9 +9,18 @@ public class ServerConfiguration : IEntityTypeConfiguration<ServerEntity>
     public void Configure(EntityTypeBuilder<ServerEntity> builder)
     {
         builder.HasKey(server => server.Id);
-        builder.Property(server => server.Name).IsRequired();
-        builder.Property(server => server.Description);
+
+        builder.Property(server => server.Name)
+            .IsRequired()
+            .HasMaxLength(31);
+
+        builder.Property(server => server.Description)
+            .HasMaxLength(255);
+
         builder.Property(server => server.IconPath);
+
+        builder.Property(server => server.IsPrivate)
+            .IsRequired();
 
         builder.HasOne(server => server.Creator)
             .WithMany(user => user.CreatedServers)

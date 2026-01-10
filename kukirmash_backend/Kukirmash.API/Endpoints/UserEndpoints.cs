@@ -141,7 +141,7 @@ public static class UserEndpoints
 
             List<Server> servers = await userService.GetUserServers(userId);
 
-            var response = servers.Select(s => new ServerResponse(s.Id, s.Name, s.Description, s.IconPath));
+            var response = servers.Select(s => new ServerResponse(s.Id, s.Name, s.Description, s.IconPath, s.IsPrivate));
 
             return Results.Ok(response);
         }
