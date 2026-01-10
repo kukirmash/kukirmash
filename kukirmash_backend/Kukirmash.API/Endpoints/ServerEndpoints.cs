@@ -35,16 +35,16 @@ public static class ServerEndpoints
         {
             Guid userId = userClaims.GetUserId();
 
-            // Добавляем сервер вместе без фото
+            // Добавляем сервер без фото
             if (addServerRequest.Icon is null)
             {
-                await serverService.Add(userId, addServerRequest.Name, addServerRequest.Description, null, null);
+                await serverService.Add(userId, addServerRequest.Name, addServerRequest.Description);
                 return Results.Ok();
             }
 
             // Превращаем IFormFile в поток, чтобы Application слой не знал про HTTP
             Stream iconStream = addServerRequest.Icon.OpenReadStream();
-            string fileName = addServerRequest.Icon.FileName;
+            string fileName = addServerRequest.Icon.FileName; // нужен для расшерния фото
 
             // Добавляем сервер вместе с фото
             await serverService.Add(userId, addServerRequest.Name, addServerRequest.Description, iconStream, fileName);

@@ -42,15 +42,15 @@ public static class UserEndpoints
         // TODO: добавить запрещенные символы в логин (например @)
         if (string.IsNullOrWhiteSpace(registerUserRequest.Login))
         {
-            Log.Information("Bad request: Login is required");
-            return Results.BadRequest("Login is required");
+            Log.Information("400 Bad request: Поле логин - обязательное");
+            return Results.BadRequest("Поле логин - обязательное");
         }
 
         // Проверяем почту
         if (string.IsNullOrWhiteSpace(registerUserRequest.Email))
         {
-            Log.Information("Bad request: Email is required");
-            return Results.BadRequest("Email is required");
+            Log.Information("400 Bad request: Поле email - обязательное");
+            return Results.BadRequest("Поле email - обязательное");
         }
 
         string pattern = @"^(?!\.)(""([^""\r\\]|\\.)+""|([-a-zA-Z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-zA-Z0-9!#$%&'*+/=?^_`{|}~]+)*))"
@@ -58,22 +58,22 @@ public static class UserEndpoints
 
         if (!Regex.IsMatch(registerUserRequest.Email, pattern, RegexOptions.IgnoreCase))
         {
-            Log.Information("Bad request: Invalid email format");
-            return Results.BadRequest("Invalid email format");
+            Log.Information("400 Bad request: Неверный формат email");
+            return Results.BadRequest("Неверный формат email");
         }
 
         // Проверяем пароль: длина >= 8 символов
         if (string.IsNullOrWhiteSpace(registerUserRequest.Password) || registerUserRequest.Password.Length < 8)
         {
-            Log.Information("Bad request: Password must be at least 8 characters");
-            return Results.BadRequest("Password must be at least 8 characters");
+            Log.Information("400 Bad request: Минимальная длина пароля 8 символов");
+            return Results.BadRequest("Минимальная длина пароля 8 символов");
         }
 
         try
         {
             // Регистрируем нового пользователя
             await userService.Register(registerUserRequest.Login, registerUserRequest.Email, registerUserRequest.Password);
-            return Results.Ok("User successfully registered");
+            return Results.Ok("Пользователь успешно зарегестрирован");
         }
         catch (Exception ex)
         {

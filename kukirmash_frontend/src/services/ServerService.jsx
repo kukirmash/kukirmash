@@ -9,8 +9,11 @@ export const ServerService = {
 
 		// 2. Добавляем поля. Ключи ("Name", "Description", "Icon")
 		formData.append("Name", name)
-		formData.append("Description", desc)
-
+		// Добавляем описание только если оно есть
+		if (desc) {
+			formData.append("Description", desc)
+		}
+		// Добавляем Icon только если это объект (файл), а не null
 		if (icon) {
 			formData.append("Icon", icon)
 		}

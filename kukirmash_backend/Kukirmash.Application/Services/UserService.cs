@@ -29,13 +29,13 @@ public class UserService : IUserService
 
         // Генерируем ошибки в зависимости от занятости 
         if (existingByEmail != null && existingByLogin != null)
-            throw new Exception("Email and login already registered");
+            throw new Exception("Пользователь с данным email и логином уже существует");
 
         if (existingByEmail != null)
-            throw new Exception("Email already registered");
+            throw new Exception("Пользователь с данным email уже существует");
 
         if (existingByLogin != null)
-            throw new Exception("Login already registered");
+            throw new Exception("Пользователь с данным логином уже существует");
 
         // Хешируем пароль
         string hashedPassword = _passwordHasher.Generate(password);
@@ -53,12 +53,12 @@ public class UserService : IUserService
         // Получаем пользовтеля из репозитория
         var user = await _userRepository.GetByLogin(login);
         if (user == null)
-            throw new Exception("User with this login is not exsits");
+            throw new Exception("Пользователя с данным логином не существует");
 
         // Проверяем пароль пользователя
         var result = _passwordHasher.Verify(password, user.PasswordHash);
         if (result == false)
-            throw new Exception("Password is incorrect");
+            throw new Exception("Неверный пароль");
 
         // Генерируем jwt токен
         var token = _jwtProvider.GenerateToken(user);
@@ -72,12 +72,12 @@ public class UserService : IUserService
         // Получаем пользовтеля из репозитория
         var user = await _userRepository.GetByEmail(email);
         if (user == null)
-            throw new Exception("User with this email is not exsits");
+            throw new Exception("Пользователя с данным email не существует");
 
         // Проверяем пароль пользователя
         var result = _passwordHasher.Verify(password, user.PasswordHash);
         if (result == false)
-            throw new Exception("Password is incorrect");
+            throw new Exception("Неверный пароль");
 
         // Генерируем jwt токен
         var token = _jwtProvider.GenerateToken(user);
