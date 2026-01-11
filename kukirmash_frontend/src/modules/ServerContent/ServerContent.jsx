@@ -1,7 +1,7 @@
 import React from "react"
-import styles from "./MainContent.module.css"
+import styles from "./ServerContent.module.css"
 
-export const MainContent = () => {
+export const ServerContent = () => {
 	return (
 		<div className={styles.container}>
 			<h3>Главная</h3>

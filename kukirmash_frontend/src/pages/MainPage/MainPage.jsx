@@ -1,24 +1,37 @@
 import React, { useState } from "react"
 
+import { SearchServers } from "../../modules/SearchServers/SearchServers"
 import { ServerSideBar } from "../../modules/ServerSideBar/ServerSideBar"
 import { ServerChannelsBar } from "../../modules/ServerChannelsBar/ServerChannelsBar"
-import { MainContent } from "../../modules/MainContent/MainContent"
+import { ServerContent } from "../../modules/ServerContent/ServerContent"
 import { UsersBar } from "../../modules/UsersBar/UsersBar"
 
 import styles from "./MainPage.module.css"
 
 export const MainPage = () => {
-	const [showChannels, setShowChannels] = useState(true)
-	const [showUsers, setShowUsers] = useState(true)
+	//*----------------------------------------------------------------------------------------------------------------------------
+	const [activeView, setActiveView] = useState("search")
 
+	//*----------------------------------------------------------------------------------------------------------------------------
 	return (
 		<div className={styles.page}>
 			<div className={styles.container}>
-				<ServerSideBar />
-				{showChannels && <ServerChannelsBar />}
-				<MainContent />
-				{showUsers && <UsersBar />}
+				<ServerSideBar
+					onSearchClick={() => setActiveView("search")}
+					onServerClick={() => setActiveView("server")}
+				/>
+
+				{activeView == "search" && <SearchServers />}
+
+				{activeView === "server" && (
+					<>
+						<ServerChannelsBar />
+						<ServerContent />
+						<UsersBar />
+					</>
+				)}
 			</div>
 		</div>
 	)
+	//*----------------------------------------------------------------------------------------------------------------------------
 }

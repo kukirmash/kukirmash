@@ -9,11 +9,11 @@ import kukirmash_logo from "../../assets/kukirmash_logo.svg"
 import styles from "./ServerSideBar.module.css"
 import { UserService, API_URL } from "../../services/UserService"
 
-export const ServerSideBar = () => {
+export const ServerSideBar = ({ onSearchClick, onServerClick }) => {
 	//*----------------------------------------------------------------------------------------------------------------------------
 	const [isAddServerFormOpen, setIsAddServerFormOpen] = useState(false)
 
-	const [servers, setServers] = useState([])
+	const [myServers, setMyServers] = useState([])
 
 	//*----------------------------------------------------------------------------------------------------------------------------
 	// Загружаем сервера при монтировании компонента (открытии окна)
@@ -21,7 +21,7 @@ export const ServerSideBar = () => {
 		const getServers = async () => {
 			try {
 				const data = await UserService.getUserServers()
-				setServers(data)
+				setMyServers(data)
 			} catch (error) {
 				console.error("Ошибка загрузки серверов:", error)
 			}
@@ -35,7 +35,7 @@ export const ServerSideBar = () => {
 	const handleServerCreated = async () => {
 		try {
 			const data = await UserService.getUserServers()
-			setServers(data)
+			setMyServers(data)
 		} catch (error) {
 			console.error(error)
 		}
@@ -48,17 +48,18 @@ export const ServerSideBar = () => {
 
 			<div className={styles.separator}></div>
 
-			{servers.map((server) => (
+			{myServers.map((server) => (
 				<ServerButton
+					key={server.id}
 					// Собираем полный путь к картинке
 					serverImg={
 						server.iconPath ? `${API_URL}${server.iconPath}` : null
 					}
-					onClick={{}}
+					onClick={onServerClick}
 				/>
 			))}
 
-			{servers.length != 0 && <div className={styles.separator}></div>}
+			{myServers.length != 0 && <div className={styles.separator}></div>}
 
 			<AddServerButton onClick={() => setIsAddServerFormOpen(true)} />
 			{isAddServerFormOpen && (
@@ -70,7 +71,7 @@ export const ServerSideBar = () => {
 				/>
 			)}
 
-			<SearchServerButton></SearchServerButton>
+			<SearchServerButton onClick={onSearchClick}></SearchServerButton>
 		</div>
 	)
 

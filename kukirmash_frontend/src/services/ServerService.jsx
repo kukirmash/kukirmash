@@ -33,4 +33,23 @@ export const ServerService = {
 	},
 
 	//*----------------------------------------------------------------------------------------------------------------------------
+	async getPublicServers() {
+		const request = {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			credentials: "include", // Важно для передачи кук с токеном
+		}
+
+		const response = await fetch(`${API_URL}/public-servers`)
+
+		if (!response.ok) {
+			throw new Error("Не удалось загрузить список публичных серверов")
+		}
+
+		return await response.json()
+	},
+
+	//*----------------------------------------------------------------------------------------------------------------------------
 }
