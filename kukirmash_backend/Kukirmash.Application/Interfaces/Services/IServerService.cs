@@ -11,5 +11,9 @@ public interface IServerService
     Task<List<Server>> GetPublicServers();
     Task<List<Server>> GetPrivateServers();
 
-    Task<string> GetServerInviteToken(Guid serverId);
+    Task<string> GetInviteToken(Guid serverId);
+
+    Task<List<User>> GetServerUsers(Guid serverId);
+
+    Task AddUser(Guid serverId, Guid userId);
 }

@@ -47,12 +47,12 @@ public class ServerRepository : IServerRepository
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task AddUser(Server server, User user)
+    public async Task AddUser(Guid serverId, User user)
     {
         // 1. Загружаем сервер из базы. 
         var serverEntity = await _context.Servers
             .Include(s => s.Users)
-            .FirstOrDefaultAsync(s => s.Id == server.Id);
+            .FirstOrDefaultAsync(s => s.Id == serverId);
 
         if (serverEntity is null)
             throw new Exception("Сервер не найден");
@@ -66,15 +66,15 @@ public class ServerRepository : IServerRepository
 
         // 3. Проверяем, не состоит ли пользователь уже на сервере, чтобы не было ошибки уникальности
         if (serverEntity.Users.Any(u => u.Id == user.Id))
-            throw new Exception($"Пользователь {user.Id} уже является участником сервера {server.Id}");
+            throw new Exception($"Пользователь {user.Id} уже является участником сервера {serverId}");
 
-        Log.Information("{TAG} - добавление нового пользователя на сервер... (UserID:{UserId}  ServerID:{ServerId})", TAG, user.Id, server.Id);
+        Log.Information("{TAG} - добавление нового пользователя на сервер... (UserID:{UserId}  ServerID:{ServerId})", TAG, user.Id, serverId);
 
         // 4. Добавляем пользователя в коллекцию сервера
         serverEntity.Users.Add(userEntity);
         await _context.SaveChangesAsync();
 
-        Log.Information("{TAG} - новый пользователь успешно добавлен на сервер... (UserID:{UserId}  ServerID:{ServerId})", TAG, user.Id, server.Id);
+        Log.Information("{TAG} - новый пользователь успешно добавлен на сервер... (UserID:{UserId}  ServerID:{ServerId})", TAG, user.Id, serverId);
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
@@ -172,27 +172,61 @@ public class ServerRepository : IServerRepository
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public Task<Server> GetById(Guid Id)
+    public async Task<Server> GetById(Guid Id)
+    {
+        var serverEntity = await _context.Servers
+            .FindAsync(Id);
+
+        if (serverEntity is null)
+            return null;
+
+        var server = Server.Create(serverEntity.Id,
+                                serverEntity.Name,
+                                serverEntity.Description,
+                                serverEntity.IconPath,
+                                serverEntity.IsPrivate);
+
+        return server;
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+    public Task<User> GetCreator(Guid serverId)
     {
         throw new NotImplementedException();
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public Task<User> GetCreator(Server server)
+    public async Task<List<User>> GetMembers(Guid serverId)
     {
-        throw new NotImplementedException();
+        var serverEntity = await _context.Servers
+        .Include(s => s.Users) // <--- ВАЖНО: Подгружаем пользователей
+        .FirstOrDefaultAsync(s => s.Id == serverId);
+
+        if (serverEntity is null)
+            return null;
+
+        return serverEntity.Users
+            .Select(u => User.Create(u.Id, u.Login, u.Email, u.PasswordHash))
+            .ToList();
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public Task<List<User>> GetMembers(Server server)
+    public async Task<bool> IsMember(Guid serverId, User user)
     {
-        throw new NotImplementedException();
-    }
+        var serverEntity = await _context.Servers
+                .Include(s => s.Users) // <--- ВАЖНО: Подгружаем пользователей
+                .FirstOrDefaultAsync(s => s.Id == serverId);
 
-    //*----------------------------------------------------------------------------------------------------------------------------
-    public Task<bool> IsMember(Server server, User user)
-    {
-        throw new NotImplementedException();
+        if (serverEntity is null)
+            return false;
+
+        foreach (var u in serverEntity.Users)
+        {
+            if (u.Id == user.Id)
+                return true;
+        }
+
+        return false;
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------

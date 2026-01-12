@@ -86,8 +86,7 @@ public class UserRepository : IUserRepository
     {
         Log.Information("{TAG}: поиск пользователя... (id:{id})", TAG, id);
         var userEntity = await _context.Users
-            .AsNoTracking()
-            .FirstOrDefaultAsync(user => user.Id == id);
+            .FindAsync(id);
 
         if (userEntity is null)
         {

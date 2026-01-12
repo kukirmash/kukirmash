@@ -1,5 +1,6 @@
 using System.Security.Authentication;
 using System.Security.Claims;
+using Kukirmash.API.Contracts.User;
 using Kukirmash.API.Contracts.Server;
 using Kukirmash.API.Extensions;
 using Kukirmash.Application.Interfaces.Services;
@@ -14,11 +15,22 @@ public static class ServerEndpoints
     //*----------------------------------------------------------------------------------------------------------------------------
     public static IEndpointRouteBuilder MapServerEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet("servers", GetAllServers);
-        app.MapGet("public-servers", GetPublicServers);
-        app.MapGet("private-servers", GetPrivateServers);
+        var serverGroup = app.MapGroup("servers");
 
-        app.MapPost("server", AddServer)
+        serverGroup.MapGet("/", GetAllServers)
+            .RequireAuthorization();
+        serverGroup.MapGet("public", GetPublicServers)
+            .RequireAuthorization();
+        serverGroup.MapGet("private", GetPrivateServers)
+            .RequireAuthorization();
+
+        serverGroup.MapGet("{id:guid}/users", GetServerUsers)
+            .RequireAuthorization();
+
+        serverGroup.MapPost("{id:guid}/join", JoinToServer)
+            .RequireAuthorization();
+
+        serverGroup.MapPost("/", AddServer)
             .RequireAuthorization()
             .DisableAntiforgery();
 
@@ -136,5 +148,39 @@ public static class ServerEndpoints
             return Results.Problem(ex.Message);
         }
     }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+    private static async Task<IResult> GetServerUsers([FromRoute] Guid id, IServerService serverService)
+    {
+        try
+        {
+            var users = await serverService.GetServerUsers(id);
+
+            return Results.Ok(users.Select(u => new UsersResponse(u.Id, u.Login, u.Email)));
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+    private static async Task<IResult> JoinToServer([FromRoute] Guid id, IServerService serverService, ClaimsPrincipal userClaims)
+    {
+        try
+        {
+            Guid userId = userClaims.GetUserId();
+
+            await serverService.AddUser(id, userId);
+
+            return Results.Ok();
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
+
     //*----------------------------------------------------------------------------------------------------------------------------
 }

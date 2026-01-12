@@ -1,6 +1,5 @@
 using System.Security.Claims;
 using System.Text.RegularExpressions;
-using Kukirmash.API.Contracts;
 using Kukirmash.API.Contracts.Server;
 using Kukirmash.API.Contracts.User;
 using Kukirmash.API.Extensions;
@@ -73,7 +72,7 @@ public static class UserEndpoints
         {
             // Регистрируем нового пользователя
             await userService.Register(registerUserRequest.Login, registerUserRequest.Email, registerUserRequest.Password);
-            return Results.Ok("Пользователь успешно зарегестрирован");
+            return Results.Ok();
         }
         catch (Exception ex)
         {

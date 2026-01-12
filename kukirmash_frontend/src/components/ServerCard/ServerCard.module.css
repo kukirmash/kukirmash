@@ -1,6 +1,6 @@
 /* src/components/ServerCard/ServerCard.module.css */
 .container {
-	width: 20.65rem;
+	width: 23rem;
 	height: 12rem; /* Фиксированная высота */
 
 	display: flex;

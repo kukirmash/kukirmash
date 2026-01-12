@@ -9,12 +9,14 @@ public class ServerService : IServerService
 {
     //*----------------------------------------------------------------------------------------------------------------------------
     private readonly IServerRepository _serverRepository;
+    private readonly IUserRepository _userRepository;
     private readonly IStaticFileService _staticFileService;
 
-    public ServerService(IServerRepository serverRepository, IStaticFileService staticFileService)
+    public ServerService(IServerRepository serverRepository, IStaticFileService staticFileService, IUserRepository userRepository)
     {
         _serverRepository = serverRepository;
         _staticFileService = staticFileService;
+        _userRepository = userRepository;
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
@@ -71,9 +73,28 @@ public class ServerService : IServerService
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public Task<string> GetServerInviteToken(Guid serverId)
+    public Task<string> GetInviteToken(Guid serverId)
     {
         throw new NotImplementedException();
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+    public async Task<List<User>> GetServerUsers(Guid serverId)
+    {
+        List<User> serverMembers = await _serverRepository.GetMembers(serverId);
+
+        return serverMembers;
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+    public async Task AddUser(Guid serverId, Guid userId)
+    {
+        User user = await _userRepository.GetById(userId);
+
+        if (await _serverRepository.IsMember(serverId, user))
+            throw new Exception("Пользователь уже состоит в этом сервере");
+
+        await _serverRepository.AddUser(serverId, user);
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------

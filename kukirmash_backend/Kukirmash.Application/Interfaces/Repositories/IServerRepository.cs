@@ -6,7 +6,7 @@ public interface IServerRepository
 {
     Task Add(Server server, Guid creatorId);
 
-    Task AddUser(Server server, User user);
+    Task AddUser(Guid serverId, User user);
 
     Task<Server> GetById(Guid Id);
 
@@ -14,10 +14,9 @@ public interface IServerRepository
     Task<List<Server>> GetPublicServers();
     Task<List<Server>> GetPrivateServers();
 
+    Task<User> GetCreator(Guid serverId);
 
-    Task<User> GetCreator(Server server);
+    Task<List<User>> GetMembers(Guid serverId);
 
-    Task<List<User>> GetMembers(Server server);
-
-    Task<bool> IsMember(Server server, User user);
+    Task<bool> IsMember(Guid serverId, User user);
 }
