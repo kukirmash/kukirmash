@@ -5,7 +5,7 @@ import { Button } from "../../ui/Button/Button"
 
 import styles from "./ServerCard.module.css"
 
-export const ServerCard = ({ name, desc, serverImg }) => {
+export const ServerCard = ({ name, desc, serverImg, onJoin }) => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.imgName}>
@@ -19,7 +19,7 @@ export const ServerCard = ({ name, desc, serverImg }) => {
 				<p className={styles.noDescription}>Нет описания</p>
 			)}
 
-			<Button>Вступить</Button>
+			<Button onClick={onJoin}>Вступить</Button>
 		</div>
 	)
 }

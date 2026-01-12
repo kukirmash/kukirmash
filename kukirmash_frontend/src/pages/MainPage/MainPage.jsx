@@ -11,6 +11,13 @@ import styles from "./MainPage.module.css"
 export const MainPage = () => {
 	//*----------------------------------------------------------------------------------------------------------------------------
 	const [activeView, setActiveView] = useState("search")
+	const [selectedServer, setSelectedServer] = useState(null)
+
+	//*----------------------------------------------------------------------------------------------------------------------------
+	const handleServerClick = (server) => {
+		setSelectedServer(server)
+		setActiveView("server")
+	}
 
 	//*----------------------------------------------------------------------------------------------------------------------------
 	return (
@@ -18,7 +25,7 @@ export const MainPage = () => {
 			<div className={styles.container}>
 				<ServerSideBar
 					onSearchClick={() => setActiveView("search")}
-					onServerClick={() => setActiveView("server")}
+					onServerClick={handleServerClick}
 				/>
 
 				{activeView == "search" && <SearchServers />}
@@ -26,8 +33,8 @@ export const MainPage = () => {
 				{activeView === "server" && (
 					<>
 						<ServerChannelsBar />
-						<ServerContent />
-						<UsersBar />
+						<ServerContent name={selectedServer.name} />
+						<UsersBar serverId={selectedServer.id} />
 					</>
 				)}
 			</div>

@@ -1,0 +1,43 @@
+.user {
+	display: flex;
+	align-items: center;
+
+	gap: 0.75rem;
+	padding: 0.5rem;
+
+	border-radius: 0.5rem;
+
+	cursor: pointer;
+
+	transition: background-color 0.2s;
+}
+
+.user:hover {
+	background-color: var(--color-secondary-light-4);
+}
+
+.avatarCont {
+	width: 2rem;
+	height: 2rem;
+
+	border-radius: 50%;
+
+	background-color: var(--color-secondary);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.placeholder {
+	color: var(--color-white);
+
+	font-weight: bold;
+	font-size: 0.9rem;
+}
+
+.login {
+	font-size: 1rem;
+	color: var(--color-secondary);
+	font-weight: 500;
+}

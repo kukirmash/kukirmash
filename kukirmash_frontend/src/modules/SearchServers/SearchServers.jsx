@@ -25,6 +25,18 @@ export const SearchServers = () => {
 	}, []) // Пустой массив зависимостей = выполнить один раз при старте
 
 	//*----------------------------------------------------------------------------------------------------------------------------
+	const handleJoin = async (serverId) => {
+		try {
+			await ServerService.joinServer(serverId)
+			alert("Вы успешно вступили в сервер!")
+			// Тут можно обновить список серверов или перекинуть пользователя
+		} catch (error) {
+			console.error(error)
+			alert("Ошибка при вступлении")
+		}
+	}
+
+	//*----------------------------------------------------------------------------------------------------------------------------
 	return (
 		<div className={styles.container}>
 			<h2>Поиск серверов</h2>
@@ -40,6 +52,7 @@ export const SearchServers = () => {
 						}
 						name={server.name}
 						desc={server.description}
+						onJoin={() => handleJoin(server.id)}
 					/>
 				))}
 			</div>

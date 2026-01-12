@@ -10,13 +10,9 @@ export const ServerService = {
 		// 2. Добавляем поля. Ключи ("Name", "Description", "Icon")
 		formData.append("Name", name)
 		// Добавляем описание только если оно есть
-		if (desc) {
-			formData.append("Description", desc)
-		}
+		if (desc) formData.append("Description", desc)
 		// Добавляем Icon только если это объект (файл), а не null
-		if (icon) {
-			formData.append("Icon", icon)
-		}
+		if (icon) formData.append("Icon", icon)
 
 		formData.append("IsPrivate", isPrivate)
 
@@ -27,7 +23,7 @@ export const ServerService = {
 			credentials: "include",
 		}
 
-		const response = await fetch(`${API_URL}/server`, request)
+		const response = await fetch(`${API_URL}/servers`, request)
 
 		return response
 	},
@@ -39,10 +35,10 @@ export const ServerService = {
 			headers: {
 				"Content-Type": "application/json",
 			},
-			credentials: "include", // Важно для передачи кук с токеном
+			credentials: "include",
 		}
 
-		const response = await fetch(`${API_URL}/public-servers`)
+		const response = await fetch(`${API_URL}/servers/public`, request)
 
 		if (!response.ok) {
 			throw new Error("Не удалось загрузить список публичных серверов")
@@ -51,5 +47,42 @@ export const ServerService = {
 		return await response.json()
 	},
 
+	//*----------------------------------------------------------------------------------------------------------------------------
+	async getServerUsers(serverId) {
+		const response = await fetch(`${API_URL}/servers/${serverId}/users`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			credentials: "include",
+		})
+
+		if (!response.ok) {
+			throw new Error("Не удалось загрузить список участников")
+		}
+
+		return await response.json()
+	},
+	//*----------------------------------------------------------------------------------------------------------------------------
+	async joinServer(serverId) {
+		const request = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			credentials: "include",
+		}
+
+		const response = await fetch(
+			`${API_URL}/servers/${serverId}/join`,
+			request,
+		)
+
+		if (!response.ok) {
+			throw new Error("Не удалось вступить в сервер")
+		}
+
+		return response
+	},
 	//*----------------------------------------------------------------------------------------------------------------------------
 }

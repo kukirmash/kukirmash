@@ -55,7 +55,7 @@ export const ServerSideBar = ({ onSearchClick, onServerClick }) => {
 					serverImg={
 						server.iconPath ? `${API_URL}${server.iconPath}` : null
 					}
-					onClick={onServerClick}
+					onClick={() => onServerClick(server)}
 				/>
 			))}
 
