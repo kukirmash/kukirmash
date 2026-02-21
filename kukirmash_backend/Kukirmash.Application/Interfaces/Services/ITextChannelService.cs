@@ -6,5 +6,5 @@ public interface ITextChannelService
 {
     Task Add(Guid id, string name, Guid userId, Guid serverId);
 
-    Task<List<TextChannel>> GetAllTextChannels(Guid serverId, Guid userId);
+    Task<List<TextMessage>> GetTextMessages(Guid textChannelId, Guid userId);
 }

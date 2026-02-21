@@ -17,6 +17,8 @@ public class KukirmashDbContext : DbContext
 
     public DbSet<TextChannelEntity> TextChannels { get; set; }
 
+    public DbSet<TextMessageEntity> TextMessages { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // находит UserConfiguration и ServerConfiguration в текущей сборке и применяет их.

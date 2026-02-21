@@ -41,27 +41,9 @@ public class TextChannelRepository : ITextChannelRepository
         Log.Information("{TAG} - текстовый канал добавлен успешно. (ID:{id})", TAG, textChannel.Id);
     }
 
-    //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task<List<TextChannel>> GetAllTextChannels(Guid serverId)
+    public Task<List<TextMessage>> GetTextMessages(Guid textChannelId)
     {
-        var serverEntity = await _context.Servers
-            .FindAsync(serverId);
-
-        if (serverEntity == null)
-            throw new KeyNotFoundException($"Сервер с ID {serverId} не найден");
-
-        var textChannelEntities = await _context.TextChannels.ToListAsync();
-
-        List<TextChannel> textChannels = new List<TextChannel>();
-
-        foreach (var textChannelEntity in textChannelEntities)
-        {
-            TextChannel textChannel = TextChannel.Create(textChannelEntity.Id, textChannelEntity.Name);
-
-            textChannels.Add(textChannel);
-        }
-
-        return textChannels;
+        throw new NotImplementedException();
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------

@@ -155,7 +155,7 @@ public static class ServerEndpoints
     {
         try
         {
-            var users = await serverService.GetServerUsers(id);
+            var users = await serverService.GetMembers(id);
 
             return Results.Ok(users.Select(u => new UsersResponse(u.Id, u.Login, u.Email)));
         }

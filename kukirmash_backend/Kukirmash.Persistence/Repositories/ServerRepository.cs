@@ -91,8 +91,8 @@ public class ServerRepository : IServerRepository
     public async Task<bool> IsMember(Guid serverId, Guid userId)
     {
         return await _context.Servers
-        .AsNoTracking()
-        .AnyAsync(s => s.Id == serverId && s.Users.Any(u => u.Id == userId));
+                .AsNoTracking()
+                .AnyAsync(s => s.Id == serverId && s.Users.Any(u => u.Id == userId));
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
@@ -100,16 +100,16 @@ public class ServerRepository : IServerRepository
     {
         Log.Information("{TAG} - получение всех серверов...", TAG);
 
-        var query = _context.Servers.AsNoTracking();
+        var serverEntities = _context.Servers.AsNoTracking();
 
         if (isPrivate != null)
-            query = query.Where(s => s.IsPrivate == isPrivate.Value);
+            serverEntities = serverEntities.Where(s => s.IsPrivate == isPrivate.Value);
 
-        var serverEntities = await query.ToListAsync();
+        var serverEntitiesList = await serverEntities.ToListAsync();
 
-        Log.Information("{TAG} - успешно получено {cnt} серверов.", TAG, serverEntities.Count);
+        Log.Information("{TAG} - успешно получено {cnt} серверов.", TAG, serverEntitiesList.Count);
 
-        List<Server> serverList = serverEntities
+        List<Server> serverList = serverEntitiesList
             .Select(s => Server.Create(s.Id, s.Name, s.Description, s.IconPath, s.IsPrivate, s.CreatorId))
             .ToList();
 
@@ -157,6 +157,37 @@ public class ServerRepository : IServerRepository
             .ToList();
     }
 
+    //*----------------------------------------------------------------------------------------------------------------------------
+    public async Task<List<TextChannel>> GetTextChannels(Guid serverId)
+    {
+        var serverEntity = await _context.Servers
+            .FindAsync(serverId);
+
+        if (serverEntity is null)
+            throw new KeyNotFoundException($"Сервер с ID {serverId} не найден");
+
+        var textChannelEntities = await _context.TextChannels
+            .Where(tch => tch.ServerId == serverId)
+            .ToListAsync();
+
+        List<TextChannel> textChannels = new List<TextChannel>();
+
+        foreach (var textChannelEntity in textChannelEntities)
+        {
+            TextChannel textChannel = TextChannel.Create(textChannelEntity.Id, textChannelEntity.Name, serverId);
+            textChannels.Add(textChannel);
+        }
+
+        return textChannels;
+    }
+
+    //*----------------------------------------------------------------------------------------------------------------------------
+    public async Task<bool> HasTextChannel(Guid serverId, Guid textChannelId)
+    {
+        return await _context.Servers
+                .AsNoTracking()
+                .AnyAsync(s => s.Id == serverId && s.TextChannels.Any(tch => tch.Id == textChannelId));
+    }
 
     //*----------------------------------------------------------------------------------------------------------------------------
 }

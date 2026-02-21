@@ -2,7 +2,7 @@ namespace Kukirmash.Core.Models;
 
 public class Server
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; private set; }
     public string Name { get; private set; }
     public string? Description { get; private set; }
     public string? IconPath { get; private set; }
@@ -20,6 +20,12 @@ public class Server
     }
     public static Server Create(Guid id, string name, string? desc, string? iconPath, bool isPrivate, Guid creatorId)
     {
+        if (string.IsNullOrWhiteSpace(name))
+            throw new ArgumentException("Имя сервера не может быть пустым", nameof(name));
+
+        if (creatorId == Guid.Empty)
+            throw new ArgumentException("У сервера должен быть создатель", nameof(creatorId));
+
         return new Server(id, name, desc, iconPath, isPrivate, creatorId);
     }
 }

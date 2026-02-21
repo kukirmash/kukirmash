@@ -2,9 +2,7 @@ using System.Text;
 using Kukirmash.API.Endpoints;
 using Kukirmash.Infrastructure.JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Npgsql.Internal;
 
 namespace Kukirmash.API.Extensions;
 

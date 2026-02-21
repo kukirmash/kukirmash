@@ -9,4 +9,5 @@ public class UserEntity
 
     public List<ServerEntity> Servers { get; set; } = [];
     public List<ServerEntity> CreatedServers { get; set; } = [];
+    public List<TextMessageEntity> TextMessages { get; set; } = [];
 }

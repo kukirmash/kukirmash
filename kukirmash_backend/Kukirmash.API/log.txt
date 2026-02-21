@@ -303,3 +303,38 @@ Did you mean to register the "UNKNOWN" parameters as a Service?
 2026-02-21 12:13:55.705 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
 2026-02-21 12:21:22.357 +03:00 [INF] TextChannelRepository - добавление нового текстовго канала... (ID:"867e2dad-e487-4c13-8fd7-d3f335dd65b8")
 2026-02-21 12:21:22.386 +03:00 [INF] TextChannelRepository - текстовый канал добавлен успешно. (ID:"867e2dad-e487-4c13-8fd7-d3f335dd65b8")
+2026-02-21 13:19:11.246 +03:00 [INF] Starting kukirmash web application
+2026-02-21 13:19:11.362 +03:00 [ERR] Unexpected error: The host was aborted.
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 67
+2026-02-21 13:19:14.580 +03:00 [INF] Starting kukirmash web application
+2026-02-21 13:19:14.680 +03:00 [ERR] Unexpected error: The host was aborted.
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 67
+2026-02-21 16:42:50.809 +03:00 [INF] Starting kukirmash web application
+2026-02-21 16:49:09.018 +03:00 [INF] Starting kukirmash web application
+2026-02-21 16:50:03.534 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
+2026-02-21 16:51:12.065 +03:00 [INF] Starting kukirmash web application
+2026-02-21 16:51:12.510 +03:00 [ERR] Unexpected error: The service collection cannot be modified because it is read-only.
+System.InvalidOperationException: The service collection cannot be modified because it is read-only.
+   at Microsoft.Extensions.DependencyInjection.ServiceCollection.ThrowReadOnlyException()
+   at Microsoft.Extensions.DependencyInjection.ServiceCollection.System.Collections.Generic.ICollection<Microsoft.Extensions.DependencyInjection.ServiceDescriptor>.Add(ServiceDescriptor item)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(IServiceCollection services, Type serviceType, Object implementationInstance)
+   at Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure[TOptions](IServiceCollection services, String name, Action`1 configureOptions)
+   at Microsoft.Extensions.Logging.FilterLoggingBuilderExtensions.AddFilter(ILoggingBuilder builder, String category, LogLevel level)
+   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 71
+2026-02-21 16:52:06.426 +03:00 [INF] Starting kukirmash web application
+2026-02-21 17:21:54.794 +03:00 [INF] Starting kukirmash web application
+2026-02-21 17:22:07.223 +03:00 [INF] Starting kukirmash web application

@@ -5,6 +5,7 @@ using Kukirmash.API.Extensions;
 using Kukirmash.Application.Interfaces.Services;
 using Kukirmash.Application.Services;
 using Kukirmash.Core.Models;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
@@ -29,13 +30,13 @@ public static class TextChannelEndpoints
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    private static async Task<IResult> GetTextChannels([FromRoute] Guid id, ITextChannelService textChannelService, ClaimsPrincipal userClaims)
+    private static async Task<IResult> GetTextChannels([FromRoute] Guid id, IServerService serverService, ClaimsPrincipal userClaims)
     {
         try
         {
             Guid userId = userClaims.GetUserId();
 
-            List<TextChannel> textChannels = await textChannelService.GetAllTextChannels(id, userId);
+            List<TextChannel> textChannels = await serverService.GetTextChannels(id, userId);
 
             var textChannelResponse = textChannels.Select(x => new TextChannelResponse(x.Id, x.Name));
 

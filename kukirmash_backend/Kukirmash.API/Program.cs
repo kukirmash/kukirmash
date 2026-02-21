@@ -14,6 +14,7 @@ using Kukirmash.Infrastructure.JWT;
 using Kukirmash.API.Extensions;
 using Microsoft.AspNetCore.CookiePolicy;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+using Kukirmash.API.Hubs;
 
 
 
@@ -26,7 +27,7 @@ try
 {
     Log.Information("Starting kukirmash web application");
 
-    var builder = WebApplication.CreateBuilder(args);
+    WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
     var config = builder.Configuration;
     var services = builder.Services;
 
@@ -54,17 +55,22 @@ try
     services.AddScoped<IUserRepository, UserRepository>();
     services.AddScoped<IServerRepository, ServerRepository>();
     services.AddScoped<ITextChannelRepository, TextChannelRepository>();
+    services.AddScoped<ITextMessageRepository, TextMessageRepository>();
+
     services.AddScoped<IUserService, UserService>();
     services.AddScoped<IServerService, ServerService>();
     services.AddScoped<ITextChannelService, TextChannelService>();
+    services.AddScoped<ITextMessageService, TextMessageService>();
+
     services.AddScoped<IJwtProvider, JwtProvider>();
     services.AddScoped<IPasswordHasher, PasswordHasher>();
     services.AddScoped<IStaticFileService, StaticFileService>();
 
+    services.AddSignalR();
     services.AddValidatorsFromAssemblyContaining<Program>();
     //services.AddFluentValidationRulesToSwagger();
 
-    var app = builder.Build();
+    WebApplication app = builder.Build();
 
     app.UseStaticFiles();
     app.UseCors();
@@ -84,6 +90,7 @@ try
     // app.UseAntiforgery();
 
     app.AddMappedEndpoints();
+    app.MapHub<TextChannelHub>("/text-channels");
 
     app.Run();
 }
