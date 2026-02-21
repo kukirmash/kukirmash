@@ -9,10 +9,13 @@ using Kukirmash.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Kukirmash.Infrastructure;
-using Kukirmash.API.Endpoints;
+using FluentValidation;
 using Kukirmash.Infrastructure.JWT;
 using Kukirmash.API.Extensions;
 using Microsoft.AspNetCore.CookiePolicy;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+
+
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -50,11 +53,16 @@ try
 
     services.AddScoped<IUserRepository, UserRepository>();
     services.AddScoped<IServerRepository, ServerRepository>();
+    services.AddScoped<ITextChannelRepository, TextChannelRepository>();
     services.AddScoped<IUserService, UserService>();
     services.AddScoped<IServerService, ServerService>();
+    services.AddScoped<ITextChannelService, TextChannelService>();
     services.AddScoped<IJwtProvider, JwtProvider>();
     services.AddScoped<IPasswordHasher, PasswordHasher>();
     services.AddScoped<IStaticFileService, StaticFileService>();
+
+    services.AddValidatorsFromAssemblyContaining<Program>();
+    //services.AddFluentValidationRulesToSwagger();
 
     var app = builder.Build();
 

@@ -22,28 +22,12 @@ public class UserService : IUserService
     //*----------------------------------------------------------------------------------------------------------------------------
     public async Task Register(string login, string email, string password)
     {
-        // Проверяем существует ли пользователь с таким же email
-        var existingByEmail = await _userRepository.GetByEmail(email);
-        // Проверяем существует ли пользователь с таким же логином
-        var existingByLogin = await _userRepository.GetByLogin(login);
+        // Хэшируем пароль
+        string passwordHash = _passwordHasher.Generate(password);
 
-        // Генерируем ошибки в зависимости от занятости 
-        if (existingByEmail != null && existingByLogin != null)
-            throw new Exception("Пользователь с данным email и логином уже существует");
+        // Создаем модель пользователя
+        var user = User.Create(Guid.NewGuid(), login, email, passwordHash);
 
-        if (existingByEmail != null)
-            throw new Exception("Пользователь с данным email уже существует");
-
-        if (existingByLogin != null)
-            throw new Exception("Пользователь с данным логином уже существует");
-
-        // Хешируем пароль
-        string hashedPassword = _passwordHasher.Generate(password);
-
-        // Создаем пользователя
-        var user = User.Create(Guid.NewGuid(), login, email, hashedPassword);
-
-        // Добавляем его в БД
         await _userRepository.Add(user);
     }
 
@@ -53,12 +37,12 @@ public class UserService : IUserService
         // Получаем пользовтеля из репозитория
         var user = await _userRepository.GetByLogin(login);
         if (user == null)
-            throw new Exception("Пользователя с данным логином не существует");
+            throw new KeyNotFoundException("Пользователя с данным логином не существует");
 
         // Проверяем пароль пользователя
         var result = _passwordHasher.Verify(password, user.PasswordHash);
         if (result == false)
-            throw new Exception("Неверный пароль");
+            throw new InvalidOperationException("Неверный пароль");
 
         // Генерируем jwt токен
         var token = _jwtProvider.GenerateToken(user);
@@ -72,12 +56,12 @@ public class UserService : IUserService
         // Получаем пользовтеля из репозитория
         var user = await _userRepository.GetByEmail(email);
         if (user == null)
-            throw new Exception("Пользователя с данным email не существует");
+            throw new KeyNotFoundException("Пользователя с данным email не существует");
 
         // Проверяем пароль пользователя
         var result = _passwordHasher.Verify(password, user.PasswordHash);
         if (result == false)
-            throw new Exception("Неверный пароль");
+            throw new InvalidOperationException("Неверный пароль");
 
         // Генерируем jwt токен
         var token = _jwtProvider.GenerateToken(user);

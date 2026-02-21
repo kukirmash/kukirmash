@@ -2,12 +2,14 @@ using Kukirmash.Application.Interfaces.Repositories;
 using Kukirmash.Core.Models;
 using Kukirmash.Persistence.Entites;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using Serilog;
 
 namespace Kukirmash.Persistence.Repositories;
 
 public class UserRepository : IUserRepository
 {
+    //*----------------------------------------------------------------------------------------------------------------------------
     private readonly KukirmashDbContext _context;
     private const string TAG = "UserRepository";
     public UserRepository(KukirmashDbContext context)
@@ -27,15 +29,32 @@ public class UserRepository : IUserRepository
         };
 
         Log.Information("{TAG}: добавление нового пользователя... (Логин:{Login})", TAG, user.Login);
+
         // Добавление 
-        await _context.Users.AddAsync(userEntity);
-        await _context.SaveChangesAsync();
+        try
+        {
+            await _context.Users.AddAsync(userEntity);
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateException ex)
+        {
+            // Проверяем, что это ошибка уникальности Postgres (код 23505)
+            if (ex.InnerException is PostgresException pgEx && pgEx.SqlState == "23505")
+            {
+                Log.Information("{TAG}: пользователь с таким логином или email уже существует. (Логин:{Login})", TAG, user.Login);
+                // Выбрасываем обычное исключение, которое не требует библиотек БД
+                throw new InvalidOperationException("Пользователь с таким логином или email уже существует");
+            }
+
+            // Если это другая ошибка - пробрасываем её дальше
+            throw;
+        }
 
         Log.Information("{TAG}: новый пользователь добавлен успешно. (Логин:{Login})", TAG, user.Login);
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task<User> GetByEmail(string email)
+    public async Task<User?> GetByEmail(string email)
     {
         Log.Information("{TAG}: поиск пользователя... (Email:{email})", TAG, email);
 
@@ -59,9 +78,10 @@ public class UserRepository : IUserRepository
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task<User> GetByLogin(string login)
+    public async Task<User?> GetByLogin(string login)
     {
         Log.Information("{TAG}: поиск пользователя... (Login:{login})", TAG, login);
+
         var userEntity = await _context.Users
             .AsNoTracking()
             .FirstOrDefaultAsync(user => user.Login == login);
@@ -82,7 +102,7 @@ public class UserRepository : IUserRepository
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task<User> GetById(Guid id)
+    public async Task<User?> GetById(Guid id)
     {
         Log.Information("{TAG}: поиск пользователя... (id:{id})", TAG, id);
         var userEntity = await _context.Users
@@ -108,28 +128,16 @@ public class UserRepository : IUserRepository
     public async Task<List<User>> GetAllUsers()
     {
         Log.Information("{TAG}: получение всех пользователей...", TAG);
+
         var userEntities = await _context.Users
             .AsNoTracking()
             .ToListAsync();
 
-        if (userEntities is null)
-        {
-            Log.Information("{TAG}: пользователей нет.", TAG);
-            return null;
-        }
         Log.Information("{TAG}: получены {Count} пользователей.", TAG, userEntities.Count);
 
-        List<User> userList = new List<User>();
-
-        foreach (var userEntity in userEntities)
-        {
-            var user = User.Create(userEntity.Id,
-                                userEntity.Login,
-                                userEntity.Email,
-                                userEntity.PasswordHash);
-
-            userList.Add(user);
-        }
+        List<User> userList = userEntities
+            .Select(u => User.Create(u.Id, u.Login, u.Email, u.PasswordHash))
+            .ToList();
 
         return userList;
     }
@@ -145,13 +153,10 @@ public class UserRepository : IUserRepository
             .Where(s => s.Users.Any(u => u.Id == userId))
             .ToListAsync();
 
-        if (serverEntities.Count == 0)
-            Log.Information("{TAG}: пользователь не состоит в серверах. (UserId:{userId})", TAG, userId);
-
         Log.Information("{TAG}: успешно получено {Count} серверов, где пользователь участник... (UserId:{userId})", TAG, serverEntities.Count, userId);
 
         List<Server> servers = serverEntities
-            .Select(s => Server.Create(s.Id, s.Name, s.Description, s.IconPath, s.IsPrivate))
+            .Select(s => Server.Create(s.Id, s.Name, s.Description, s.IconPath, s.IsPrivate, s.CreatorId))
             .ToList();
 
         return servers;
@@ -160,16 +165,17 @@ public class UserRepository : IUserRepository
     //*----------------------------------------------------------------------------------------------------------------------------
     public async Task<List<Server>> GetUserCreatedServers(Guid userId)
     {
+        Log.Information("{TAG}: получение всех серверов, которые создал пользователь... (UserId:{userId})", TAG, userId);
+
         var serverEntities = await _context.Servers
             .AsNoTracking()
             .Where(s => s.CreatorId == userId)
             .ToListAsync();
 
-        if (serverEntities.Count == 0)
-            Log.Information("{TAG}: пользователь не создавал сервера. (UserId:{userId})", TAG, userId);
+        Log.Information("{TAG}: успешно получено {Count} серверов, которые создал пользователь... (UserId:{userId})", TAG, serverEntities.Count, userId);
 
         List<Server> servers = serverEntities
-            .Select(s => Server.Create(s.Id, s.Name, s.Description, s.IconPath, s.IsPrivate))
+            .Select(s => Server.Create(s.Id, s.Name, s.Description, s.IconPath, s.IsPrivate, s.CreatorId))
             .ToList();
 
         return servers;

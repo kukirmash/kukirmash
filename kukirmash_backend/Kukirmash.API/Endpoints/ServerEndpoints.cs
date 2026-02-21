@@ -7,6 +7,7 @@ using Kukirmash.Application.Interfaces.Services;
 using Kukirmash.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
+using FluentValidation;
 
 namespace Kukirmash.API.Endpoints;
 
@@ -15,23 +16,15 @@ public static class ServerEndpoints
     //*----------------------------------------------------------------------------------------------------------------------------
     public static IEndpointRouteBuilder MapServerEndpoints(this IEndpointRouteBuilder app)
     {
-        var serverGroup = app.MapGroup("servers");
+        var serverGroup = app.MapGroup("servers")
+        .RequireAuthorization();
 
-        serverGroup.MapGet("/", GetAllServers)
-            .RequireAuthorization();
-        serverGroup.MapGet("public", GetPublicServers)
-            .RequireAuthorization();
-        serverGroup.MapGet("private", GetPrivateServers)
-            .RequireAuthorization();
-
-        serverGroup.MapGet("{id:guid}/users", GetServerUsers)
-            .RequireAuthorization();
-
-        serverGroup.MapPost("{id:guid}/join", JoinToServer)
-            .RequireAuthorization();
-
+        serverGroup.MapGet("/", GetAllServers);
+        serverGroup.MapGet("public", GetPublicServers);
+        serverGroup.MapGet("private", GetPrivateServers);
+        serverGroup.MapGet("{id:guid}/users", GetServerUsers);
+        serverGroup.MapPost("{id:guid}/join", JoinToServer);
         serverGroup.MapPost("/", AddServer)
-            .RequireAuthorization()
             .DisableAntiforgery();
 
         return app;
@@ -39,42 +32,50 @@ public static class ServerEndpoints
 
     //*----------------------------------------------------------------------------------------------------------------------------
     private static async Task<IResult> AddServer(
-        [FromForm] AddServerRequest addServerRequest,
+        [FromForm] AddServerRequest request,
         IServerService serverService,
-        ClaimsPrincipal userClaims)
+        ClaimsPrincipal userClaims,
+        IValidator<AddServerRequest> validator)
     {
-        if (string.IsNullOrWhiteSpace(addServerRequest.Name))
-            return Results.BadRequest("Server name is required");
+
+        var validationResult = await validator.ValidateAsync(request);
+
+        if (validationResult.IsValid == false)
+            return Results.ValidationProblem(validationResult.ToDictionary());
 
         try
         {
             Guid userId = userClaims.GetUserId();
 
             // Добавляем сервер без фото
-            if (addServerRequest.Icon is null)
+            if (request.Icon is null)
             {
-                await serverService.Add(userId, addServerRequest.Name, addServerRequest.Description, addServerRequest.IsPrivate);
+                await serverService.Add(userId, request.Name, request.Description, request.IsPrivate);
                 return Results.Ok();
             }
 
             // Превращаем IFormFile в поток, чтобы Application слой не знал про HTTP
-            Stream iconStream = addServerRequest.Icon.OpenReadStream();
-            string fileName = addServerRequest.Icon.FileName; // нужен для расшерния фото
+            using Stream iconStream = request.Icon.OpenReadStream();
+            string fileName = request.Icon.FileName; // нужен для расшерния фото
 
             // Добавляем сервер вместе с фото
             await serverService.Add(
                 userId,
-                addServerRequest.Name,
-                addServerRequest.Description,
+                request.Name,
+                request.Description,
                 iconStream,
                 fileName,
-                addServerRequest.IsPrivate);
+                request.IsPrivate);
 
             return Results.Ok();
         }
         catch (AuthenticationException)
         {
             return Results.Unauthorized();
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return Results.NotFound(ex.Message); // 404
         }
         catch (Exception ex)
         {
@@ -88,7 +89,7 @@ public static class ServerEndpoints
     {
         try
         {
-            List<Server> servers = await serverService.GetAllServers();
+            List<Server> servers = await serverService.GetAllServers(null);
 
             var serversResponse = servers.Select(s => new ServerResponse(
                 s.Id,
@@ -110,7 +111,7 @@ public static class ServerEndpoints
     {
         try
         {
-            List<Server> servers = await serverService.GetPublicServers();
+            List<Server> servers = await serverService.GetAllServers(false);
 
             var serversResponse = servers.Select(s => new ServerResponse(
                 s.Id,
@@ -132,7 +133,7 @@ public static class ServerEndpoints
     {
         try
         {
-            List<Server> servers = await serverService.GetPrivateServers();
+            List<Server> servers = await serverService.GetAllServers(true);
 
             var serversResponse = servers.Select(s => new ServerResponse(
                 s.Id,
@@ -158,6 +159,10 @@ public static class ServerEndpoints
 
             return Results.Ok(users.Select(u => new UsersResponse(u.Id, u.Login, u.Email)));
         }
+        catch (KeyNotFoundException ex)
+        {
+            return Results.NotFound(ex.Message); // 404
+        }
         catch (Exception ex)
         {
             return Results.Problem(ex.Message);
@@ -175,6 +180,18 @@ public static class ServerEndpoints
             await serverService.AddUser(id, userId);
 
             return Results.Ok();
+        }
+        catch (AuthenticationException)
+        {
+            return Results.Unauthorized();
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return Results.NotFound(ex.Message); // 404
+        }
+        catch (InvalidOperationException ex)
+        {
+            return Results.Conflict(ex.Message); // 400
         }
         catch (Exception ex)
         {

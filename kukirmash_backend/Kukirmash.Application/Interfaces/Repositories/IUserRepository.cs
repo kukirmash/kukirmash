@@ -6,11 +6,11 @@ public interface IUserRepository
 {
     Task Add(User user);
 
-    Task<User> GetByEmail(string email);
+    Task<User?> GetByEmail(string email);
 
-    Task<User> GetByLogin(string login);
+    Task<User?> GetByLogin(string login);
 
-    Task<User> GetById(Guid id);
+    Task<User?> GetById(Guid id);
 
     Task<List<User>> GetAllUsers();
 

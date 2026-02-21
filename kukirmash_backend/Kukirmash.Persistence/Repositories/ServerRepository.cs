@@ -8,6 +8,7 @@ namespace Kukirmash.Persistence.Repositories;
 
 public class ServerRepository : IServerRepository
 {
+    //*----------------------------------------------------------------------------------------------------------------------------
     private readonly KukirmashDbContext _context;
 
     private const string TAG = "ServerRepository";
@@ -19,21 +20,23 @@ public class ServerRepository : IServerRepository
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task Add(Server server, Guid creatorId)
+    public async Task Add(Server server)
     {
-        var creatorEntity = await _context.Users.FindAsync(creatorId);
+        var creatorEntity = await _context.Users
+            .FindAsync(server.CreatorId);
 
-        if (creatorEntity == null)
-            throw new Exception("Creator not found");
+        if (creatorEntity is null)
+            throw new KeyNotFoundException($"Пользователь с ID {server.CreatorId} не найден");
 
         var serverEntity = new ServerEntity()
         {
             Id = server.Id,
             Name = server.Name,
             Description = server.Description,
-            CreatorId = creatorId,
+            CreatorId = server.CreatorId,
             IconPath = server.IconPath,
             IsPrivate = server.IsPrivate,
+
             Users = new List<UserEntity> { creatorEntity }
         };
 
@@ -47,132 +50,74 @@ public class ServerRepository : IServerRepository
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task AddUser(Guid serverId, User user)
+    public async Task AddUser(Guid serverId, Guid userId)
     {
+        Log.Information("{TAG} - добавление нового пользователя на сервер... (UserID:{UserId}  ServerID:{ServerId})", TAG, userId, serverId);
+
         // 1. Загружаем сервер из базы. 
         var serverEntity = await _context.Servers
-            .Include(s => s.Users)
-            .FirstOrDefaultAsync(s => s.Id == serverId);
+            .FindAsync(serverId);
 
         if (serverEntity is null)
-            throw new Exception("Сервер не найден");
-
+        {
+            Log.Information("{TAG} - Сервер с ID {serverId} не найден", TAG, serverId);
+            throw new KeyNotFoundException("Сервер не найден");
+        }
         // 2. Загружаем пользователя из базы
         var userEntity = await _context.Users
-            .FirstOrDefaultAsync(u => u.Id == user.Id);
+            .FindAsync(userId);
 
         if (userEntity is null)
-            throw new Exception("Пользователь найден");
+        {
+            Log.Information("{TAG} - Пользователь с ID {userId} не найден", TAG, userId);
+            throw new KeyNotFoundException("Пользователь не найден");
+        }
 
         // 3. Проверяем, не состоит ли пользователь уже на сервере, чтобы не было ошибки уникальности
-        if (serverEntity.Users.Any(u => u.Id == user.Id))
-            throw new Exception($"Пользователь {user.Id} уже является участником сервера {serverId}");
-
-        Log.Information("{TAG} - добавление нового пользователя на сервер... (UserID:{UserId}  ServerID:{ServerId})", TAG, user.Id, serverId);
+        if (serverEntity.Users.Any(u => u.Id == userId))
+        {
+            Log.Information("{TAG} - Пользователь с ID {userId} уже состоит в этом сервере", TAG, userId);
+            throw new InvalidOperationException("Пользователь уже состоит в этом сервере");
+        }
 
         // 4. Добавляем пользователя в коллекцию сервера
         serverEntity.Users.Add(userEntity);
         await _context.SaveChangesAsync();
 
-        Log.Information("{TAG} - новый пользователь успешно добавлен на сервер... (UserID:{UserId}  ServerID:{ServerId})", TAG, user.Id, serverId);
+        Log.Information("{TAG} - новый пользователь успешно добавлен на сервер... (UserID:{UserId}  ServerID:{ServerId})", TAG, userId, serverId);
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task<List<Server>> GetAllServers()
+    public async Task<bool> IsMember(Guid serverId, Guid userId)
     {
-        Log.Information("{TAG} - получение всех существующих серверов...", TAG);
+        return await _context.Servers
+        .AsNoTracking()
+        .AnyAsync(s => s.Id == serverId && s.Users.Any(u => u.Id == userId));
+    }
 
-        var serverEntities = await _context.Servers
-            .AsNoTracking()
-            .ToListAsync();
+    //*----------------------------------------------------------------------------------------------------------------------------
+    public async Task<List<Server>> GetAllServers(bool? isPrivate = null)
+    {
+        Log.Information("{TAG} - получение всех серверов...", TAG);
+
+        var query = _context.Servers.AsNoTracking();
+
+        if (isPrivate != null)
+            query = query.Where(s => s.IsPrivate == isPrivate.Value);
+
+        var serverEntities = await query.ToListAsync();
 
         Log.Information("{TAG} - успешно получено {cnt} серверов.", TAG, serverEntities.Count);
 
-        if (serverEntities is null)
-            throw new Exception("Servers not found");
-
-        List<Server> serverList = new List<Server>();
-
-        foreach (var serverEntity in serverEntities)
-        {
-            var server = Server.Create(serverEntity.Id,
-                                serverEntity.Name,
-                                serverEntity.Description,
-                                serverEntity.IconPath,
-                                serverEntity.IsPrivate);
-
-            serverList.Add(server);
-        }
+        List<Server> serverList = serverEntities
+            .Select(s => Server.Create(s.Id, s.Name, s.Description, s.IconPath, s.IsPrivate, s.CreatorId))
+            .ToList();
 
         return serverList;
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-
-    public async Task<List<Server>> GetPublicServers()
-    {
-        Log.Information("{TAG} - получение всех публичных серверов...", TAG);
-
-        var serverEntities = await _context.Servers
-            .AsNoTracking()
-            .Where(s => s.IsPrivate == false)
-            .ToListAsync();
-
-        Log.Information("{TAG} - успешно получено {cnt} публичных серверов.", TAG, serverEntities.Count);
-
-        if (serverEntities is null)
-            throw new Exception("Публичные сереверы не были найдены");
-
-        List<Server> serverList = new List<Server>();
-
-        foreach (var serverEntity in serverEntities)
-        {
-            var server = Server.Create(serverEntity.Id,
-                                serverEntity.Name,
-                                serverEntity.Description,
-                                serverEntity.IconPath,
-                                serverEntity.IsPrivate);
-
-            serverList.Add(server);
-        }
-
-        return serverList;
-    }
-
-    //*----------------------------------------------------------------------------------------------------------------------------
-
-    public async Task<List<Server>> GetPrivateServers()
-    {
-        Log.Information("{TAG} - получение всех приватных серверов...", TAG);
-
-        var serverEntities = await _context.Servers
-            .AsNoTracking()
-            .Where(s => s.IsPrivate == true)
-            .ToListAsync();
-
-        Log.Information("{TAG} - успешно получено {cnt} приватных серверов.", TAG, serverEntities.Count);
-
-        if (serverEntities is null)
-            throw new Exception("Приватные сереверы не были найдены");
-
-        List<Server> serverList = new List<Server>();
-
-        foreach (var serverEntity in serverEntities)
-        {
-            var server = Server.Create(serverEntity.Id,
-                                serverEntity.Name,
-                                serverEntity.Description,
-                                serverEntity.IconPath,
-                                serverEntity.IsPrivate);
-
-            serverList.Add(server);
-        }
-
-        return serverList;
-    }
-
-    //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task<Server> GetById(Guid Id)
+    public async Task<Server?> GetById(Guid Id)
     {
         var serverEntity = await _context.Servers
             .FindAsync(Id);
@@ -184,13 +129,14 @@ public class ServerRepository : IServerRepository
                                 serverEntity.Name,
                                 serverEntity.Description,
                                 serverEntity.IconPath,
-                                serverEntity.IsPrivate);
+                                serverEntity.IsPrivate,
+                                serverEntity.CreatorId);
 
         return server;
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public Task<User> GetCreator(Guid serverId)
+    public async Task<User?> GetCreator(Guid serverId)
     {
         throw new NotImplementedException();
     }
@@ -199,35 +145,18 @@ public class ServerRepository : IServerRepository
     public async Task<List<User>> GetMembers(Guid serverId)
     {
         var serverEntity = await _context.Servers
-        .Include(s => s.Users) // <--- ВАЖНО: Подгружаем пользователей
+        .AsNoTracking()
+        .Include(s => s.Users) // Подгружаем пользователей
         .FirstOrDefaultAsync(s => s.Id == serverId);
 
         if (serverEntity is null)
-            return null;
+            throw new KeyNotFoundException("Сервер не найден");
 
         return serverEntity.Users
             .Select(u => User.Create(u.Id, u.Login, u.Email, u.PasswordHash))
             .ToList();
     }
 
-    //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task<bool> IsMember(Guid serverId, User user)
-    {
-        var serverEntity = await _context.Servers
-                .Include(s => s.Users) // <--- ВАЖНО: Подгружаем пользователей
-                .FirstOrDefaultAsync(s => s.Id == serverId);
-
-        if (serverEntity is null)
-            return false;
-
-        foreach (var u in serverEntity.Users)
-        {
-            if (u.Id == user.Id)
-                return true;
-        }
-
-        return false;
-    }
 
     //*----------------------------------------------------------------------------------------------------------------------------
 }

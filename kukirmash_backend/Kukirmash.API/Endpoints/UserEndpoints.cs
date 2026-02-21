@@ -1,5 +1,7 @@
+using System.Security.Authentication;
 using System.Security.Claims;
 using System.Text.RegularExpressions;
+using FluentValidation;
 using Kukirmash.API.Contracts.Server;
 using Kukirmash.API.Contracts.User;
 using Kukirmash.API.Extensions;
@@ -14,11 +16,12 @@ public static class UserEndpoints
     //*----------------------------------------------------------------------------------------------------------------------------
     public static IEndpointRouteBuilder MapUserEndpoints(this IEndpointRouteBuilder app)
     {
-        // Создаем группу "/users"
+        // Группа "/users"
         var usersGroup = app.MapGroup("users");
 
         // GET /users
-        usersGroup.MapGet("/", GetAllUsers);
+        usersGroup.MapGet("/", GetAllUsers)
+            .RequireAuthorization();
 
         // GET /users/me/servers (Требует авторизацию)
         usersGroup.MapGet("me/servers", GetCurrentUserServers)
@@ -35,81 +38,72 @@ public static class UserEndpoints
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    private static async Task<IResult> Register(RegisterUserRequest registerUserRequest, IUserService userService)
+    private static async Task<IResult> Register(
+        RegisterUserRequest request,
+        IUserService userService,
+        IValidator<RegisterUserRequest> validator)
     {
-        // Проверяем логин
-        // TODO: добавить запрещенные символы в логин (например @)
-        if (string.IsNullOrWhiteSpace(registerUserRequest.Login))
-        {
-            Log.Information("400 Bad request: Поле логин - обязательное");
-            return Results.BadRequest("Поле логин - обязательное");
-        }
+        var validationResult = await validator.ValidateAsync(request);
 
-        // Проверяем почту
-        if (string.IsNullOrWhiteSpace(registerUserRequest.Email))
-        {
-            Log.Information("400 Bad request: Поле email - обязательное");
-            return Results.BadRequest("Поле email - обязательное");
-        }
-
-        string pattern = @"^(?!\.)(""([^""\r\\]|\\.)+""|([-a-zA-Z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-zA-Z0-9!#$%&'*+/=?^_`{|}~]+)*))"
-                + @"@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[A-Za-z]{2,}$";
-
-        if (!Regex.IsMatch(registerUserRequest.Email, pattern, RegexOptions.IgnoreCase))
-        {
-            Log.Information("400 Bad request: Неверный формат email");
-            return Results.BadRequest("Неверный формат email");
-        }
-
-        // Проверяем пароль: длина >= 8 символов
-        if (string.IsNullOrWhiteSpace(registerUserRequest.Password) || registerUserRequest.Password.Length < 8)
-        {
-            Log.Information("400 Bad request: Минимальная длина пароля 8 символов");
-            return Results.BadRequest("Минимальная длина пароля 8 символов");
-        }
+        if (validationResult.IsValid == false)
+            return Results.ValidationProblem(validationResult.ToDictionary());
 
         try
         {
             // Регистрируем нового пользователя
-            await userService.Register(registerUserRequest.Login, registerUserRequest.Email, registerUserRequest.Password);
+            await userService.Register(request.Login, request.Email, request.Password);
             return Results.Ok();
         }
-        catch (Exception ex)
+        catch (InvalidOperationException ex)
         {
-            Log.Information($"Problem: {ex.Message}");
-            return Results.Problem(ex.Message);
+            return Results.Conflict(ex.Message); // Возвращаем 409 Conflict
+        }
+        catch (Exception ex) // Любая другая ошибка
+        {
+            Log.Error(ex, $"Ошибка регистрации {ex.Message}");
+            return Results.Problem("Произошла неизвестная ошибка");
         }
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    private static async Task<IResult> Login(LoginUserRequest loginUserRequest, IUserService userService, HttpContext httpContext)
+    private static async Task<IResult> Login(
+        LoginUserRequest request,
+        IUserService userService,
+        HttpContext httpContext,
+        IValidator<LoginUserRequest> validator)
     {
-        // Проверяем логин
-        if (string.IsNullOrWhiteSpace(loginUserRequest.Login))
-            return Results.BadRequest("Login is required");
+        var validationResult = await validator.ValidateAsync(request);
 
-        // Проверяем пароль: длина >= 8 символов
-        if (string.IsNullOrWhiteSpace(loginUserRequest.Password) || loginUserRequest.Password.Length < 8)
-            return Results.BadRequest("Password must be at least 8 characters");
+        if (validationResult.IsValid == false)
+            return Results.ValidationProblem(validationResult.ToDictionary());
 
         try
         {
             // Находим пользователя -> генерируем для него jwt токен (время жизни токена 12 часов)
-            var token = "";
+            string token = string.Empty;
 
-            if (loginUserRequest.Login.Contains("@"))
-                token = await userService.LoginByEmail(loginUserRequest.Login, loginUserRequest.Password);
+            if (request.Login.Contains("@"))
+                token = await userService.LoginByEmail(request.Login, request.Password);
             else
-                token = await userService.LoginByLogin(loginUserRequest.Login, loginUserRequest.Password);
+                token = await userService.LoginByLogin(request.Login, request.Password);
 
             // Заносим сгенерированный токен в cookies
             httpContext.Response.Cookies.Append("big-balls", token);
 
             return Results.Ok();
         }
+        catch (KeyNotFoundException ex)
+        {
+            return Results.NotFound(ex.Message); // 404
+        }
+        catch (InvalidOperationException ex)
+        {
+            return Results.Conflict(ex.Message); // 400 
+        }
         catch (Exception ex)
         {
-            return Results.Problem(ex.Message);
+            Log.Error(ex, $"Ошибка логина {ex.Message}");
+            return Results.Problem("Произошла неизвестная ошибка");
         }
     }
 
@@ -127,7 +121,8 @@ public static class UserEndpoints
         }
         catch (Exception ex)
         {
-            return Results.Problem(ex.Message);
+            Log.Error(ex, $"Ошибка получения всех пользвателей {ex.Message}");
+            return Results.Problem("Произошла неизвестная ошибка");
         }
     }
 
@@ -144,9 +139,14 @@ public static class UserEndpoints
 
             return Results.Ok(response);
         }
+        catch (AuthenticationException)
+        {
+            return Results.Unauthorized();
+        }
         catch (Exception ex)
         {
-            return Results.Problem(ex.Message);
+            Log.Error(ex, $"Ошибка получения серверов у пользователя: {ex.Message}");
+            return Results.Problem("Произошла неизвестная ошибка");
         }
 
     }

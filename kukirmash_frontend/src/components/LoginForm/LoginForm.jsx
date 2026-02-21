@@ -49,11 +49,26 @@ export const LoginForm = () => {
 			})
 
 			if (!response.ok) {
-				const errorJson = await response.json()
+				let errorMessage = "Неизвестная ошибка при авторизации"
+				try {
+					//
+					if (response.detail) {
+						errorMessage = response.detail
+					} else if (response.errors) {
+						errorMessage = Object.values(response.errors)
+							.flat()
+							.join(", ")
+					} else if (response.title) {
+						errorMessage = response.title
+					}
+				} catch {
+					console.error("Не удалось прочитать JSON ошибки", e)
+				}
+
 				setDialog({
 					isOpen: true,
 					type: "warning",
-					content: errorJson.detail || "Ошибка авторизации",
+					content: errorMessage,
 				})
 
 				return
@@ -68,10 +83,11 @@ export const LoginForm = () => {
 				content: "Вход выполнен успешно",
 			})
 		} catch (err) {
+			// Ошибка сети (интернет пропал или сервер лежит полностью)
 			setDialog({
 				isOpen: true,
 				type: "error",
-				content: "Неизвестная ошибка",
+				content: "Не удалось соединиться с сервером",
 			})
 		}
 	}

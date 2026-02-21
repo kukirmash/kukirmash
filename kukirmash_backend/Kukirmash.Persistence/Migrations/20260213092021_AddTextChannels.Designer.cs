@@ -3,6 +3,7 @@ using System;
 using Kukirmash.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Kukirmash.Persistence.Migrations
 {
     [DbContext(typeof(KukirmashDbContext))]
-    partial class KukirmashDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260213092021_AddTextChannels")]
+    partial class AddTextChannels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,7 +74,7 @@ namespace Kukirmash.Persistence.Migrations
 
                     b.HasIndex("ServerId");
 
-                    b.ToTable("TextChannels", (string)null);
+                    b.ToTable("TextChannelEntity");
                 });
 
             modelBuilder.Entity("Kukirmash.Persistence.Entites.UserEntity", b =>

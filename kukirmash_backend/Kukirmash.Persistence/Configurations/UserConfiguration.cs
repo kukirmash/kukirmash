@@ -25,6 +25,6 @@ public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
         builder.HasIndex(user => user.Email).IsUnique(); // Уникальный Email
         builder.HasIndex(user => user.Login).IsUnique(); // Уникальный Login
     }
-    
+
     //---------------------------------------------------------------------------
 }

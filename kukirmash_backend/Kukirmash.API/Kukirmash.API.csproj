@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+    <PackageReference Include="MicroElements.Swashbuckle.FluentValidation" Version="7.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -24,6 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Contracts/TextChannel/" />
+    <Folder Include="Validators/Server/" />
+    <Folder Include="Validators/TextChannel/" />
     <Folder Include="wwwroot/" />
     <Folder Include="wwwroot/media/" />
     <Folder Include="wwwroot/media/server-icons/" />

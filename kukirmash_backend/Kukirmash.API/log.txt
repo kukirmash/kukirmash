@@ -1,93 +1,19 @@
-2026-01-07 21:26:48.827 +03:00 [INF] Starting kukirmash web application
-2026-01-07 23:04:31.303 +03:00 [INF] Starting kukirmash web application
-2026-01-07 23:05:44.905 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-07 23:05:45.762 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-07 23:05:46.194 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-07 23:05:46.906 +03:00 [INF] UserRepository: успешно получено 4 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-07 23:05:46.906 +03:00 [INF] UserRepository: успешно получено 4 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-07 23:05:46.906 +03:00 [INF] UserRepository: успешно получено 4 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-07 23:05:49.268 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-07 23:05:49.282 +03:00 [INF] UserRepository: успешно получено 4 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-09 19:03:57.784 +03:00 [INF] Starting kukirmash web application
-2026-01-09 19:04:12.735 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
-2026-01-09 19:04:14.393 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
-2026-01-09 19:04:16.105 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-09 19:04:16.231 +03:00 [INF] UserRepository: успешно получено 5 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-09 19:04:51.044 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-09 19:04:51.135 +03:00 [INF] UserRepository: успешно получено 5 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-09 19:09:26.753 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-09 19:09:26.777 +03:00 [INF] UserRepository: успешно получено 5 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-09 19:10:17.723 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"312cd276-6687-4f34-ac31-869a01b26d47")
-2026-01-09 19:10:17.994 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"312cd276-6687-4f34-ac31-869a01b26d47")
-2026-01-09 19:10:20.649 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-09 19:10:20.657 +03:00 [INF] UserRepository: успешно получено 6 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-09 19:26:01.691 +03:00 [INF] Starting kukirmash web application
-2026-01-09 19:26:12.077 +03:00 [INF] Starting kukirmash web application
-2026-01-09 19:35:04.979 +03:00 [INF] Starting kukirmash web application
-2026-01-09 19:40:19.341 +03:00 [INF] Starting kukirmash web application
-2026-01-09 19:42:00.229 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"9cf37c23-d0bf-4fb8-8eb3-8438dc8a4566")
-2026-01-09 19:42:00.552 +03:00 [INF] Problem: An error occurred while saving the entity changes. See the inner exception for details.
-2026-01-09 19:43:54.118 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-09 19:46:20.608 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-09 19:46:53.390 +03:00 [INF] Starting kukirmash web application
-2026-01-10 16:04:08.116 +03:00 [INF] Starting kukirmash web application
-2026-01-10 16:04:19.619 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
-2026-01-10 16:04:20.410 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
-2026-01-10 16:04:22.078 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:04:22.147 +03:00 [INF] UserRepository: успешно получено 6 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:17:21.627 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:17:21.677 +03:00 [INF] UserRepository: успешно получено 6 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:17:32.529 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:17:32.535 +03:00 [INF] UserRepository: успешно получено 6 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:17:47.374 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:17:47.380 +03:00 [INF] UserRepository: успешно получено 6 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:34:58.964 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:34:58.976 +03:00 [INF] UserRepository: успешно получено 6 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:37:40.850 +03:00 [INF] Starting kukirmash web application
-2026-01-10 16:38:04.935 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:38:05.790 +03:00 [INF] UserRepository: успешно получено 6 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:40:50.526 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:40:50.547 +03:00 [INF] UserRepository: успешно получено 6 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-s.SocketException (98): Address already in use
-   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
-   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
-   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
-   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
-   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
-   --- End of inner exception stack trace ---
-   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
-   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
---- End of stack trace from previous location ---
-   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
-   --- End of inner exception stack trace ---
-   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
-   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
-   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
-   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
-   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
-   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
-   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
-   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 80
-2026-01-10 16:41:16.260 +03:00 [INF] Starting kukirmash web application
-2026-01-10 16:50:40.393 +03:00 [INF] Starting kukirmash web application
-2026-01-10 16:50:44.663 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:50:45.560 +03:00 [INF] UserRepository: успешно получено 6 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:56:56.852 +03:00 [INF] Starting kukirmash web application
-2026-01-10 16:57:03.700 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:57:04.571 +03:00 [INF] UserRepository: успешно получено 6 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:57:14.252 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"1b863ffa-665f-437c-a8dc-6fc96ae9ebd2")
-2026-01-10 16:57:14.409 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"1b863ffa-665f-437c-a8dc-6fc96ae9ebd2")
-2026-01-10 16:57:18.110 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 16:57:18.151 +03:00 [INF] UserRepository: успешно получено 7 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 18:45:35.151 +03:00 [INF] Starting kukirmash web application
-2026-01-10 18:45:35.272 +03:00 [ERR] Unexpected error: The host was aborted.
+2026-01-24 15:07:15.798 +03:00 [INF] Starting kukirmash web application
+2026-01-24 15:07:20.889 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
+2026-01-24 15:07:22.226 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
+2026-01-24 15:07:23.810 +03:00 [INF] ServerRepository - получение всех серверов...
+2026-01-24 15:07:23.810 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
+2026-01-24 15:07:23.858 +03:00 [INF] ServerRepository - успешно получено 4 серверов.
+2026-01-24 15:07:24.042 +03:00 [INF] UserRepository: успешно получено 3 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
+2026-01-24 15:07:37.590 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
+2026-01-24 15:07:37.600 +03:00 [INF] UserRepository: успешно получено 3 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
+2026-01-24 15:07:38.724 +03:00 [INF] ServerRepository - получение всех серверов...
+2026-01-24 15:07:38.737 +03:00 [INF] ServerRepository - успешно получено 4 серверов.
+2026-01-24 15:07:45.069 +03:00 [INF] ServerRepository - получение всех серверов...
+2026-01-24 15:07:45.081 +03:00 [INF] ServerRepository - успешно получено 4 серверов.
+2026-01-24 15:07:52.464 +03:00 [INF] ServerRepository - добавление нового пользователя на сервер... (UserID:"06c31c26-d403-4b47-acb6-e1b13089d47b"  ServerID:"e530711a-e5ec-44ce-afeb-63d7efffbded")
+2026-02-13 12:20:20.288 +03:00 [INF] Starting kukirmash web application
+2026-02-13 12:20:20.441 +03:00 [ERR] Unexpected error: The host was aborted.
 Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
    at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
    at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
@@ -95,9 +21,9 @@ Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
    at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
    at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
    at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 59
-2026-01-10 18:45:55.869 +03:00 [INF] Starting kukirmash web application
-2026-01-10 18:45:55.981 +03:00 [ERR] Unexpected error: The host was aborted.
+   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 65
+2026-02-13 12:22:19.139 +03:00 [INF] Starting kukirmash web application
+2026-02-13 12:22:19.293 +03:00 [ERR] Unexpected error: The host was aborted.
 Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
    at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
    at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
@@ -105,77 +31,95 @@ Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
    at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
    at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
    at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
-   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 59
-2026-01-10 19:14:59.048 +03:00 [INF] Starting kukirmash web application
-2026-01-10 19:21:08.689 +03:00 [INF] Starting kukirmash web application
-2026-01-10 19:29:34.767 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"9aa3f466-12f7-4607-9d71-4051a8a065be")
-2026-01-10 19:29:35.011 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"9aa3f466-12f7-4607-9d71-4051a8a065be")
-2026-01-10 19:49:34.005 +03:00 [INF] ServerRepository - получение всех существующих серверов...
-2026-01-10 19:49:34.084 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
-2026-01-10 19:51:09.774 +03:00 [INF] Starting kukirmash web application
-2026-01-10 19:51:22.169 +03:00 [INF] ServerRepository - получение всех существующих серверов...
-2026-01-10 19:51:23.982 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
-2026-01-10 21:08:11.221 +03:00 [INF] Starting kukirmash web application
-2026-01-10 21:08:22.892 +03:00 [INF] ServerRepository - получение всех существующих серверов...
-2026-01-10 21:08:24.681 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
-2026-01-10 21:09:00.006 +03:00 [INF] ServerRepository - получение всех существующих серверов...
-2026-01-10 21:09:00.086 +03:00 [INF] ServerRepository - успешно получено 0 серверов.
-2026-01-10 21:09:25.262 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"6f775cc4-2992-4c32-b5ed-84e5e15a8e16")
-2026-01-10 21:09:25.591 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"6f775cc4-2992-4c32-b5ed-84e5e15a8e16")
-2026-01-10 21:09:39.605 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"693a07bc-43c6-4535-8bb5-fcde8cf67e93")
-2026-01-10 21:09:39.620 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"693a07bc-43c6-4535-8bb5-fcde8cf67e93")
-2026-01-10 21:09:45.212 +03:00 [INF] ServerRepository - получение всех существующих серверов...
-2026-01-10 21:09:45.218 +03:00 [INF] ServerRepository - успешно получено 2 серверов.
-2026-01-10 21:09:55.243 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-10 21:09:55.275 +03:00 [INF] ServerRepository - успешно получено 1 публичных серверов.
-2026-01-10 21:10:01.318 +03:00 [INF] ServerRepository - получение всех приватных серверов...
-2026-01-10 21:10:01.332 +03:00 [INF] ServerRepository - успешно получено 1 приватных серверов.
-2026-01-10 23:42:10.472 +03:00 [INF] Starting kukirmash web application
-2026-01-10 23:45:43.151 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 23:45:44.746 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 23:45:45.890 +03:00 [INF] UserRepository: успешно получено 2 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 23:45:45.890 +03:00 [INF] UserRepository: успешно получено 2 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 23:45:51.016 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
-2026-01-10 23:45:51.170 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
-2026-01-10 23:45:54.145 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 23:45:54.156 +03:00 [INF] UserRepository: успешно получено 2 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 23:48:16.189 +03:00 [INF] ServerRepository - получение всех существующих серверов...
-2026-01-10 23:48:16.236 +03:00 [INF] ServerRepository - успешно получено 2 серверов.
-2026-01-10 23:54:22.703 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"01e2f9d1-32c4-456b-aea0-0bde8f91d679")
-2026-01-10 23:54:23.157 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"01e2f9d1-32c4-456b-aea0-0bde8f91d679")
-2026-01-10 23:54:24.328 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 23:54:24.335 +03:00 [INF] UserRepository: успешно получено 3 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 23:56:10.926 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"13341099-5377-4dba-a339-93354a4ef0ab")
-2026-01-10 23:56:10.940 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"13341099-5377-4dba-a339-93354a4ef0ab")
-2026-01-10 23:56:12.039 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 23:56:12.047 +03:00 [INF] UserRepository: успешно получено 4 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 23:57:01.829 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"58933e23-a2e4-41e1-9970-7e12814a3277")
-2026-01-10 23:57:01.861 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"58933e23-a2e4-41e1-9970-7e12814a3277")
-2026-01-10 23:57:02.895 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-10 23:57:02.902 +03:00 [INF] UserRepository: успешно получено 5 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 17:22:26.978 +03:00 [INF] Starting kukirmash web application
-2026-01-12 17:22:27.860 +03:00 [ERR] Unexpected error: Failed to bind to address http://127.0.0.1:5000: address already in use.
-System.IO.IOException: Failed to bind to address http://127.0.0.1:5000: address already in use.
- ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
- ---> System.Net.Sockets.SocketException (98): Address already in use
-   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
-   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
-   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
-   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
-   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
-   --- End of inner exception stack trace ---
-   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
-   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
---- End of stack trace from previous location ---
-   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
-   --- End of inner exception stack trace ---
-   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
-   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 65
+2026-02-13 12:36:38.458 +03:00 [INF] Starting kukirmash web application
+2026-02-13 12:36:38.573 +03:00 [ERR] Unexpected error: The host was aborted.
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 65
+2026-02-13 12:36:42.270 +03:00 [INF] Starting kukirmash web application
+2026-02-13 12:36:42.377 +03:00 [ERR] Unexpected error: The host was aborted.
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 65
+2026-02-20 13:08:11.553 +03:00 [INF] Starting kukirmash web application
+2026-02-20 13:21:51.427 +03:00 [INF] Starting kukirmash web application
+2026-02-20 13:22:20.950 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
+2026-02-20 13:22:21.799 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
+2026-02-20 13:22:29.466 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"edf6de46-305b-4a4c-a27b-effb78671503")
+2026-02-20 13:22:29.611 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"edf6de46-305b-4a4c-a27b-effb78671503")
+2026-02-20 13:58:41.724 +03:00 [INF] Starting kukirmash web application
+2026-02-20 14:00:10.694 +03:00 [INF] Starting kukirmash web application
+2026-02-20 14:01:51.199 +03:00 [INF] Starting kukirmash web application
+2026-02-20 14:02:29.230 +03:00 [INF] Starting kukirmash web application
+2026-02-20 14:18:19.597 +03:00 [INF] Starting kukirmash web application
+2026-02-20 14:18:20.336 +03:00 [ERR] Unexpected error: Failure to infer one or more parameters.
+Below is the list of parameters that we found: 
+
+Parameter           | Source                        
+---------------------------------------------------------------------------------
+id                  | Route (Attribute)
+request             | Body (Inferred)
+textChannelService  | UNKNOWN        
+
+
+Did you mean to register the "UNKNOWN" parameters as a Service?
+
+
+System.InvalidOperationException: Failure to infer one or more parameters.
+Below is the list of parameters that we found: 
+
+Parameter           | Source                        
+---------------------------------------------------------------------------------
+id                  | Route (Attribute)
+request             | Body (Inferred)
+textChannelService  | UNKNOWN        
+
+
+Did you mean to register the "UNKNOWN" parameters as a Service?
+
+
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.CreateArguments(ParameterInfo[] parameters, RequestDelegateFactoryContext factoryContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.CreateArgumentsAndInferMetadata(MethodInfo methodInfo, RequestDelegateFactoryContext factoryContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.InferMetadata(MethodInfo methodInfo, RequestDelegateFactoryOptions options)
+   at Microsoft.AspNetCore.Routing.RouteEndpointDataSource.CreateRouteEndpointBuilder(RouteEntry entry, RoutePattern groupPrefix, IReadOnlyList`1 groupConventions, IReadOnlyList`1 groupFinallyConventions)
+   at Microsoft.AspNetCore.Routing.RouteEndpointDataSource.GetGroupedEndpoints(RouteGroupContext context)
+   at Microsoft.AspNetCore.Routing.RouteGroupBuilder.GroupEndpointDataSource.GetGroupedEndpointsWithNullablePrefix(RoutePattern prefix, IReadOnlyList`1 conventions, IReadOnlyList`1 finallyConventions, IServiceProvider applicationServices)
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.CreateEndpointsUnsynchronized()
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.EnsureEndpointsInitialized()
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.get_Endpoints()
+   at Microsoft.AspNetCore.Routing.DataSourceDependentCache`1.Initialize()
+   at System.Threading.LazyInitializer.EnsureInitializedCore[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at Microsoft.AspNetCore.Routing.DataSourceDependentCache`1.EnsureInitialized()
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationPolicyCache..ctor(EndpointDataSource dataSource)
+   at InvokeStub_AuthorizationPolicyCache..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at InvokeStub_AuthorizationMiddlewareInternal..ctor(Object, Object, Object, Object, Object)
+   at System.Reflection.ConstructorInvoker.InvokeImpl(Object arg1, Object arg2, Object arg3, Object arg4)
+   at System.Reflection.ConstructorInvoker.Invoke(Span`1 arguments)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
    at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
    at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
    at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
@@ -183,169 +127,179 @@ System.IO.IOException: Failed to bind to address http://127.0.0.1:5000: address 
    at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
    at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
    at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
-   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 80
-2026-01-12 17:22:42.743 +03:00 [INF] Starting kukirmash web application
-2026-01-12 17:22:44.258 +03:00 [INF] ServerRepository - получение всех существующих серверов...
-2026-01-12 17:22:45.079 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
-2026-01-12 17:23:08.962 +03:00 [INF] ServerRepository - получение всех существующих серверов...
-2026-01-12 17:23:09.074 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
-2026-01-12 18:01:03.171 +03:00 [INF] Starting kukirmash web application
-2026-01-12 18:01:05.455 +03:00 [INF] ServerRepository - получение всех существующих серверов...
-2026-01-12 18:01:06.337 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
-2026-01-12 18:01:57.377 +03:00 [INF] Starting kukirmash web application
-2026-01-12 18:03:13.525 +03:00 [INF] ServerRepository - получение всех существующих серверов...
-2026-01-12 18:03:15.101 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
-2026-01-12 18:03:30.412 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 18:03:30.708 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 18:03:33.369 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 18:03:33.452 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 18:03:53.353 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 18:03:53.373 +03:00 [INF] ServerRepository - успешно получено 1 публичных серверов.
-2026-01-12 18:04:00.735 +03:00 [INF] ServerRepository - получение всех приватных серверов...
-2026-01-12 18:04:00.755 +03:00 [INF] ServerRepository - успешно получено 0 приватных серверов.
-2026-01-12 18:18:05.748 +03:00 [INF] Starting kukirmash web application
-2026-01-12 18:18:17.776 +03:00 [INF] ServerRepository - получение всех существующих серверов...
-2026-01-12 18:18:18.905 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
-2026-01-12 18:19:14.125 +03:00 [INF] UserRepository: поиск пользователя... (id:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 18:19:14.250 +03:00 [INF] UserRepository: пользователь успешно найден. (id:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 18:19:49.146 +03:00 [INF] UserRepository: поиск пользователя... (Email:ivanya-2002@mail.ru)
-2026-01-12 18:19:49.163 +03:00 [INF] UserRepository: данного пользователя не существует. (Email:ivanya-2002@mail.ru)
-2026-01-12 18:19:49.165 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash2)
-2026-01-12 18:19:49.177 +03:00 [INF] UserRepository: данного пользователя не существует. (Login:kukirmash2)
-2026-01-12 18:19:49.752 +03:00 [INF] UserRepository: добавление нового пользователя... (Логин:kukirmash2)
-2026-01-12 18:19:49.922 +03:00 [INF] UserRepository: новый пользователь добавлен успешно. (Логин:kukirmash2)
-2026-01-12 18:20:07.876 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash2)
-2026-01-12 18:20:07.884 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash2)
-2026-01-12 18:21:12.030 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash2)
-2026-01-12 18:21:12.037 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash2)
-2026-01-12 18:21:17.802 +03:00 [INF] ServerRepository - получение всех существующих серверов...
-2026-01-12 18:21:17.809 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
-2026-01-12 18:21:30.281 +03:00 [INF] UserRepository: поиск пользователя... (id:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 18:21:30.289 +03:00 [INF] UserRepository: пользователь успешно найден. (id:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 18:21:30.321 +03:00 [INF] ServerRepository - добавление нового пользователя на сервер... (UserID:"fff5ca6b-c673-48ed-8889-c2592c98fd15"  ServerID:"7f872ba6-5ccb-4b8f-a985-cb47734ed00b")
-2026-01-12 18:21:30.390 +03:00 [INF] ServerRepository - новый пользователь успешно добавлен на сервер... (UserID:"fff5ca6b-c673-48ed-8889-c2592c98fd15"  ServerID:"7f872ba6-5ccb-4b8f-a985-cb47734ed00b")
-2026-01-12 18:30:59.908 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 18:30:59.957 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 18:40:01.337 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 18:40:01.361 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:06:37.494 +03:00 [INF] Starting kukirmash web application
-2026-01-12 19:06:41.633 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:06:41.961 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:06:42.561 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:06:42.561 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:07:19.042 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:07:19.135 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:21:02.963 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:21:02.986 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:21:26.805 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:21:26.813 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:34:19.903 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:34:19.922 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:34:19.926 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:34:19.932 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:34:32.137 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:34:32.144 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:34:36.831 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:34:36.838 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:38:02.314 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"df9f153f-71e6-47b4-8a6c-d4e2c7c47cd7")
-2026-01-12 19:38:02.600 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"df9f153f-71e6-47b4-8a6c-d4e2c7c47cd7")
-2026-01-12 19:38:04.109 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:38:04.117 +03:00 [INF] UserRepository: успешно получено 2 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:40:52.980 +03:00 [INF] Starting kukirmash web application
-2026-01-12 19:40:57.634 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:40:58.830 +03:00 [INF] UserRepository: успешно получено 2 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:41:16.034 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"8a45c529-03a6-403f-9c78-32b59f6f49df")
-2026-01-12 19:41:16.261 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"8a45c529-03a6-403f-9c78-32b59f6f49df")
-2026-01-12 19:41:17.300 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:41:17.312 +03:00 [INF] UserRepository: успешно получено 3 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:41:22.626 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:41:22.632 +03:00 [INF] UserRepository: успешно получено 3 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:41:24.660 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:41:24.668 +03:00 [INF] UserRepository: успешно получено 3 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:43:24.062 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:43:24.069 +03:00 [INF] UserRepository: успешно получено 3 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:43:32.501 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:43:32.508 +03:00 [INF] UserRepository: успешно получено 3 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:44:01.536 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:44:01.543 +03:00 [INF] UserRepository: успешно получено 3 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:44:22.699 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:44:22.707 +03:00 [INF] UserRepository: успешно получено 3 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 19:46:06.890 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
-2026-01-12 19:46:06.929 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
-2026-01-12 19:46:08.734 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 19:46:08.741 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 19:47:21.032 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 19:47:21.050 +03:00 [INF] ServerRepository - успешно получено 3 публичных серверов.
-2026-01-12 19:48:36.968 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 19:48:36.974 +03:00 [INF] UserRepository: пользователь не состоит в серверах. (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 19:48:36.974 +03:00 [INF] UserRepository: успешно получено 0 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 19:48:44.101 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 19:48:44.108 +03:00 [INF] UserRepository: пользователь не состоит в серверах. (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 19:48:44.108 +03:00 [INF] UserRepository: успешно получено 0 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 19:49:03.333 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"d98e10d0-fe99-431a-aa49-86fa59eef6c6")
-2026-01-12 19:49:03.346 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"d98e10d0-fe99-431a-aa49-86fa59eef6c6")
-2026-01-12 19:49:04.491 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 19:49:04.497 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 19:49:23.991 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"e530711a-e5ec-44ce-afeb-63d7efffbded")
-2026-01-12 19:49:24.002 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"e530711a-e5ec-44ce-afeb-63d7efffbded")
-2026-01-12 19:49:25.089 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 19:49:25.096 +03:00 [INF] UserRepository: успешно получено 2 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:18:31.232 +03:00 [INF] Starting kukirmash web application
-2026-01-12 20:19:00.438 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:19:03.198 +03:00 [INF] UserRepository: успешно получено 2 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:19:12.089 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
-2026-01-12 20:19:12.138 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
-2026-01-12 20:19:13.745 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:19:13.876 +03:00 [INF] UserRepository: успешно получено 2 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:30:48.517 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:30:48.521 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 20:30:48.534 +03:00 [INF] UserRepository: успешно получено 2 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:30:48.548 +03:00 [INF] ServerRepository - успешно получено 4 публичных серверов.
-2026-01-12 20:30:54.744 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 20:30:54.752 +03:00 [INF] ServerRepository - успешно получено 4 публичных серверов.
-2026-01-12 20:31:10.774 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 20:31:10.782 +03:00 [INF] ServerRepository - успешно получено 4 публичных серверов.
-2026-01-12 20:35:49.813 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 20:35:49.833 +03:00 [INF] ServerRepository - успешно получено 4 публичных серверов.
-2026-01-12 20:38:52.410 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash2)
-2026-01-12 20:38:52.420 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash2)
-2026-01-12 20:38:54.372 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 20:38:54.372 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 20:38:54.396 +03:00 [INF] UserRepository: успешно получено 2 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 20:38:54.410 +03:00 [INF] ServerRepository - успешно получено 4 публичных серверов.
-2026-01-12 20:39:02.053 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 20:39:02.062 +03:00 [INF] ServerRepository - успешно получено 4 публичных серверов.
-2026-01-12 20:43:56.791 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 20:43:56.798 +03:00 [INF] ServerRepository - успешно получено 4 публичных серверов.
-2026-01-12 20:43:59.273 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 20:43:59.281 +03:00 [INF] ServerRepository - успешно получено 4 публичных серверов.
-2026-01-12 20:44:07.628 +03:00 [INF] UserRepository: поиск пользователя... (id:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 20:44:07.666 +03:00 [INF] UserRepository: пользователь успешно найден. (id:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 20:44:07.706 +03:00 [INF] ServerRepository - добавление нового пользователя на сервер... (UserID:"fff5ca6b-c673-48ed-8889-c2592c98fd15"  ServerID:"d98e10d0-fe99-431a-aa49-86fa59eef6c6")
-2026-01-12 20:44:07.915 +03:00 [INF] ServerRepository - новый пользователь успешно добавлен на сервер... (UserID:"fff5ca6b-c673-48ed-8889-c2592c98fd15"  ServerID:"d98e10d0-fe99-431a-aa49-86fa59eef6c6")
-2026-01-12 20:44:13.697 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 20:44:13.697 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 20:44:13.705 +03:00 [INF] ServerRepository - успешно получено 4 публичных серверов.
-2026-01-12 20:44:13.717 +03:00 [INF] UserRepository: успешно получено 3 серверов, где пользователь участник... (UserId:"fff5ca6b-c673-48ed-8889-c2592c98fd15")
-2026-01-12 20:50:19.303 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
-2026-01-12 20:50:19.314 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
-2026-01-12 20:50:21.178 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:50:21.178 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 20:50:21.186 +03:00 [INF] UserRepository: успешно получено 2 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:50:21.199 +03:00 [INF] ServerRepository - успешно получено 4 публичных серверов.
-2026-01-12 20:51:38.169 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 20:51:38.175 +03:00 [INF] ServerRepository - успешно получено 4 публичных серверов.
-2026-01-12 20:51:42.290 +03:00 [INF] UserRepository: поиск пользователя... (id:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:51:42.299 +03:00 [INF] UserRepository: пользователь успешно найден. (id:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:52:27.333 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:52:27.345 +03:00 [INF] UserRepository: успешно получено 2 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:56:07.862 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 20:56:07.869 +03:00 [INF] ServerRepository - успешно получено 4 публичных серверов.
-2026-01-12 20:56:13.944 +03:00 [INF] UserRepository: поиск пользователя... (id:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:56:13.953 +03:00 [INF] UserRepository: пользователь успешно найден. (id:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:56:13.976 +03:00 [INF] ServerRepository - добавление нового пользователя на сервер... (UserID:"06c31c26-d403-4b47-acb6-e1b13089d47b"  ServerID:"df9f153f-71e6-47b4-8a6c-d4e2c7c47cd7")
-2026-01-12 20:56:14.008 +03:00 [INF] ServerRepository - новый пользователь успешно добавлен на сервер... (UserID:"06c31c26-d403-4b47-acb6-e1b13089d47b"  ServerID:"df9f153f-71e6-47b4-8a6c-d4e2c7c47cd7")
-2026-01-12 20:56:16.143 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:56:16.173 +03:00 [INF] UserRepository: успешно получено 3 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
-2026-01-12 20:56:16.174 +03:00 [INF] ServerRepository - получение всех публичных серверов...
-2026-01-12 20:56:16.183 +03:00 [INF] ServerRepository - успешно получено 4 публичных серверов.
+   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 86
+2026-02-20 14:19:11.479 +03:00 [INF] Starting kukirmash web application
+2026-02-20 14:19:12.183 +03:00 [ERR] Unexpected error: Failure to infer one or more parameters.
+Below is the list of parameters that we found: 
+
+Parameter           | Source                        
+---------------------------------------------------------------------------------
+id                  | Route (Attribute)
+request             | Body (Inferred)
+textChannelService  | UNKNOWN        
+
+
+Did you mean to register the "UNKNOWN" parameters as a Service?
+
+
+System.InvalidOperationException: Failure to infer one or more parameters.
+Below is the list of parameters that we found: 
+
+Parameter           | Source                        
+---------------------------------------------------------------------------------
+id                  | Route (Attribute)
+request             | Body (Inferred)
+textChannelService  | UNKNOWN        
+
+
+Did you mean to register the "UNKNOWN" parameters as a Service?
+
+
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.CreateArguments(ParameterInfo[] parameters, RequestDelegateFactoryContext factoryContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.CreateArgumentsAndInferMetadata(MethodInfo methodInfo, RequestDelegateFactoryContext factoryContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.InferMetadata(MethodInfo methodInfo, RequestDelegateFactoryOptions options)
+   at Microsoft.AspNetCore.Routing.RouteEndpointDataSource.CreateRouteEndpointBuilder(RouteEntry entry, RoutePattern groupPrefix, IReadOnlyList`1 groupConventions, IReadOnlyList`1 groupFinallyConventions)
+   at Microsoft.AspNetCore.Routing.RouteEndpointDataSource.GetGroupedEndpoints(RouteGroupContext context)
+   at Microsoft.AspNetCore.Routing.RouteGroupBuilder.GroupEndpointDataSource.GetGroupedEndpointsWithNullablePrefix(RoutePattern prefix, IReadOnlyList`1 conventions, IReadOnlyList`1 finallyConventions, IServiceProvider applicationServices)
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.CreateEndpointsUnsynchronized()
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.EnsureEndpointsInitialized()
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.get_Endpoints()
+   at Microsoft.AspNetCore.Routing.DataSourceDependentCache`1.Initialize()
+   at System.Threading.LazyInitializer.EnsureInitializedCore[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at Microsoft.AspNetCore.Routing.DataSourceDependentCache`1.EnsureInitialized()
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationPolicyCache..ctor(EndpointDataSource dataSource)
+   at InvokeStub_AuthorizationPolicyCache..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at InvokeStub_AuthorizationMiddlewareInternal..ctor(Object, Object, Object, Object, Object)
+   at System.Reflection.ConstructorInvoker.InvokeImpl(Object arg1, Object arg2, Object arg3, Object arg4)
+   at System.Reflection.ConstructorInvoker.Invoke(Span`1 arguments)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 86
+2026-02-20 14:20:03.746 +03:00 [INF] Starting kukirmash web application
+2026-02-20 14:20:04.485 +03:00 [ERR] Unexpected error: Failure to infer one or more parameters.
+Below is the list of parameters that we found: 
+
+Parameter           | Source                        
+---------------------------------------------------------------------------------
+id                  | Route (Attribute)
+request             | Body (Inferred)
+textChannelService  | UNKNOWN        
+
+
+Did you mean to register the "UNKNOWN" parameters as a Service?
+
+
+System.InvalidOperationException: Failure to infer one or more parameters.
+Below is the list of parameters that we found: 
+
+Parameter           | Source                        
+---------------------------------------------------------------------------------
+id                  | Route (Attribute)
+request             | Body (Inferred)
+textChannelService  | UNKNOWN        
+
+
+Did you mean to register the "UNKNOWN" parameters as a Service?
+
+
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.CreateArguments(ParameterInfo[] parameters, RequestDelegateFactoryContext factoryContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.CreateArgumentsAndInferMetadata(MethodInfo methodInfo, RequestDelegateFactoryContext factoryContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.InferMetadata(MethodInfo methodInfo, RequestDelegateFactoryOptions options)
+   at Microsoft.AspNetCore.Routing.RouteEndpointDataSource.CreateRouteEndpointBuilder(RouteEntry entry, RoutePattern groupPrefix, IReadOnlyList`1 groupConventions, IReadOnlyList`1 groupFinallyConventions)
+   at Microsoft.AspNetCore.Routing.RouteEndpointDataSource.GetGroupedEndpoints(RouteGroupContext context)
+   at Microsoft.AspNetCore.Routing.RouteGroupBuilder.GroupEndpointDataSource.GetGroupedEndpointsWithNullablePrefix(RoutePattern prefix, IReadOnlyList`1 conventions, IReadOnlyList`1 finallyConventions, IServiceProvider applicationServices)
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.CreateEndpointsUnsynchronized()
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.EnsureEndpointsInitialized()
+   at Microsoft.AspNetCore.Routing.CompositeEndpointDataSource.get_Endpoints()
+   at Microsoft.AspNetCore.Routing.DataSourceDependentCache`1.Initialize()
+   at System.Threading.LazyInitializer.EnsureInitializedCore[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at Microsoft.AspNetCore.Routing.DataSourceDependentCache`1.EnsureInitialized()
+   at Microsoft.AspNetCore.Authorization.Policy.AuthorizationPolicyCache..ctor(EndpointDataSource dataSource)
+   at InvokeStub_AuthorizationPolicyCache..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at InvokeStub_AuthorizationMiddlewareInternal..ctor(Object, Object, Object, Object, Object)
+   at System.Reflection.ConstructorInvoker.InvokeImpl(Object arg1, Object arg2, Object arg3, Object arg4)
+   at System.Reflection.ConstructorInvoker.Invoke(Span`1 arguments)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in /home/kukirmash/kukirmash/kukirmash_backend/Kukirmash.API/Program.cs:line 86
+2026-02-20 14:21:17.308 +03:00 [INF] Starting kukirmash web application
+2026-02-20 14:55:58.559 +03:00 [INF] Starting kukirmash web application
+2026-02-20 15:45:02.804 +03:00 [INF] Starting kukirmash web application
+2026-02-20 15:46:02.183 +03:00 [INF] Starting kukirmash web application
+2026-02-20 15:49:43.795 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"20d4efcf-79b0-43a5-81f9-bd4fa2c5fbd0")
+2026-02-20 15:49:44.080 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"20d4efcf-79b0-43a5-81f9-bd4fa2c5fbd0")
+2026-02-20 15:54:21.115 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
+2026-02-20 15:54:21.224 +03:00 [INF] UserRepository: успешно получено 5 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
+2026-02-20 15:55:55.669 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
+2026-02-20 15:55:55.680 +03:00 [INF] UserRepository: успешно получено 5 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
+2026-02-20 15:56:02.721 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
+2026-02-20 15:56:02.724 +03:00 [INF] ServerRepository - получение всех серверов...
+2026-02-20 15:56:02.726 +03:00 [INF] UserRepository: успешно получено 5 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
+2026-02-20 15:56:02.735 +03:00 [INF] ServerRepository - успешно получено 4 серверов.
+2026-02-20 15:56:34.713 +03:00 [INF] UserRepository: добавление нового пользователя... (Логин:kukirmash)
+2026-02-20 15:56:34.845 +03:00 [INF] UserRepository: пользователь с таким логином или email уже существует. (Логин:kukirmash)
+2026-02-20 15:56:50.528 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
+2026-02-20 15:56:50.537 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
+2026-02-20 15:56:52.735 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
+2026-02-20 15:56:52.735 +03:00 [INF] ServerRepository - получение всех серверов...
+2026-02-20 15:56:52.739 +03:00 [INF] UserRepository: успешно получено 5 серверов, где пользователь участник... (UserId:"06c31c26-d403-4b47-acb6-e1b13089d47b")
+2026-02-20 15:56:52.746 +03:00 [INF] ServerRepository - успешно получено 4 серверов.
+2026-02-20 15:58:19.835 +03:00 [INF] Starting kukirmash web application
+2026-02-20 16:09:50.432 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
+2026-02-20 16:09:52.029 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
+2026-02-20 16:10:03.336 +03:00 [INF] Starting kukirmash web application
+2026-02-20 16:10:14.256 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
+2026-02-20 16:10:15.841 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
+2026-02-21 12:00:31.664 +03:00 [INF] Starting kukirmash web application
+2026-02-21 12:00:40.994 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
+2026-02-21 12:00:42.709 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
+2026-02-21 12:01:00.387 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
+2026-02-21 12:01:00.410 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
+2026-02-21 12:11:42.853 +03:00 [INF] UserRepository: добавление нового пользователя... (Логин:kukirmash)
+2026-02-21 12:11:43.216 +03:00 [INF] UserRepository: новый пользователь добавлен успешно. (Логин:kukirmash)
+2026-02-21 12:13:19.184 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
+2026-02-21 12:13:19.192 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
+2026-02-21 12:13:46.593 +03:00 [INF] ServerRepository - добавление нового сервера... (ID:"08a067de-4303-4213-bc87-1137b3eef76f")
+2026-02-21 12:13:46.745 +03:00 [INF] ServerRepository - сервер добавлен успешно. (ID:"08a067de-4303-4213-bc87-1137b3eef76f")
+2026-02-21 12:13:55.662 +03:00 [INF] ServerRepository - получение всех серверов...
+2026-02-21 12:13:55.705 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
+2026-02-21 12:21:22.357 +03:00 [INF] TextChannelRepository - добавление нового текстовго канала... (ID:"867e2dad-e487-4c13-8fd7-d3f335dd65b8")
+2026-02-21 12:21:22.386 +03:00 [INF] TextChannelRepository - текстовый канал добавлен успешно. (ID:"867e2dad-e487-4c13-8fd7-d3f335dd65b8")

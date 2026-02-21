@@ -15,7 +15,7 @@ export const UserService = {
 		const response = await fetch(`${API_URL}/register`, request)
 
 		//console.log(response);
-		return response
+		return response.json()
 	},
 
 	//*----------------------------------------------------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ export const UserService = {
 		const response = await fetch(`${API_URL}/login`, request)
 
 		//console.log(response);
-		return response
+		return response.json()
 	},
 
 	//*----------------------------------------------------------------------------------------------------------------------------
