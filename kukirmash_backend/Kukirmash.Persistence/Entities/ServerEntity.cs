@@ -1,4 +1,4 @@
-namespace Kukirmash.Persistence.Entites;
+namespace Kukirmash.Persistence.Entities;
 
 public class ServerEntity
 {
@@ -11,7 +11,7 @@ public class ServerEntity
 
     public Guid CreatorId { get; set; }
     public UserEntity Creator { get; set; } = null!;
-    
+
     public List<UserEntity> Users { get; set; } = [];
 
     public List<TextChannelEntity> TextChannels { get; set; } = [];

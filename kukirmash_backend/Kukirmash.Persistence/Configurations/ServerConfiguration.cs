@@ -1,4 +1,4 @@
-using Kukirmash.Persistence.Entites;
+using Kukirmash.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

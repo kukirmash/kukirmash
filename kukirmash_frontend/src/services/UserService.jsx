@@ -31,8 +31,8 @@ export const UserService = {
 
 		const response = await fetch(`${API_URL}/login`, request)
 
-		//console.log(response);
-		return response.json()
+		console.log(response)
+		return response
 	},
 
 	//*----------------------------------------------------------------------------------------------------------------------------

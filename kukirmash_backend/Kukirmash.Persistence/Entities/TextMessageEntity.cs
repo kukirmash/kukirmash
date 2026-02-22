@@ -1,7 +1,7 @@
 using System;
 using Kukirmash.Core.Models;
 
-namespace Kukirmash.Persistence.Entites;
+namespace Kukirmash.Persistence.Entities;
 
 public class TextMessageEntity
 {

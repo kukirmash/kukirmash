@@ -338,3 +338,4 @@ System.InvalidOperationException: The service collection cannot be modified beca
 2026-02-21 16:52:06.426 +03:00 [INF] Starting kukirmash web application
 2026-02-21 17:21:54.794 +03:00 [INF] Starting kukirmash web application
 2026-02-21 17:22:07.223 +03:00 [INF] Starting kukirmash web application
+2026-02-21 22:03:26.306 +03:00 [INF] Starting kukirmash web application

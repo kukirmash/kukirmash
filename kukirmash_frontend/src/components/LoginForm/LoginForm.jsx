@@ -12,10 +12,10 @@ import { UserService } from "../../services/UserService"
 import { useAuthValidation } from "../../hooks/useAuthValidation"
 
 export const LoginForm = () => {
-	//*----------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
 	const navigate = useNavigate()
 
-	//*----------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
 	const {
 		values: loginData,
 		errors,
@@ -35,7 +35,7 @@ export const LoginForm = () => {
 	})
 	const [isSuccess, setIsSuccess] = useState(false)
 
-	//*----------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
@@ -48,40 +48,47 @@ export const LoginForm = () => {
 				password: loginData.password,
 			})
 
-			if (!response.ok) {
-				let errorMessage = "Неизвестная ошибка при авторизации"
-				try {
-					//
-					if (response.detail) {
-						errorMessage = response.detail
-					} else if (response.errors) {
-						errorMessage = Object.values(response.errors)
+			const status = response.status
+			let errorMessage = "Неизвестная ошибка при авторизации"
+
+			switch (status) {
+				case 200:
+					setIsSuccess(true)
+					setDialog({
+						isOpen: true, // true - убрал
+						type: "ok",
+						content: "Вход выполнен успешно",
+					})
+					return
+
+				case 400: // Bad Request
+					const errorJson = await response.json()
+					errorMessage = "Неверный формат"
+					// Проверяем, пришел ли именно ValidationProblem с полем errors
+					if (errorJson.errors) {
+						errorMessage = Object.values(errorJson.errors)
 							.flat()
-							.join(", ")
-					} else if (response.title) {
-						errorMessage = response.title
+							.join("\n")
 					}
-				} catch {
-					console.error("Не удалось прочитать JSON ошибки", e)
-				}
+					break
 
-				setDialog({
-					isOpen: true,
-					type: "warning",
-					content: errorMessage,
-				})
+				case 404: // Not Found
+				case 409: // Conflict
+					errorMessage = await response.text()
+					break
 
-				return
+				default:
+					break
 			}
 
-			// TODO: Логика "Запомнить меня"
-
-			setIsSuccess(true)
+			setIsSuccess(false)
 			setDialog({
-				isOpen: true, // true - убрал
-				type: "ok",
-				content: "Вход выполнен успешно",
+				isOpen: true,
+				type: "error",
+				content: errorMessage,
 			})
+
+			// TODO: Логика "Запомнить меня"
 		} catch (err) {
 			// Ошибка сети (интернет пропал или сервер лежит полностью)
 			setDialog({
@@ -92,14 +99,14 @@ export const LoginForm = () => {
 		}
 	}
 
-	//*----------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
 	const closeDialog = () => {
 		setDialog({ ...dialog, isOpen: false })
 
 		if (isSuccess) navigate("/main")
 	}
 
-	//*----------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
 	return (
 		<>
 			{dialog.isOpen && (

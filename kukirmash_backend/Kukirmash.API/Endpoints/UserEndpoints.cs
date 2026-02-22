@@ -13,7 +13,7 @@ namespace Kukirmash.API.Endpoints;
 
 public static class UserEndpoints
 {
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
     public static IEndpointRouteBuilder MapUserEndpoints(this IEndpointRouteBuilder app)
     {
         // Группа "/users"
@@ -37,7 +37,7 @@ public static class UserEndpoints
         return app;
     }
 
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
     private static async Task<IResult> Register(
         RegisterUserRequest request,
         IUserService userService,
@@ -46,17 +46,17 @@ public static class UserEndpoints
         var validationResult = await validator.ValidateAsync(request);
 
         if (validationResult.IsValid == false)
-            return Results.ValidationProblem(validationResult.ToDictionary());
+            return Results.ValidationProblem(validationResult.ToDictionary()); // 400 BadRequest
 
         try
         {
             // Регистрируем нового пользователя
             await userService.Register(request.Login, request.Email, request.Password);
-            return Results.Ok();
+            return Results.Created(); // 201 Created
         }
         catch (InvalidOperationException ex)
         {
-            return Results.Conflict(ex.Message); // Возвращаем 409 Conflict
+            return Results.Conflict(ex.Message); // 409 Conflict
         }
         catch (Exception ex) // Любая другая ошибка
         {
@@ -65,7 +65,7 @@ public static class UserEndpoints
         }
     }
 
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
     private static async Task<IResult> Login(
         LoginUserRequest request,
         IUserService userService,
@@ -75,7 +75,7 @@ public static class UserEndpoints
         var validationResult = await validator.ValidateAsync(request);
 
         if (validationResult.IsValid == false)
-            return Results.ValidationProblem(validationResult.ToDictionary());
+            return Results.ValidationProblem(validationResult.ToDictionary()); // 400 BadRequest
 
         try
         {
@@ -90,43 +90,47 @@ public static class UserEndpoints
             // Заносим сгенерированный токен в cookies
             httpContext.Response.Cookies.Append("big-balls", token);
 
-            return Results.Ok();
+            return Results.Ok();// 200
         }
         catch (KeyNotFoundException ex)
         {
-            return Results.NotFound(ex.Message); // 404
+            return Results.NotFound(ex.Message); // 404 Not Found
         }
         catch (InvalidOperationException ex)
         {
-            return Results.Conflict(ex.Message); // 400 
+            return Results.Conflict(ex.Message); // 409 Conflict
         }
         catch (Exception ex)
         {
             Log.Error(ex, $"Ошибка логина {ex.Message}");
-            return Results.Problem("Произошла неизвестная ошибка");
+            return Results.Problem(title: "Произошла неизвестная ошибка"); //500 Internal Server Error
         }
     }
 
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
     private static async Task<IResult> GetAllUsers(IUserService userService)
     {
         try
         {
             List<User> users = await userService.GetAllUsers();
 
-            // Убираем пароль и id из списка
+            // Убираем пароль из списка
             var usersResponse = users.Select(u => new UsersResponse(u.Id, u.Login, u.Email));
 
-            return Results.Ok(usersResponse);
+            return Results.Ok(usersResponse); // 200 Ok
+        }
+        catch (AuthenticationException)
+        {
+            return Results.Unauthorized(); //401
         }
         catch (Exception ex)
         {
             Log.Error(ex, $"Ошибка получения всех пользвателей {ex.Message}");
-            return Results.Problem("Произошла неизвестная ошибка");
+            return Results.Problem("Произошла неизвестная ошибка"); //500 Internal Server Error
         }
     }
 
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
     private static async Task<IResult> GetCurrentUserServers(IUserService userService, ClaimsPrincipal userClaims)
     {
         try
@@ -137,19 +141,19 @@ public static class UserEndpoints
 
             var response = servers.Select(s => new ServerResponse(s.Id, s.Name, s.Description, s.IconPath, s.IsPrivate));
 
-            return Results.Ok(response);
+            return Results.Ok(response); // 200 Ok
         }
         catch (AuthenticationException)
         {
-            return Results.Unauthorized();
+            return Results.Unauthorized(); //401
         }
         catch (Exception ex)
         {
             Log.Error(ex, $"Ошибка получения серверов у пользователя: {ex.Message}");
-            return Results.Problem("Произошла неизвестная ошибка");
+            return Results.Problem("Произошла неизвестная ошибка"); //500 Internal Server Error
         }
 
     }
 
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
 }

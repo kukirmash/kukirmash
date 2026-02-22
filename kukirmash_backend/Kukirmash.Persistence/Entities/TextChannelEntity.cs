@@ -1,6 +1,6 @@
 using System;
 
-namespace Kukirmash.Persistence.Entites;
+namespace Kukirmash.Persistence.Entities;
 
 public class TextChannelEntity
 {

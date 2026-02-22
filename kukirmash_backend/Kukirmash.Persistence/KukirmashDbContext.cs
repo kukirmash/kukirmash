@@ -1,5 +1,5 @@
 using System.Reflection;
-using Kukirmash.Persistence.Entites;
+using Kukirmash.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kukirmash.Persistence;
