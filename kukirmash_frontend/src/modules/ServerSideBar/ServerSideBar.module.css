@@ -1,36 +1,42 @@
 .sidebar {
-    height: 100%; /* На всю высоту экрана */
-    width: 4.5rem; /* Узкая полоска только для иконок */
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Центрируем кнопки по горизонтали */
-    padding-top: 1rem;
-    gap: 0.5rem;
+	height: 100%; /* На всю высоту экрана */
+	width: 4.5rem; /* Узкая полоска только для иконок */
 
-    background-color: var(--color-white);
+	display: flex;
+	flex-direction: column;
+	align-items: center; /* Центрируем кнопки по горизонтали */
+	padding-top: 1rem;
+	gap: 0.5rem;
 
-    border-radius:0.75rem;
+	background-color: var(--color-white);
 
-    /* Скроллбар, если серверов много */
-    overflow-y: auto;
-    /* Скрываем скроллбар */
-    scrollbar-width: none; 
+	border-radius: 0.75rem;
+
+	/* Скроллбар, если серверов много */
+	overflow-y: auto;
+	/* Скрываем скроллбар */
+	scrollbar-width: none;
 }
 
 .sidebar::-webkit-scrollbar {
-    display: none;
+	display: none;
 }
 
 /* Маленькая полосочка-разделитель */
 .separator {
-    width: 2.5rem;
-    height: 2px;
-    background-color: var(--color-secondary);
-    border-radius: 1px;
+	width: 2.5rem;
+	height: 2px;
+	background-color: var(--color-secondary);
+	border-radius: 1px;
 }
 
-.logo{
-    width: 3rem;
-    cursor: pointer;
+.logo {
+	width: 3rem;
+	cursor: pointer;
+}
+
+.actionButton img {
+	width: 45%;
+	height: 45%;
+	object-fit: cover;
 }

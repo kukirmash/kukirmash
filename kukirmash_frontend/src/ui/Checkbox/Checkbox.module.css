@@ -1,34 +1,35 @@
 .container {
-  display: inline-flex;
-  align-items: center;
+	display: inline-flex;
+	align-items: center;
 
-  gap: 0.4rem;
-  font-size: 0.85rem;
+	gap: 0.4rem;
+	font-size: 0.85rem;
 
-  color: var(--color-secondary);
+	color: var(--color-secondary);
 
-  user-select: none;
-  cursor: pointer;
+	user-select: none;
+	cursor: pointer;
 }
 
 .checkbox {
-  width: 1.15em;
-  height: 1.15em;
+	width: 1.15em;
+	height: 1.15em;
 
-  cursor: pointer;
-  accent-color: var(--color-primary); /* современный способ задать цвет галочки */
-  
-  margin: 0; /* Убираем стандартные отступы браузера */
-  
-  flex-shrink: 0; /* Гибкость: запрещаем сжиматься, если текст очень длинный */
+	cursor: pointer;
+	accent-color: var(
+		--color-primary
+	); /* современный способ задать цвет галочки */
+
+	margin: 0; /* Убираем стандартные отступы браузера */
+
+	flex-shrink: 0; /* Гибкость: запрещаем сжиматься, если текст очень длинный */
 }
 
 .label {
-  color: var(--color-secondary);
-  line-height: 1.2; /* Чтобы текст был по центру инпута */
+	color: var(--color-secondary);
+	line-height: 1.2; /* Чтобы текст был по центру инпута */
 }
 
 .checkbox:disabled {
-  cursor: not-allowed;
+	cursor: not-allowed;
 }
-

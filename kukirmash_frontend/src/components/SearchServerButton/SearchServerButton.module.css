@@ -1,6 +1,0 @@
-.searchServerButton img {
-	width: 45%;
-	height: 45%;
-	object-fit: cover; /* Чтобы картинка заполняла круг */
-	border-radius: inherit; /* Картинка скругляется вместе с кнопкой */
-}
