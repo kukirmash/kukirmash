@@ -339,3 +339,28 @@ System.InvalidOperationException: The service collection cannot be modified beca
 2026-02-21 17:21:54.794 +03:00 [INF] Starting kukirmash web application
 2026-02-21 17:22:07.223 +03:00 [INF] Starting kukirmash web application
 2026-02-21 22:03:26.306 +03:00 [INF] Starting kukirmash web application
+2026-02-24 15:35:01.666 +03:00 [INF] Starting kukirmash web application
+2026-02-24 15:35:10.801 +03:00 [INF] UserRepository: добавление нового пользователя... (Логин:MrAndrew123)
+2026-02-24 15:35:11.835 +03:00 [INF] UserRepository: пользователь с таким логином или email уже существует. (Логин:MrAndrew123)
+2026-02-24 15:36:05.294 +03:00 [INF] UserRepository: добавление нового пользователя... (Логин:MrAndrew123)
+2026-02-24 15:36:45.510 +03:00 [INF] UserRepository: пользователь с таким логином или email уже существует. (Логин:MrAndrew123)
+2026-02-24 15:37:47.017 +03:00 [INF] UserRepository: поиск пользователя... (Login:MrAndrew)
+2026-02-24 15:37:47.422 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:MrAndrew)
+2026-02-24 15:37:51.671 +03:00 [INF] ServerRepository - получение всех серверов...
+2026-02-24 15:37:51.671 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"b0c3b6db-1143-49e5-bfd5-7d9a29bbf37f")
+2026-02-24 15:37:51.699 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
+2026-02-24 15:37:51.792 +03:00 [INF] UserRepository: успешно получено 0 серверов, где пользователь участник... (UserId:"b0c3b6db-1143-49e5-bfd5-7d9a29bbf37f")
+2026-02-24 15:37:56.496 +03:00 [INF] ServerRepository - добавление нового пользователя на сервер... (UserID:"b0c3b6db-1143-49e5-bfd5-7d9a29bbf37f"  ServerID:"08a067de-4303-4213-bc87-1137b3eef76f")
+2026-02-24 15:37:56.669 +03:00 [INF] ServerRepository - новый пользователь успешно добавлен на сервер... (UserID:"b0c3b6db-1143-49e5-bfd5-7d9a29bbf37f"  ServerID:"08a067de-4303-4213-bc87-1137b3eef76f")
+2026-02-24 15:38:01.565 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"b0c3b6db-1143-49e5-bfd5-7d9a29bbf37f")
+2026-02-24 15:38:01.568 +03:00 [INF] ServerRepository - получение всех серверов...
+2026-02-24 15:38:01.576 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"b0c3b6db-1143-49e5-bfd5-7d9a29bbf37f")
+2026-02-24 15:38:01.590 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
+2026-02-24 15:38:16.954 +03:00 [INF] ServerRepository - получение всех серверов...
+2026-02-24 15:38:16.961 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
+2026-02-24 15:38:21.178 +03:00 [INF] UserRepository: поиск пользователя... (Login:kukirmash)
+2026-02-24 15:38:21.188 +03:00 [INF] UserRepository: пользователь успешно найден. (Login:kukirmash)
+2026-02-24 15:38:23.060 +03:00 [INF] ServerRepository - получение всех серверов...
+2026-02-24 15:38:23.060 +03:00 [INF] UserRepository: получение всех серверов, где пользователь участник... (UserId:"db26469b-04b5-4af0-b286-5e95988de0a7")
+2026-02-24 15:38:23.069 +03:00 [INF] ServerRepository - успешно получено 1 серверов.
+2026-02-24 15:38:23.069 +03:00 [INF] UserRepository: успешно получено 1 серверов, где пользователь участник... (UserId:"db26469b-04b5-4af0-b286-5e95988de0a7")

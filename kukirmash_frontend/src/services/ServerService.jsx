@@ -84,5 +84,25 @@ export const ServerService = {
 
 		return response
 	},
+
+	//*----------------------------------------------------------------------------------------------------------------------------
+	async getServerTextChannels(serverId) {
+		const response = await fetch(
+			`${API_URL}/servers/${serverId}/text-channels`,
+			{
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				credentials: "include", // Оставляем credentials, как и в других ваших запросах
+			},
+		)
+
+		if (!response.ok) {
+			throw new Error("Не удалось загрузить список текстовых каналов")
+		}
+
+		return await response.json()
+	},
 	//*----------------------------------------------------------------------------------------------------------------------------
 }
