@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts/TextChannel/" />
+    <Folder Include="Contracts/TextMessage/" />
     <Folder Include="Validators/Server/" />
     <Folder Include="Validators/TextChannel/" />
     <Folder Include="wwwroot/" />

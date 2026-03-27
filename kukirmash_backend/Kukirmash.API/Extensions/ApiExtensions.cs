@@ -13,6 +13,7 @@ public static class ApiExtensions
         app.MapUserEndpoints();
         app.MapServerEndpoints();
         app.MapTextChannelEndpoints();
+        app.MapTextMessageEndpoints();
     }
 
     public static void AddApiAuthentication(this IServiceCollection services, IConfiguration configuration)

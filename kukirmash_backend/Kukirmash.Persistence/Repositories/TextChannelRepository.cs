@@ -1,7 +1,6 @@
 using Kukirmash.Application.Interfaces.Repositories;
 using Kukirmash.Core.Models;
 using Kukirmash.Persistence.Entities;
-using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 namespace Kukirmash.Persistence.Repositories;

@@ -13,7 +13,7 @@ namespace Kukirmash.API.Endpoints;
 
 public static class TextChannelEndpoints
 {
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
     public static IEndpointRouteBuilder MapTextChannelEndpoints(this IEndpointRouteBuilder app)
     {
         // Создаем группу. Обрати внимание на название переменной пути: serverId
@@ -38,14 +38,14 @@ public static class TextChannelEndpoints
 
             List<TextChannel> textChannels = await serverService.GetTextChannels(id, userId);
 
-            var textChannelResponse = textChannels.Select(x => new TextChannelResponse(x.Id, x.Name));
+            var textChannelResponse = textChannels.Select(x => new GetTextChannelResponse(x.Id, x.Name));
 
             return Results.Ok(textChannelResponse);
         }
 
         catch (Exception ex)
         {
-            return Results.Problem(ex.Message);
+            return Results.Problem();
         }
     }
 
