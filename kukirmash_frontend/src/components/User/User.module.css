@@ -13,7 +13,7 @@
 }
 
 .user:hover {
-	background-color: var(--color-secondary-light-4);
+	background-color: var(--color-white-dark-1);
 }
 
 .avatarCont {

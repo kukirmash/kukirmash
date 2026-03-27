@@ -1,16 +1,35 @@
 .container {
 	flex: 1; /* Заставляет элемент занять всё свободное место */
-
 	height: 100%;
 
 	background-color: var(--color-white);
 	border-radius: 0.75rem;
-
 	padding: 1rem;
 
 	display: flex;
 	flex-direction: column;
+}
 
-	/* Чтобы длинный контент скроллился внутри, а не растягивал страницу */
+.header {
+	margin-bottom: 1rem;
+}
+
+.messagesArea {
+	flex: 1; /* Занимает всё доступное место между шапкой и полем ввода */
+	display: flex;
+	flex-direction: column;
+
+	/* Чтобы длинный контент скроллился внутри этой области */
 	overflow-y: auto;
+	scrollbar-width: thin; /* Делает скроллбар тоньше  */
+}
+
+/* Красивый скроллбар для области сообщений в Chrome/Safari */
+.messagesArea::-webkit-scrollbar {
+	width: 6px;
+}
+
+.messagesArea::-webkit-scrollbar-thumb {
+	background-color: var(--color-secondary);
+	border-radius: 3px;
 }

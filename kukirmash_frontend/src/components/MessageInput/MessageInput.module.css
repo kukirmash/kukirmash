@@ -1,0 +1,30 @@
+.inputContainer {
+	display: flex;
+	align-items: center;
+
+	background-color: var(--color-white-dark-1);
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+	margin-top: 1rem;
+}
+
+.input {
+	flex: 1; /* Заставляет инпут занять всё место до кнопки */
+	background: transparent;
+	border: none;
+	outline: none;
+
+	font-size: 1rem;
+}
+
+.sendButton {
+	/* Переопределяем внутренние отступы, чтобы сделать кнопку меньше/больше */
+	padding: 0.5rem;
+
+	/* Или можно задать жесткие размеры для квадратной кнопки */
+	width: 2.5rem;
+	height: 2.5rem;
+
+	/* Немного отодвигаем от поля ввода */
+	margin-left: 0.5rem;
+}
