@@ -43,13 +43,10 @@ export const MainPage = () => {
 							onChannelSelect={handleChannelSelect}
 							activeChannelId={selectedChannel?.id}
 						/>
-						{/* Передаем имя канала, если он выбран, иначе имя сервера */}
+
 						<ServerContent
-							name={
-								selectedChannel
-									? selectedChannel.name
-									: selectedServer.name
-							}
+							server={selectedServer}
+							channel={selectedChannel}
 						/>
 						<UsersBar serverId={selectedServer.id} />
 					</>
