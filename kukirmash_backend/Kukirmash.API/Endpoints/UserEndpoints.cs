@@ -14,25 +14,25 @@ namespace Kukirmash.API.Endpoints;
 public static class UserEndpoints
 {
     //----------------------------------------------------------------------------------------------------------------------------
-    public static IEndpointRouteBuilder MapUserEndpoints(this IEndpointRouteBuilder app)
+    public static IEndpointRouteBuilder MapUserEndpoints( this IEndpointRouteBuilder app )
     {
         // Группа "/users"
-        var usersGroup = app.MapGroup("users");
+        var usersGroup = app.MapGroup( "users" );
 
         // GET /users
-        usersGroup.MapGet("/", GetAllUsers)
+        usersGroup.MapGet( "/", GetAllUsers )
             .RequireAuthorization();
 
         // GET /users/me/servers (Требует авторизацию)
-        usersGroup.MapGet("me/servers", GetCurrentUserServers)
+        usersGroup.MapGet( "me/servers", GetCurrentUserServers )
             .RequireAuthorization();
 
         // GET /users/{id}/servers (Просмотр серверов конкретного юзера)
         // {id:guid} - это констрейнт, маршрут сработает только если id это GUID
         //usersGroup.MapGet("{id:guid}/servers", GetUserServersById);
 
-        app.MapPost("register", Register);
-        app.MapPost("login", Login);
+        app.MapPost( "register", Register );
+        app.MapPost( "login", Login );
 
         return app;
     }
@@ -41,27 +41,27 @@ public static class UserEndpoints
     private static async Task<IResult> Register(
         RegisterUserRequest request,
         IUserService userService,
-        IValidator<RegisterUserRequest> validator)
+        IValidator<RegisterUserRequest> validator )
     {
-        var validationResult = await validator.ValidateAsync(request);
+        var validationResult = await validator.ValidateAsync( request );
 
-        if (validationResult.IsValid == false)
-            return Results.ValidationProblem(validationResult.ToDictionary()); // 400 BadRequest
+        if ( validationResult.IsValid == false )
+            return Results.ValidationProblem( validationResult.ToDictionary() ); // 400 BadRequest
 
         try
         {
             // Регистрируем нового пользователя
-            await userService.Register(request.Login, request.Email, request.Password);
+            await userService.Register( request.Login, request.Email, request.Password );
             return Results.Created(); // 201 Created
         }
-        catch (InvalidOperationException ex)
+        catch ( InvalidOperationException ex )
         {
-            return Results.Conflict(ex.Message); // 409 Conflict
+            return Results.Conflict( ex.Message ); // 409 Conflict
         }
-        catch (Exception ex) // Любая другая ошибка
+        catch ( Exception ex ) // Любая другая ошибка
         {
-            Log.Error(ex, $"Ошибка регистрации {ex.Message}");
-            return Results.Problem("Произошла неизвестная ошибка");
+            Log.Error( ex, $"Ошибка регистрации {ex.Message}" );
+            return Results.Problem( "Произошла неизвестная ошибка" );
         }
     }
 
@@ -70,87 +70,87 @@ public static class UserEndpoints
         LoginUserRequest request,
         IUserService userService,
         HttpContext httpContext,
-        IValidator<LoginUserRequest> validator)
+        IValidator<LoginUserRequest> validator )
     {
-        var validationResult = await validator.ValidateAsync(request);
+        var validationResult = await validator.ValidateAsync( request );
 
-        if (validationResult.IsValid == false)
-            return Results.ValidationProblem(validationResult.ToDictionary()); // 400 BadRequest
+        if ( validationResult.IsValid == false )
+            return Results.ValidationProblem( validationResult.ToDictionary() ); // 400 BadRequest
 
         try
         {
             // Находим пользователя -> генерируем для него jwt токен (время жизни токена 12 часов)
             string token = string.Empty;
 
-            if (request.Login.Contains("@"))
-                token = await userService.LoginByEmail(request.Login, request.Password);
+            if ( request.Login.Contains( "@" ) )
+                token = await userService.LoginByEmail( request.Login, request.Password );
             else
-                token = await userService.LoginByLogin(request.Login, request.Password);
+                token = await userService.LoginByLogin( request.Login, request.Password );
 
             // Заносим сгенерированный токен в cookies
-            httpContext.Response.Cookies.Append("big-balls", token);
+            httpContext.Response.Cookies.Append( "big-balls", token );
 
             return Results.Ok();// 200
         }
-        catch (KeyNotFoundException ex)
+        catch ( KeyNotFoundException ex )
         {
-            return Results.NotFound(ex.Message); // 404 Not Found
+            return Results.NotFound( ex.Message ); // 404 Not Found
         }
-        catch (InvalidOperationException ex)
+        catch ( InvalidOperationException ex )
         {
-            return Results.Conflict(ex.Message); // 409 Conflict
+            return Results.Conflict( ex.Message ); // 409 Conflict
         }
-        catch (Exception ex)
+        catch ( Exception ex )
         {
-            Log.Error(ex, $"Ошибка логина {ex.Message}");
-            return Results.Problem(title: "Произошла неизвестная ошибка"); //500 Internal Server Error
+            Log.Error( ex, $"Ошибка логина {ex.Message}" );
+            return Results.Problem( title: "Произошла неизвестная ошибка" ); //500 Internal Server Error
         }
     }
 
     //----------------------------------------------------------------------------------------------------------------------------
-    private static async Task<IResult> GetAllUsers(IUserService userService)
+    private static async Task<IResult> GetAllUsers( IUserService userService )
     {
         try
         {
             List<User> users = await userService.GetAllUsers();
 
             // Убираем пароль из списка
-            var usersResponse = users.Select(u => new UsersResponse(u.Id, u.Login, u.Email));
+            var usersResponse = users.Select( u => new UsersResponse( u.Id, u.Login, u.Email ) );
 
-            return Results.Ok(usersResponse); // 200 Ok
+            return Results.Ok( usersResponse ); // 200 Ok
         }
-        catch (AuthenticationException)
+        catch ( AuthenticationException )
         {
             return Results.Unauthorized(); //401
         }
-        catch (Exception ex)
+        catch ( Exception ex )
         {
-            Log.Error(ex, $"Ошибка получения всех пользвателей {ex.Message}");
-            return Results.Problem("Произошла неизвестная ошибка"); //500 Internal Server Error
+            Log.Error( ex, $"Ошибка получения всех пользвателей {ex.Message}" );
+            return Results.Problem( "Произошла неизвестная ошибка" ); //500 Internal Server Error
         }
     }
 
     //----------------------------------------------------------------------------------------------------------------------------
-    private static async Task<IResult> GetCurrentUserServers(IUserService userService, ClaimsPrincipal userClaims)
+    private static async Task<IResult> GetCurrentUserServers( IUserService userService, ClaimsPrincipal userClaims )
     {
         try
         {
             Guid userId = userClaims.GetUserId();
 
-            List<Server> servers = await userService.GetUserServers(userId);
+            List<Server> servers = await userService.GetUserServers( userId );
 
-            var response = servers.Select(s => new ServerResponse(s.Id, s.Name, s.Description, s.IconPath, s.IsPrivate));
+            var response = servers.Select( s => new ServerResponse( s.Id, s.Name, s.Description, s.IconPath, s.IsPrivate ) );
 
-            return Results.Ok(response); // 200 Ok
+            return Results.Ok( response ); // 200 Ok
         }
-        catch (AuthenticationException)
+        catch ( AuthenticationException )
         {
             return Results.Unauthorized(); //401
         }
-        catch (Exception ex)
+        catch ( Exception ex )
         {
-            Log.Error(ex, $"Ошибка получения серверов у пользователя: {ex.Message}");
-            return Results.Problem("Произошла неизвестная ошибка"); //500 Internal Server Error
+            Log.Error( ex, $"Ошибка получения серверов у пользователя: {ex.Message}" );
+            return Results.Problem( "Произошла неизвестная ошибка" ); //500 Internal Server Error
         }
 
     }

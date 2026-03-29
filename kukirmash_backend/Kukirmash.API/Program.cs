@@ -1,25 +1,29 @@
+using FluentValidation;
+using Kukirmash.API.Extensions;
+using Kukirmash.API.Hubs;
+using Kukirmash.Application.Interfaces;
+using Kukirmash.Application.Interfaces.Auth;
 using Kukirmash.Application.Interfaces.Repositories;
 using Kukirmash.Application.Interfaces.Services;
-using Kukirmash.Application.Interfaces.Auth;
-using Kukirmash.Application.Interfaces;
-
-using Kukirmash.Persistence.Repositories;
 using Kukirmash.Application.Services;
+using Kukirmash.Infrastructure;
+using Kukirmash.Infrastructure.JWT;
 using Kukirmash.Persistence;
+using Kukirmash.Persistence.Repositories;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using Kukirmash.Infrastructure;
-using FluentValidation;
-using Kukirmash.Infrastructure.JWT;
-using Kukirmash.API.Extensions;
-using Microsoft.AspNetCore.CookiePolicy;
-using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
-using Kukirmash.API.Hubs;
+using Serilog.Events;
 
 
 
 Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .MinimumLevel.Override( "Microsoft", LogEventLevel.Warning )
+    .MinimumLevel.Override( "System", LogEventLevel.Warning )
     .WriteTo.Console()
+    .WriteTo.Debug()
     .WriteTo.File("log.txt")
     .CreateLogger();
 
@@ -28,6 +32,8 @@ try
     Log.Information("Starting kukirmash web application");
 
     WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+    builder.Host.UseSerilog();
+
     var config = builder.Configuration;
     var services = builder.Services;
 
@@ -91,6 +97,20 @@ try
 
     app.AddMappedEndpoints();
     app.MapHub<TextChannelHub>("/text-channels");
+
+    using ( var scope = app.Services.CreateScope() )
+    {
+        var serviceProvider = scope.ServiceProvider;
+        try
+        {
+            var context = serviceProvider.GetRequiredService<KukirmashDbContext>();
+            context.Database.Migrate();
+        }
+        catch ( Exception ex )
+        {
+            Log.Error( ex, "Ошибка при миграции базы данных." );
+        }
+    }
 
     app.Run();
 }
