@@ -8,42 +8,71 @@ import { AuthCard } from "../../ui/AuthCard/AuthCard"
 
 import styles from "./RegisterForm.module.css"
 import { UserService } from "../../services/UserService"
-import { useAuthValidation } from "../../hooks/useAuthValidation"
+import { useForm } from "../../hooks/useForm"
 
 export const RegisterForm = () => {
-	//*----------------------------------------------------------------------------------------------------------------------------
-	const navigate = useNavigate()
+	//----------------------------------------------------------------------------------------------------------------------------
+	// Правила для регистрации
+	const validateRegister = (values) => {
+		const errors = {}
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-	//*----------------------------------------------------------------------------------------------------------------------------
+		if (values.login.length < 4) 
+			errors.login = "Минимум 4 символа"
+		
+		if (!values.email.trim() || !emailRegex.test(values.email)) {
+			errors.email = "Некорректная почта"
+		}
+
+		if (values.password.length < 8) {
+			errors.password = "Минимум 8 символов"
+		}
+
+		if (values.password !== values.confirmPassword) {
+			errors.confirmPassword = "Пароли не совпадают"
+		}
+
+		return errors
+	}
+
+	//----------------------------------------------------------------------------------------------------------------------------
+	// Инициализируем хук
 	const {
 		values: registerData,
 		errors,
 		isValid,
 		handleChange,
 		validateField,
-		validateAllFields, //проверка всех полей
-	} = useAuthValidation({
-		login: "",
-		email: "",
-		password: "",
-		confirmPassword: "",
-	})
+		validateAllFields,
+	} =
+		useForm(
+			{
+				login: "",
+				email: "",
+				password: "",
+				confirmPassword: "",
+			},
+			validateRegister
+		)
 
+	//----------------------------------------------------------------------------------------------------------------------------
 	const [dialog, setDialog] = useState({
 		isOpen: false,
 		type: "ok",
 		content: "",
 	})
 
+	const navigate = useNavigate()
 	const [isSuccess, setIsSuccess] = useState(false)
 
-	//*----------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
 	// Обработка форма после нажатия кнопки
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
 		// Финальная проверка перед отправкой
-		if (!validateAllFields()) return
+		if (!validateAllFields()) 
+			return
 
 		try {
 			const response = await UserService.register({
@@ -52,41 +81,69 @@ export const RegisterForm = () => {
 				password: registerData.password,
 			})
 
-			if (!response.ok) {
-				const errorJson = await response.json()
+			const status = response.status
+			let errorMessage = "Неизвестная ошибка при регистрации"
 
-				setDialog({
-					isOpen: true,
-					type: "error",
-					content: errorJson.detail || "Ошибка регистрации",
-				})
+			switch (status) {
+				case 201: // Успешная регистрация (Results.Created)
+					setIsSuccess(true)
+					setDialog({
+						isOpen: true,
+						type: "ok",
+						content: "Регистрация выполнена успешно",
+					})
+					return // Прерываем выполнение, чтобы не сработал код ошибки ниже
 
-				return
+				case 400: // Ошибки валидации (Results.ValidationProblem)
+					const errorJson = await response.json()
+					errorMessage = "Неверный формат данных"
+					// Достаем массив ошибок из поля errors
+					if (errorJson.errors) {
+						errorMessage = Object.values(errorJson.errors)
+							.flat()
+							.join("\n")
+					}
+					break
+
+				case 409: // Конфликт (Results.Conflict) - логин/email уже заняты
+					errorMessage = await response.text()
+					break
+
+				case 500: // Серверная ошибка (Results.Problem)
+					errorMessage = "Произошла внутренняя ошибка на сервере"
+					break
+
+				default:
+					break
 			}
 
-			setIsSuccess(true)
-			setDialog({
-				isOpen: true,
-				type: "ok",
-				content: "Регистрация выполнена успешна",
-			})
-		} catch (err) {
+			// Если код дошел сюда (не сработал return в case 201), значит была ошибка
+			setIsSuccess(false)
 			setDialog({
 				isOpen: true,
 				type: "error",
-				content: "Неизвестная ошибка",
+				content: errorMessage,
+			})
+
+		} catch (err) {
+			// Ошибка сети (сервер выключен, нет интернета)
+			setDialog({
+				isOpen: true,
+				type: "error",
+				content: "Не удалось соединиться с сервером",
 			})
 		}
 	}
 
-	//*----------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
 	const closeDialog = () => {
 		setDialog({ ...dialog, isOpen: false })
 
-		if (isSuccess) navigate("/login")
+		if (isSuccess) 
+			navigate("/login")
 	}
 
-	//*----------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
 	return (
 		<>
 			{dialog.isOpen && (

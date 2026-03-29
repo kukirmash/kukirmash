@@ -9,13 +9,23 @@ import { AuthCard } from "../../ui/AuthCard/AuthCard"
 
 import styles from "./LoginForm.module.css"
 import { UserService } from "../../services/UserService"
-import { useAuthValidation } from "../../hooks/useAuthValidation"
+import { useForm } from "../../hooks/useForm"
 
 export const LoginForm = () => {
 	//----------------------------------------------------------------------------------------------------------------------------
-	const navigate = useNavigate()
+	// Правила валидации для формы логина
+	const validateLoginForm = (values) => {
+		const errors = {}
+		if (!values.login.trim())
+			errors.login = "Логин обязателен"
+
+		if (!values.password)
+			errors.password = "Пароль обязателен"
+		return errors
+	}
 
 	//----------------------------------------------------------------------------------------------------------------------------
+	// Инициализируем хук
 	const {
 		values: loginData,
 		errors,
@@ -23,18 +33,24 @@ export const LoginForm = () => {
 		handleChange,
 		validateField,
 		validateAllFields,
-	} = useAuthValidation({
-		login: "",
-		password: "",
-	})
+	} = 
+	useForm(
+		{
+			login: "",
+			password: "",
+			remember: false
+		},
+		validateLoginForm)
 
+	//----------------------------------------------------------------------------------------------------------------------------
 	const [dialog, setDialog] = useState({
 		isOpen: false,
 		type: "ok",
 		content: "",
 	})
-	const [isSuccess, setIsSuccess] = useState(false)
 
+	const [isSuccess, setIsSuccess] = useState(false)
+	const navigate = useNavigate()
 	//----------------------------------------------------------------------------------------------------------------------------
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -103,7 +119,8 @@ export const LoginForm = () => {
 	const closeDialog = () => {
 		setDialog({ ...dialog, isOpen: false })
 
-		if (isSuccess) navigate("/main")
+		if (isSuccess)
+			navigate("/main")
 	}
 
 	//----------------------------------------------------------------------------------------------------------------------------

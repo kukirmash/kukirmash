@@ -7,12 +7,24 @@ import { ImageUpload } from "../../ui/ImageUpload/ImageUpload"
 import { Switch } from "../../ui/Switch/Switch"
 
 import { ServerService } from "../../services/ServerService"
-import { useAuthValidation } from "../../hooks/useAuthValidation"
+import { useForm } from "../../hooks/useForm"
 import styles from "./AddServerFormDialog.module.css"
 
 export const AddServerFormDialog = ({ onClose }) => {
-	//*----------------------------------------------------------------------------------------------------------------------------
-	// хук валидации
+	//----------------------------------------------------------------------------------------------------------------------------
+	// Правила валидации для формы добавления сервера
+	const validateServer = (values) => {
+		const errors = {}
+
+		if (!values.serverName.trim()) {
+			errors.serverName = "Название сервера обязательно"
+		}
+
+		return errors
+	}
+
+	//----------------------------------------------------------------------------------------------------------------------------
+	// Инициализируем хук
 	const {
 		values: serverData,
 		errors,
@@ -20,11 +32,16 @@ export const AddServerFormDialog = ({ onClose }) => {
 		handleChange,
 		validateField,
 		validateAllFields,
-	} = useAuthValidation({
-		serverName: "",
-		serverDesc: "",
-	})
+	} =
+		useForm(
+			{
+				serverName: "",
+				serverDesc: "",
+			}, 
+			validateServer
+		)
 
+	//----------------------------------------------------------------------------------------------------------------------------
 	// данные для сервера без валидации
 	const [serverIconFile, setServerIconFile] = useState(null)
 	const [isPrivate, setIsPrivate] = useState(false)
@@ -36,7 +53,7 @@ export const AddServerFormDialog = ({ onClose }) => {
 		content: "",
 	})
 
-	//*----------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
@@ -72,7 +89,7 @@ export const AddServerFormDialog = ({ onClose }) => {
 		}
 	}
 
-	//*----------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
 	const handleInfoClose = () => {
 		// Если успех - закрываем сразу всё родительское окно.
 		// Нет смысла закрывать infoDialog, если мы уничтожаем весь компонент.
@@ -84,7 +101,7 @@ export const AddServerFormDialog = ({ onClose }) => {
 		}
 	}
 
-	//*----------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
 	return (
 		<>
 			<Dialog title="Добавить сервер" onClose={onClose} width="26rem">
