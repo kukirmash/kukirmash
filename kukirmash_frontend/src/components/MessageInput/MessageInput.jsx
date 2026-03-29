@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import styles from "./MessageInput.module.css"
 import { Button } from "../../ui/Button/Button"
+import send from "../../assets/send.svg";
 
 export const MessageInput = ({ onSend }) => {
 	const [text, setText] = useState("")
@@ -28,7 +29,7 @@ export const MessageInput = ({ onSend }) => {
 				onKeyDown={handleKeyDown}
 			/>
 			<Button className={styles.sendButton} onClick={handleSend}>
-				{">"}
+				<img src={send} alt="Отправить" className={styles.icon} />
 			</Button>
 		</div>
 	)

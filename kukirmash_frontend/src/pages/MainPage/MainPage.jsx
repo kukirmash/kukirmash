@@ -9,23 +9,23 @@ import { UsersBar } from "../../modules/UsersBar/UsersBar"
 import styles from "./MainPage.module.css"
 
 export const MainPage = () => {
-	//*----------------------------------------------------------------------------------------------------------------------------
-	const [activeView, setActiveView] = useState("search")
-	const [selectedServer, setSelectedServer] = useState(null)
-	const [selectedChannel, setSelectedChannel] = useState(null) // <-- Новый стейт для текущего канала
+	//----------------------------------------------------------------------------------------------------------------------------
+	const [activeView, setActiveView] = useState("search") 			// режим: сервер, поиск серверов
+	const [selectedServerId, setSelectedServerId] = useState(null)		// id выбранного сервера
+	const [selectedChannelId, setSelectedChannelId] = useState(null)	// id выбранного текстового канала
 
-	//*----------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
 	const handleServerClick = (server) => {
-		setSelectedServer(server)
-		setSelectedChannel(null) // Сбрасываем выбранный канал при переключении сервера
+		setSelectedServerId(server)
+		setSelectedChannelId(null) // Сбрасываем выбранный канал при переключении сервера
 		setActiveView("server")
 	}
 
 	const handleChannelSelect = (channel) => {
-		setSelectedChannel(channel)
+		setSelectedChannelId(channel)
 	}
 
-	//*----------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
 	return (
 		<div className={styles.page}>
 			<div className={styles.container}>
@@ -36,24 +36,24 @@ export const MainPage = () => {
 
 				{activeView === "search" && <SearchServers />}
 
-				{activeView === "server" && selectedServer && (
+				{activeView === "server" && selectedServerId && (
 					<>
 						<ServerChannelsBar
-							serverId={selectedServer.id}
+							serverId={selectedServerId.id}
 							onChannelSelect={handleChannelSelect}
-							activeChannelId={selectedChannel?.id}
+							activeChannelId={selectedChannelId?.id}
 						/>
 
 						<ServerContent
-							server={selectedServer}
-							channel={selectedChannel}
+							server={selectedServerId}
+							channel={selectedChannelId}
 						/>
-						<UsersBar serverId={selectedServer.id} />
+						<UsersBar serverId={selectedServerId.id} />
 					</>
 				)}
 			</div>
 		</div>
 	)
 
-	//*----------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------------------
 }

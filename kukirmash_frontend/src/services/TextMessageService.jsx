@@ -6,7 +6,7 @@ export const TextMessageService = {
 	// Получение истории сообщений
 	async getChannelMessages(serverId, channelId, count = 50) {
 		const response = await fetch(
-			`${API_URL}/servers/${serverId}/text-channels/${channelId}/messages?count=${count}`,
+			`${API_URL}/servers/${serverId}/text-channels/${channelId}/messages/${count}`,
 			{
 				method: "GET",
 				headers: {

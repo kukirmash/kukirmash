@@ -94,7 +94,7 @@ export const ServerService = {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				credentials: "include", // Оставляем credentials, как и в других ваших запросах
+				credentials: "include",
 			},
 		)
 
@@ -102,7 +102,7 @@ export const ServerService = {
 			throw new Error("Не удалось загрузить список текстовых каналов")
 		}
 
-		return await response.json()
+		return response
 	},
 	
 	//----------------------------------------------------------------------------------------------------------------------------

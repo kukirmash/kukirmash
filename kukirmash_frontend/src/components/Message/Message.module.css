@@ -1,0 +1,54 @@
+.messageContainer {
+	display: flex;
+	gap: 1rem;
+	padding: 0.5rem 1rem;
+	margin-top: 0.5rem;
+	border-radius: 0.5rem;
+}
+
+.messageContainer:hover {
+	background-color: var(--color-secondary-light-4, #f2f3f5);
+}
+
+.avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: var(--color-primary);
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	font-size: 1.2rem;
+	flex-shrink: 0;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+}
+
+.header {
+	display: flex;
+	align-items: baseline;
+	gap: 0.5rem;
+	margin-bottom: 0.2rem;
+}
+
+.author {
+	font-weight: 500;
+	font-size: 1rem;
+	color: var(--color-black, #313338);
+}
+
+.date {
+	font-size: 0.75rem;
+	color: var(--color-secondary-dark-2, #949ba4);
+}
+
+.text {
+	color: var(--color-black, #313338);
+	word-break: break-word;
+	line-height: 1.375rem;
+}

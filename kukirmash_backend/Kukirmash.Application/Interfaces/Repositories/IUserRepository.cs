@@ -10,10 +10,9 @@ public interface IUserRepository
 
     Task<User?> GetByLogin(string login);
 
-    Task<User?> GetById(Guid id);
+    Task<User> GetById(Guid id);
 
     Task<List<User>> GetAllUsers();
-
 
     Task<List<Server>> GetUserServers(Guid userId);
 

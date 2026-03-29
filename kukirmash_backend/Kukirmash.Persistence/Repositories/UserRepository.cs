@@ -102,7 +102,7 @@ public class UserRepository : IUserRepository
     }
 
     //*----------------------------------------------------------------------------------------------------------------------------
-    public async Task<User?> GetById(Guid id)
+    public async Task<User> GetById(Guid id)
     {
         Log.Information("{TAG}: поиск пользователя... (id:{id})", TAG, id);
         var userEntity = await _context.Users

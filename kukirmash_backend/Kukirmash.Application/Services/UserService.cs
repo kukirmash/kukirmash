@@ -11,7 +11,7 @@ public class UserService : IUserService
     private readonly IUserRepository _userRepository;
     private readonly IJwtProvider _jwtProvider;
 
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
     public UserService(IUserRepository userRepository, IPasswordHasher passwordHasher, IJwtProvider jwtProvider)
     {
         _passwordHasher = passwordHasher;
@@ -19,7 +19,7 @@ public class UserService : IUserService
         _jwtProvider = jwtProvider;
     }
 
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
     public async Task Register(string login, string email, string password)
     {
         // Хэшируем пароль
@@ -31,7 +31,7 @@ public class UserService : IUserService
         await _userRepository.Add(user);
     }
 
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
     public async Task<string> LoginByLogin(string login, string password)
     {
         // Получаем пользовтеля из репозитория
@@ -50,7 +50,7 @@ public class UserService : IUserService
         return token;
     }
 
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
     public async Task<string> LoginByEmail(string email, string password)
     {
         // Получаем пользовтеля из репозитория
@@ -69,7 +69,7 @@ public class UserService : IUserService
         return token;
     }
 
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
     public async Task<List<User>> GetAllUsers()
     {
         List<User> users = await _userRepository.GetAllUsers();
@@ -77,7 +77,7 @@ public class UserService : IUserService
         return users;
     }
 
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
     public async Task<List<Server>> GetUserServers(Guid userId)
     {
         List<Server> servers = await _userRepository.GetUserServers(userId);
@@ -85,7 +85,7 @@ public class UserService : IUserService
         return servers;
     }
 
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
     public async Task<List<Server>> GetUserCreatedServers(Guid userId)
     {
         List<Server> serversCreated = await _userRepository.GetUserCreatedServers(userId);
@@ -93,5 +93,13 @@ public class UserService : IUserService
         return serversCreated;
     }
 
-    //*----------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------
+    public async Task<User> GetById( Guid id )
+    {
+        User? user = await _userRepository.GetById( id );
+
+        return user;
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------------
 }

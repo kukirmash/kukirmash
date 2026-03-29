@@ -24,6 +24,12 @@
 	scrollbar-width: thin; /* Делает скроллбар тоньше  */
 }
 
+.messagesWrapper {
+	display: flex;
+	flex-direction: column;
+	margin-top: auto; /* Именно это свойство прижимает блок ко дну! */
+}
+
 /* Красивый скроллбар для области сообщений в Chrome/Safari */
 .messagesArea::-webkit-scrollbar {
 	width: 6px;
