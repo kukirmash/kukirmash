@@ -39,7 +39,21 @@ services:
       - "3000:80"
     restart: always
 
+  nextcloud:
+    container_name: nextcloud
+    image: nextcloud:latest
+    ports:
+      - "8080:80"
+    restart: always
+    volumes:
+      - nextcloud-data:/var/www/html
+      # Добавляем путь к wwwroot бэкенда. 
+      # Слева - путь на твоем ПК, справа - папка внутри контейнера Nextcloud
+      - ./kukirmash_backend/Kukirmash.API/wwwroot:/external_wwwroot
+
 volumes:
   postgres-data:
     external: true
     name: kukirmashapi_postgres-data
+
+  nextcloud-data:
